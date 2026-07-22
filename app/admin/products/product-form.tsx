@@ -1,11 +1,15 @@
 import { createClient } from "@/lib/supabase/server"
+import { getProductImageUrl } from "@/lib/supabase/storage"
+import { deleteProductImage, reorderProductImage } from "./actions"
 
 export async function ProductForm({
   product,
+  images,
   action,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   product?: Record<string, any>
+  images?: { id: string; image_url: string; display_order: number; is_primary: boolean }[]
   action: (formData: FormData) => Promise<void>
 }) {
   const supabase = await createClient()
@@ -281,6 +285,56 @@ export async function ProductForm({
               />
               <span className="font-body-md text-on-surface">Active</span>
             </label>
+          </div>
+        </div>
+
+        <div className="bg-surface rounded-xl border border-outline-variant p-6 space-y-6">
+          <h2 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+            Images
+          </h2>
+
+          {images && images.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {images.map((img, idx) => (
+                <div key={img.id} className="relative group aspect-[3/4] bg-surface-container-low rounded-lg overflow-hidden">
+                  <img src={getProductImageUrl(img.image_url)} alt="" className="w-full h-full object-cover" />
+                  {img.is_primary && (
+                    <span className="absolute top-2 left-2 bg-secondary text-on-secondary text-label-xs font-label-xs px-1.5 py-0.5 rounded">Primary</span>
+                  )}
+                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <form action={deleteProductImage.bind(null, img.id)}>
+                      <button type="submit" className="bg-error text-on-error text-label-xs font-label-xs px-2 py-1 rounded hover:bg-error/80 transition-colors">Delete</button>
+                    </form>
+                  </div>
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {idx > 0 && (
+                      <form action={reorderProductImage.bind(null, img.id, "up")}>
+                        <button type="submit" className="bg-surface/80 text-on-surface text-label-xs font-label-xs px-2 py-1 rounded hover:bg-surface transition-colors">↑</button>
+                      </form>
+                    )}
+                    {idx < images.length - 1 && (
+                      <form action={reorderProductImage.bind(null, img.id, "down")}>
+                        <button type="submit" className="bg-surface/80 text-on-surface text-label-xs font-label-xs px-2 py-1 rounded hover:bg-surface transition-colors">↓</button>
+                      </form>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div>
+            <label htmlFor="images" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
+              {images && images.length > 0 ? "Add More Images" : "Upload Images"}
+            </label>
+            <input
+              id="images"
+              name="images"
+              type="file"
+              accept="image/webp,image/jpeg,image/png"
+              multiple
+              className="w-full text-label-sm text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-label-sm file:font-label-sm file:bg-primary file:text-on-primary hover:file:bg-primary-fixed-dim transition-colors"
+            />
           </div>
         </div>
 

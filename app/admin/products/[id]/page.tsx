@@ -11,20 +11,23 @@ export default async function EditProductPage({
   const { id } = await params
   const supabase = await createClient()
 
-  const { data: product } = await supabase
-    .from("products")
-    .select("*")
-    .eq("id", id)
-    .single()
+  const [product, images] = await Promise.all([
+    supabase.from("products").select("*").eq("id", id).single(),
+    supabase
+      .from("product_images")
+      .select("id, image_url, display_order, is_primary")
+      .eq("product_id", id)
+      .order("display_order"),
+  ])
 
-  if (!product) redirect("/admin/products")
+  if (!product.data) redirect("/admin/products")
 
   return (
     <div>
       <h1 className="font-headline-sm text-headline-sm text-on-surface mb-8">
         Edit Product
       </h1>
-      <ProductForm product={product} action={updateProduct.bind(null, id)} />
+      <ProductForm product={product.data} images={images.data ?? []} action={updateProduct.bind(null, id)} />
     </div>
   )
 }

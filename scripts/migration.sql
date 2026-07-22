@@ -282,6 +282,7 @@ create table if not exists public.site_settings (
   favicon text,
   contact_email text,
   phone text,
+  whatsapp text,
   address text,
   facebook text,
   instagram text,
@@ -559,3 +560,15 @@ insert into public.shapes (name, slug) values
   ('Runner', 'runner'),
   ('Oval', 'oval')
 on conflict (slug) do nothing;
+
+create or replace function public.decrement_stock(product_id uuid, quantity int)
+returns void
+language plpgsql
+security definer
+as $$
+begin
+  update public.products
+  set stock_quantity = stock_quantity - quantity
+  where id = product_id and stock_quantity >= quantity;
+end;
+$$;

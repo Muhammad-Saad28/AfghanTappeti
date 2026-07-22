@@ -93,5 +93,15 @@ export async function placeOrder(data: CheckoutInput) {
   const { error: itemsError } = await supabase.from("order_items").insert(orderItems)
   if (itemsError) throw new Error(itemsError.message)
 
+  for (const item of data.cart) {
+    const { error: stockError } = await supabase.rpc("decrement_stock", {
+      product_id: item.id,
+      quantity: item.quantity,
+    })
+    if (stockError) {
+      await supabase.from("orders").update({ status: "failed", notes: `Stock error: ${stockError.message}` }).eq("id", order.id)
+    }
+  }
+
   redirect(`/checkout/success?order=${orderNumber}`)
 }

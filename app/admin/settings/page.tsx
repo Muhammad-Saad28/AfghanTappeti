@@ -17,6 +17,7 @@ async function saveSettings(formData: FormData) {
     favicon: raw.favicon as string,
     contact_email: raw.contact_email as string,
     phone: raw.phone as string,
+    whatsapp: raw.whatsapp as string,
     address: raw.address as string,
     facebook: raw.facebook as string,
     instagram: raw.instagram as string,
@@ -77,6 +78,10 @@ export default async function AdminSettingsPage() {
               <div>
                 <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Phone</label>
                 <input name="phone" defaultValue={settings?.phone ?? ""} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
+              </div>
+              <div>
+                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">WhatsApp Number (for order confirmations)</label>
+                <input name="whatsapp" defaultValue={settings?.whatsapp ?? ""} placeholder="+393XXXXXXXXX" className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
               <div>
                 <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Address</label>

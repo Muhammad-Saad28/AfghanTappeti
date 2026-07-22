@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
+import { toggleSubscriber, deleteSubscriber } from "./actions"
 
 export const dynamic = "force-dynamic"
 
@@ -28,12 +29,13 @@ export default async function AdminNewsletterPage() {
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Email</th>
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden md:table-cell">Status</th>
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden lg:table-cell">Subscribed</th>
+              <th className="text-right px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody>
             {subscribers?.length === 0 && (
               <tr>
-                <td colSpan={3} className="px-4 py-12 text-center text-on-surface-variant font-body-md">No subscribers yet.</td>
+                <td colSpan={4} className="px-4 py-12 text-center text-on-surface-variant font-body-md">No subscribers yet.</td>
               </tr>
             )}
             {subscribers?.map((sub) => (
@@ -48,6 +50,18 @@ export default async function AdminNewsletterPage() {
                 </td>
                 <td className="px-4 py-4 font-body-md text-on-surface-variant hidden lg:table-cell">
                   {new Date(sub.subscribed_at).toLocaleDateString()}
+                </td>
+                <td className="px-4 py-4 text-right">
+                  <div className="flex items-center justify-end gap-2">
+                    <form action={toggleSubscriber.bind(null, sub.id, sub.is_active)}>
+                      <button type="submit" className="text-label-sm text-secondary hover:text-secondary-fixed-dim transition-colors">
+                        {sub.is_active ? "Unsubscribe" : "Re-subscribe"}
+                      </button>
+                    </form>
+                    <form action={deleteSubscriber.bind(null, sub.id)} onSubmit={(e) => { if (!confirm("Delete this subscriber?")) e.preventDefault() }}>
+                      <button type="submit" className="text-label-sm text-on-surface-variant hover:text-error transition-colors">Delete</button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             ))}

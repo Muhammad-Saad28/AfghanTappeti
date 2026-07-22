@@ -2,10 +2,19 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useParams } from "next/navigation"
 import { useCart } from "@/lib/cart"
 import { placeOrder, type CheckoutInput } from "@/lib/checkout-actions"
+import en from "@/messages/en.json"
+import it from "@/messages/it.json"
+
+const dictionaries = { en, it } as const
 
 export default function CheckoutPage() {
+  const params = useParams()
+  const locale = (params.lang === "it" ? "it" : "en") as keyof typeof dictionaries
+  const t = dictionaries[locale].checkout
+  const cartMessages = dictionaries[locale].cart
   const { cart, subtotal, clearCart } = useCart()
   const [billingSame, setBillingSame] = useState(true)
   const [pending, setPending] = useState(false)
@@ -28,10 +37,8 @@ export default function CheckoutPage() {
   if (cart.length === 0) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4">
-        <h1 className="font-headline-sm text-headline-sm text-on-surface mb-3">Your Cart is Empty</h1>
-        <Link href="/shop" className="bg-primary text-on-primary px-6 py-3 rounded-lg text-label-md no-underline hover:bg-primary-fixed-dim transition-colors">
-          Browse Rugs
-        </Link>
+        <h1 className="font-headline-sm text-headline-sm text-on-surface mb-3">{cartMessages.empty}</h1>
+        <Link href={`/${locale}/shop`} className="bg-primary text-on-primary px-6 py-3 rounded-lg text-label-md no-underline hover:bg-primary-fixed-dim transition-colors">{cartMessages.empty_cta}</Link>
       </div>
     )
   }
@@ -64,82 +71,73 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen pt-32 pb-16 px-margin-mobile md:px-margin-desktop max-w-6xl mx-auto">
-      <h1 className="font-headline-sm text-headline-sm text-on-surface mb-8">Checkout</h1>
-
+      <h1 className="font-headline-sm text-headline-sm text-on-surface mb-8">{t.title}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-12">
         <div className="flex-1 space-y-8">
           <section className="bg-surface rounded-xl border border-outline-variant p-6 space-y-4">
-            <h2 className="font-headline-xs text-headline-xs text-on-surface">Contact</h2>
+            <h2 className="font-headline-xs text-headline-xs text-on-surface">{t.contact}</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">First Name *</label>
+                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.first_name} *</label>
                 <input name="firstName" required value={form.firstName} onChange={updateForm} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
               <div>
-                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Last Name *</label>
+                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.last_name} *</label>
                 <input name="lastName" required value={form.lastName} onChange={updateForm} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
             </div>
             <div>
-              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Email *</label>
+              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.email} *</label>
               <input name="email" type="email" required value={form.email} onChange={updateForm} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
             </div>
             <div>
-              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Phone</label>
+              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.phone}</label>
               <input name="phone" type="tel" value={form.phone} onChange={updateForm} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
             </div>
           </section>
-
           <section className="bg-surface rounded-xl border border-outline-variant p-6 space-y-4">
-            <h2 className="font-headline-xs text-headline-xs text-on-surface">Shipping Address</h2>
+            <h2 className="font-headline-xs text-headline-xs text-on-surface">{t.shipping}</h2>
             <div>
-              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Address *</label>
+              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.address} *</label>
               <input name="line1" required value={shipping.line1} onChange={updateShipping} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
             </div>
             <div>
-              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Apt / Suite</label>
+              <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.apt}</label>
               <input name="line2" value={shipping.line2} onChange={updateShipping} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">City *</label>
+                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.city} *</label>
                 <input name="city" required value={shipping.city} onChange={updateShipping} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
               <div>
-                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Postal Code *</label>
+                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.postal} *</label>
                 <input name="postalCode" required value={shipping.postalCode} onChange={updateShipping} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">State / Province</label>
+                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.state}</label>
                 <input name="state" value={shipping.state} onChange={updateShipping} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
               <div>
-                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Country *</label>
+                <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">{t.country} *</label>
                 <input name="country" required value={shipping.country} onChange={updateShipping} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
             </div>
             <label className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" checked={billingSame} onChange={(e) => setBillingSame(e.target.checked)} className="accent-secondary" />
-              <span className="font-body-md text-on-surface">Billing address same as shipping</span>
+              <span className="font-body-md text-on-surface">{t.billing_same}</span>
             </label>
           </section>
-
           {error && <p className="text-error font-body-md">{error}</p>}
-
-          <button
-            type="submit"
-            disabled={pending}
-            className="bg-primary text-on-primary w-full py-3 rounded-lg text-label-md hover:bg-primary-fixed-dim transition-colors disabled:opacity-50"
-          >
-            {pending ? "Placing Order..." : `Place Order — €${subtotal.toLocaleString()}`}
+          <button type="submit" disabled={pending} className="bg-primary text-on-primary w-full py-3 rounded-lg text-label-md hover:bg-primary-fixed-dim transition-colors disabled:opacity-50">
+            {pending ? t.placing : `${t.place_order} — €${subtotal.toLocaleString()}`}
           </button>
         </div>
-
         <div className="lg:w-80">
           <div className="bg-surface rounded-xl border border-outline-variant p-6 sticky top-32 space-y-4">
-            <h2 className="font-headline-xs text-headline-xs text-on-surface">Order Summary</h2>
+            <h2 className="font-headline-xs text-headline-xs text-on-surface">{t.summary}</h2>
             {cart.map((item) => (
               <div key={item.id} className="flex justify-between text-body-md">
                 <span className="text-on-surface-variant truncate mr-2">{item.name} x{item.quantity}</span>
@@ -147,10 +145,10 @@ export default function CheckoutPage() {
               </div>
             ))}
             <div className="border-t border-outline-variant pt-3 flex justify-between font-label-md">
-              <span className="text-on-surface">Total</span>
+              <span className="text-on-surface">{cartMessages.total}</span>
               <span className="text-on-surface">€{subtotal.toLocaleString()}</span>
             </div>
-            <p className="font-label-sm text-label-sm text-on-surface-variant">Payment upon confirmation (bank transfer or wire)</p>
+            <p className="font-label-sm text-label-sm text-on-surface-variant">{t.payment_note}</p>
           </div>
         </div>
       </form>

@@ -19,133 +19,103 @@ export async function generateMetadata({
   }
 }
 
-export default async function ContactPage() {
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}) {
+  const { lang } = await params
+  const locale = lang as Locale
+  const t = await getDictionary(locale)
+
   return (
     <>
-      {/* Hero */}
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden bg-surface-container-high">
         <div className="absolute inset-0 bg-black/20 z-10" />
         <div className="relative z-20 text-center px-margin-mobile">
           <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-4">
-            Get in Touch
+            {t.contact.title}
           </h1>
           <p className="font-body-lg text-body-lg text-white/90 max-w-xl mx-auto">
-            We&apos;d love to hear from you. Whether you have a question about
-            a rug or need design advice, our team is here to help.
+            {t.contact.hero_subtitle}
           </p>
         </div>
       </section>
 
-      {/* Contact Form + Details */}
       <Section background="none">
         <div className="grid md:grid-cols-2 gap-24">
           <div>
             <h2 className="font-headline-sm text-headline-sm mb-8">
-              Send Us a Message
+              {t.contact.form_heading}
             </h2>
             <form className="space-y-8">
               <div>
-                <label
-                  htmlFor="name"
-                  className="font-label-sm text-label-sm text-on-surface-variant block mb-1"
-                >
-                  Name
+                <label htmlFor="name" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
+                  {t.contact.form_name}
                 </label>
-                <input
-                  id="name"
-                  type="text"
-                  className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md"
-                />
+                <input id="name" type="text" className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
               <div>
-                <label
-                  htmlFor="email"
-                  className="font-label-sm text-label-sm text-on-surface-variant block mb-1"
-                >
-                  Email
+                <label htmlFor="email" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
+                  {t.contact.form_email}
                 </label>
-                <input
-                  id="email"
-                  type="email"
-                  className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md"
-                />
+                <input id="email" type="email" className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
               <div>
-                <label
-                  htmlFor="subject"
-                  className="font-label-sm text-label-sm text-on-surface-variant block mb-1"
-                >
-                  Subject
+                <label htmlFor="subject" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
+                  {t.contact.form_subject}
                 </label>
-                <input
-                  id="subject"
-                  type="text"
-                  className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md"
-                />
+                <input id="subject" type="text" className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md" />
               </div>
               <div>
-                <label
-                  htmlFor="message"
-                  className="font-label-sm text-label-sm text-on-surface-variant block mb-1"
-                >
-                  Message
+                <label htmlFor="message" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
+                  {t.contact.form_message}
                 </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md resize-none"
-                />
+                <textarea id="message" rows={4} className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md resize-none" />
               </div>
-              <button
-                type="submit"
-                className="bg-primary text-white px-12 py-4 font-label-md text-label-md hover:bg-secondary transition-colors"
-              >
-                Send Message
+              <button type="submit" className="bg-primary text-white px-12 py-4 font-label-md text-label-md hover:bg-secondary transition-colors">
+                {t.contact.form_submit}
               </button>
             </form>
           </div>
 
           <div>
             <h2 className="font-headline-sm text-headline-sm mb-8">
-              Contact Information
+              {t.contact.contact_info}
             </h2>
             <div className="space-y-8">
               <div>
                 <h4 className="font-label-md text-label-md text-secondary uppercase tracking-widest mb-2">
-                  Address
+                  {t.contact.address_label}
                 </h4>
                 <p className="font-body-md text-body-md text-on-surface-variant">
-                  Via dei Tessitori 24
-                  <br />
-                  50123 Florence, Italy
+                  {t.contact.address}
                 </p>
               </div>
               <div>
                 <h4 className="font-label-md text-label-md text-secondary uppercase tracking-widest mb-2">
-                  Phone
+                  {t.contact.phone_label}
                 </h4>
                 <p className="font-body-md text-body-md text-on-surface-variant">
-                  +39 055 123 4567
+                  {t.contact.phone}
                 </p>
               </div>
               <div>
                 <h4 className="font-label-md text-label-md text-secondary uppercase tracking-widest mb-2">
-                  Email
+                  {t.contact.email_label}
                 </h4>
                 <p className="font-body-md text-body-md text-on-surface-variant">
-                  info@afghantappeti.com
+                  {t.contact.email}
                 </p>
               </div>
               <div>
                 <h4 className="font-label-md text-label-md text-secondary uppercase tracking-widest mb-2">
-                  Business Hours
+                  {t.contact.hours_label}
                 </h4>
                 <p className="font-body-md text-body-md text-on-surface-variant">
-                  Monday &ndash; Friday: 9:00 AM &ndash; 6:00 PM
-                  <br />
-                  Saturday: 10:00 AM &ndash; 4:00 PM
-                  <br />
-                  Sunday: Closed
+                  {t.contact.hours_week}<br />
+                  {t.contact.hours_sat}<br />
+                  {t.contact.hours_sun}
                 </p>
               </div>
             </div>

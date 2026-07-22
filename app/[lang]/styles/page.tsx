@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { siteUrl } from "@/lib/seo"
+import { createClient } from "@/lib/supabase/server"
+import { getProductImageUrl } from "@/lib/supabase/storage"
 import { Section } from "@/components/layout/section"
 import Link from "next/link"
 
@@ -21,15 +23,6 @@ export async function generateMetadata({
   }
 }
 
-const styleImages: Record<string, string> = {
-  scandinavian: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80",
-  classic: "https://images.unsplash.com/photo-1600166898405-da9535204843?w=800&q=80",
-  minimal: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
-  bohemian: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80",
-  luxury: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=800&q=80",
-  modern: "https://images.unsplash.com/photo-1602872030218-6c8a1f9c6a8a?w=800&q=80",
-}
-
 export default async function StylesPage({
   params,
 }: {
@@ -38,6 +31,15 @@ export default async function StylesPage({
   const { lang } = await params
   const locale = lang as Locale
   const t = await getDictionary(locale)
+
+  const supabase = await createClient()
+  const { data: styleImgs } = await supabase
+    .from("product_images")
+    .select("image_url")
+    .order("display_order")
+    .limit(20)
+  const styleUrls = (styleImgs ?? []).map((i) => getProductImageUrl(i.image_url)).filter(Boolean)
+  function pick(i: number) { return styleUrls[i % styleUrls.length] || "" }
 
   const styles = ["scandinavian", "classic", "minimal", "bohemian", "luxury", "modern"] as const
 
@@ -53,33 +55,19 @@ export default async function StylesPage({
           </p>
         </div>
       </Section>
-
       <Section background="muted">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-          {styles.map((key) => {
+          {styles.map((key, i) => {
             const style = t.styles[key]
             return (
-              <Link
-                key={key}
-                href={`/${locale}/shop`}
-                className="group block bg-surface overflow-hidden no-underline"
-              >
+              <Link key={key} href={`/${locale}/shop`} className="group block bg-surface overflow-hidden no-underline">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <div
-                    className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    style={{ backgroundImage: `url(${styleImages[key]})` }}
-                  />
+                  <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${pick(i)})` }} />
                 </div>
                 <div className="p-8 space-y-3">
-                  <h2 className="font-headline-sm text-headline-sm text-on-surface">
-                    {style.name}
-                  </h2>
-                  <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                    {style.desc}
-                  </p>
-                  <span className="inline-block font-label-md text-label-md text-secondary border-b border-secondary pb-0.5 mt-2">
-                    Explore {style.name} Rugs
-                  </span>
+                  <h2 className="font-headline-sm text-headline-sm text-on-surface">{style.name}</h2>
+                  <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{style.desc}</p>
+                  <span className="inline-block font-label-md text-label-md text-secondary border-b border-secondary pb-0.5 mt-2">{t.styles.explore_cta.replace("{name}", style.name)}</span>
                 </div>
               </Link>
             )

@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
+import { updateCustomer, deleteCustomer } from "./actions"
 
 export const dynamic = "force-dynamic"
 
@@ -27,7 +28,7 @@ export default async function AdminCustomersPage() {
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden md:table-cell">Email</th>
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden md:table-cell">Phone</th>
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden lg:table-cell">Orders</th>
-              <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden lg:table-cell">Since</th>
+              <th className="text-right px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -44,8 +45,12 @@ export default async function AdminCustomersPage() {
                 <td className="px-4 py-4 font-body-md text-on-surface-variant hidden md:table-cell">{customer.email}</td>
                 <td className="px-4 py-4 font-body-md text-on-surface-variant hidden md:table-cell">{customer.phone || "—"}</td>
                 <td className="px-4 py-4 font-body-md text-on-surface-variant hidden lg:table-cell">{Array.isArray(customer.orders) ? customer.orders.length : 0}</td>
-                <td className="px-4 py-4 font-body-md text-on-surface-variant hidden lg:table-cell">
-                  {new Date(customer.created_at).toLocaleDateString()}
+                <td className="px-4 py-4 text-right">
+                  <div className="flex items-center justify-end gap-2">
+                    <form action={deleteCustomer.bind(null, customer.id)} onSubmit={(e) => { if (!confirm("Delete this customer?")) e.preventDefault() }}>
+                      <button type="submit" className="text-label-sm text-on-surface-variant hover:text-error transition-colors">Delete</button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             ))}

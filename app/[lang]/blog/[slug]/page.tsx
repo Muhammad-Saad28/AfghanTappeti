@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { siteUrl, blogStructuredData } from "@/lib/seo"
+import { getDictionary, type Locale } from "@/lib/i18n"
 import { Section } from "@/components/layout/section"
 
 export async function generateMetadata({
@@ -34,7 +36,9 @@ export default async function BlogPostPage({
   params: Promise<{ lang: string; slug: string }>
 }) {
   const { lang, slug } = await params
+  const locale = lang as Locale
   const supabase = await createClient()
+  const t = await getDictionary(locale)
   const { data: post } = await supabase
     .from("blogs")
     .select("*")
@@ -78,14 +82,13 @@ export default async function BlogPostPage({
               ))
             ) : (
               <>
-                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                  The art of Persian rug making is one of the oldest continuous craft traditions in the world.
-                </p>
-                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  From the royal workshops of Safavid Isfahan to the nomadic tribes of Fars province, each region developed its own distinctive patterns.
-                </p>
+                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">{t.blog.fallback_p1}</p>
+                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{t.blog.fallback_p2}</p>
               </>
             )}
+          </div>
+          <div className="mt-12 text-center">
+            <Link href={`/${locale}/blog`} className="font-label-md text-label-md text-secondary hover:text-secondary-fixed-dim transition-colors no-underline">{t.blog.back}</Link>
           </div>
         </article>
       </Section>

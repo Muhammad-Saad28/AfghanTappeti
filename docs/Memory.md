@@ -1,10 +1,10 @@
 Project: Afghan Tappeti
 
-Version: 1.0
+Version: 1.1
 
 Status: Approved
 
-Last Updated: YYYY-MM-DD
+Last Updated: 2026-07-22
 
 # Memory
 
@@ -36,7 +36,7 @@ Active Development
 
 Current Phase
 
-Phase 11 – Internationalization
+Phase 11 – Internationalization (Completed)
 
 Overall Progress
 
@@ -54,7 +54,7 @@ Build a premium bilingual (English & Italian) luxury e-commerce platform for aut
 
 Current priority:
 
-Complete i18n (Phase 11) — English + Italian translations.
+✅ i18n (Phase 11) — English + Italian translations completed.
 
 ---
 
@@ -107,6 +107,7 @@ Status
 ✅ Ecommerce: Cart (localStorage + hook), Checkout, Orders, Customers, Address migration
 ✅ Images: 86 images renamed to SKU-NN.jpg, organized into public/images/products/{SKU}/ subfolders (local backup), WebP versions generated via sharp (q80)
 ✅ Netlify: netlify.toml created
+✅ i18n (Phase 11): All public pages translated EN/IT — server components use getDictionary, client components use direct JSON import pattern. Pages: home, shop, about, contact, blog, blog/[slug], collections, styles, rooms, product/[slug], cart, checkout, checkout/success, wishlist, + AddToCartButton, Navbar, Footer
 
 ---
 
@@ -286,7 +287,8 @@ None
 
 # Next Task
 
-Complete Phase 11: Internationalization (EN/IT — ensure all pages translated, language switcher functional, SEO alternate languages)
+✅ Phase 11: Internationalization (EN/IT — all public pages translated, language switcher functional, SEO alternate languages)
+Phase 12: Polish, Filters, Admin Dashboard enhancements
 
 ---
 
