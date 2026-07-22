@@ -84,7 +84,7 @@ Storage
 
 Deployment
 
-- Vercel
+- Netlify
 
 Version Control
 

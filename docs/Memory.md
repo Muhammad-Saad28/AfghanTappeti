@@ -40,11 +40,11 @@ Phase 11 – Internationalization
 
 Overall Progress
 
-76%
+78%
 
 Current Sprint
 
-Ecommerce & Admin Full CRUD
+Image Organization & Deployment Prep
 
 ---
 
@@ -105,6 +105,8 @@ Status
 ✅ Public: Homepage, About, Contact, Shop, Product Detail, Collections, Blog, Wishlist
 ✅ Admin: Dashboard, Products CRUD, Blog CRUD, Reviews, Newsletter, Categories, Collections, Orders, Customers, Analytics, SEO, Settings, Media placeholder
 ✅ Ecommerce: Cart (localStorage + hook), Checkout, Orders, Customers, Address migration
+✅ Images: 86 images renamed to SKU-NN.jpg, organized into public/images/products/{SKU}/ subfolders (local backup), WebP versions generated via sharp (q80)
+✅ Netlify: netlify.toml created
 
 ---
 
@@ -142,7 +144,7 @@ Supabase Storage
 
 Deployment
 
-Vercel
+Netlify
 
 Package Manager
 
@@ -284,7 +286,7 @@ None
 
 # Next Task
 
-Implement Phase 11: Internationalization (EN/IT translation system, language switcher, translation files)
+Complete Phase 11: Internationalization (EN/IT — ensure all pages translated, language switcher functional, SEO alternate languages)
 
 ---
 

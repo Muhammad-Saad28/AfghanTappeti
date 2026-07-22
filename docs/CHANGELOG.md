@@ -40,7 +40,7 @@ Bug fixes
 - SEO optimization (sitemap, robots, structured data)
 - Performance optimization
 - Testing
-- Deployment to Vercel
+- Deployment to Netlify
 
 ---
 
@@ -354,6 +354,21 @@ Minor UI fixes
 
 Security fixes
 
+## v2.1.0 (2026-07-22) — Image Organization & Netlify Setup
+
+### Added
+- 86 product images renamed from WhatsApp filenames to `SKU-NN.jpg` convention
+- Images organized into `public/images/products/{SKU}/` subfolders (local backup)
+- WebP versions generated for all 86 images (sharp, quality 80)
+- `netlify.toml` created for Netlify deployment
+- Images 42/43/44 assigned to AK-030 and PF-010 products
+
+### Changed
+- Deployment target updated from Vercel to Netlify across all docs
+- Memory.md, Phases.md, Deployment.md updated for Netlify
+
+---
+
 ## v2.0.0 (2026-07-21) — Phase 14: Testing & Cleanup
 
 ### Lint & TypeScript Cleanup
@@ -402,6 +417,9 @@ Before every release verify
 
 | Version | Status | Description |
 |----------|--------|-------------|
+| 2.1.0 | Current | Image organization, WebP, Netlify setup |
+| 2.0.0 | Complete | Phase 14 testing, lint/TS cleanup |
+| 1.1.0 | Complete | Phases 1-10 implementation |
 | 1.0.0 | Planning | Initial project planning and documentation |
 
 ---

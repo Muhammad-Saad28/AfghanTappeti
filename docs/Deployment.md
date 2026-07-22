@@ -35,7 +35,7 @@ Next.js
 
 ↓
 
-Vercel
+Netlify
 
 ↓
 
@@ -69,7 +69,7 @@ Managed by Domain Provider
 
 SSL
 
-Automatically managed by Vercel
+Automatically managed by Netlify
 
 ---
 
@@ -81,7 +81,7 @@ Next.js
 
 Hosting
 
-Vercel
+Netlify
 
 Database
 
@@ -113,7 +113,7 @@ Google Search Console
 
 Monitoring
 
-Vercel Analytics
+Netlify Analytics
 
 Future
 
@@ -129,7 +129,7 @@ Development
 
 Production
 
-Configured inside Vercel.
+Configured inside Netlify.
 
 Never commit environment variables.
 
@@ -159,7 +159,7 @@ GitHub
 
 ↓
 
-Vercel Build
+Netlify Build
 
 ↓
 

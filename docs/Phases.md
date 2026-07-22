@@ -42,7 +42,7 @@ Phase 11 – Internationalization
 
 Overall Progress
 
-76%
+78%
 
 ---
 
@@ -469,10 +469,11 @@ Pending
 
 Tasks
 
-- Deploy to Vercel
+- Deploy to Netlify
 - Configure Domain
 - Configure SSL
 - Configure Environment Variables
+- Configure netlify.toml
 - Configure Monitoring
 - Backup Strategy
 
