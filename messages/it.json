@@ -1,0 +1,232 @@
+{
+  "nav": {
+    "shop": "Negozio",
+    "collections": "Collezioni",
+    "styles": "Stili",
+    "rooms": "Ambienti",
+    "about": "Chi Siamo",
+    "contact": "Contatti"
+  },
+  "home": {
+    "hero_title": "Scopri Tappeti Fatti a Mano\nSenzo Tempo",
+    "hero_subtitle": "Capolavori autentici afghani, persiani e orientali, selezionati per la casa più esigente.",
+    "hero_cta": "Esplora la Collezione",
+    "search_placeholder": "Cerca per nome, stile, materiale o origine...",
+    "search_cta": "Cerca",
+    "featured_collections": "Collezioni in Vetrina",
+    "shop_by_style": "Acquista per Stile",
+    "shop_by_room": "Acquista per Ambiente",
+    "shop_by_color": "Acquista per Colore",
+    "shop_by_size": "Acquista per Misura",
+    "best_sellers": "Più Venduti",
+    "why_choose_us": "Perché Sceglierci",
+    "our_story": "La Nostra Storia",
+    "our_story_text": "Da generazioni, selezioniamo i migliori tappeti fatti a mano dalle antiche regioni tessili dell'Afghanistan, della Persia e oltre.",
+    "our_story_cta": "Leggi la Nostra Storia",
+    "what_our_customers_say": "Cosa Dicono i Nostri Clienti",
+    "follow_us": "Seguici su Instagram",
+    "newsletter_title": "Unisciti al Nostro Circolo",
+    "newsletter_subtitle": "Scopri in anteprima nuovi arrivi, collezioni esclusive e storie di tessitura.",
+    "newsletter_placeholder": "Inserisci la tua email",
+    "newsletter_cta": "Iscriviti"
+  },
+  "about": {
+    "hero_title": "La Nostra Storia",
+    "heritage_title": "Un'Eredità di Eccellenza",
+    "heritage_text": "Afghan Tappeti nasce da una profonda venerazione per l'antica arte dell'annodatura a mano. Per secoli, i tessitori dell'Afghanistan, della Persia e dell'Anatolia hanno tramandato tecniche che trasformano lana grezza e tinture naturali in capolavori eterni.",
+    "knotting_title": "L'Arte dell'Annodatura a Mano",
+    "knotting_text": "Ogni tappeto della nostra collezione è interamente annodato a mano, un processo che può richiedere mesi o addirittura anni. Ogni nodo è legato a mano, seguendo schemi tramandati dalla memoria e dalla tradizione.",
+    "ethical_title": "Approvvigionamento Etico",
+    "ethical_text": "Lavoriamo direttamente con famiglie di tessitori e cooperative, garantendo salari equi e preservando tradizioni che altrimenti potrebbero perdersi. Ogni acquisto sostiene le comunità artigiane.",
+    "quote": "Un tappeto non è fatto per essere calpestato. È fatto per essere attraversato — un paesaggio di filo e colore."
+  },
+  "contact": {
+    "title": "Contattaci",
+    "subtitle": "Saremo lieti di sentirvi. Che stiate cercando un pezzo specifico o abbiate bisogno di consigli di design, il nostro team è qui per aiutarvi.",
+    "form_name": "Nome",
+    "form_email": "Email",
+    "form_phone": "Telefono",
+    "form_message": "Messaggio",
+    "form_submit": "Invia Messaggio",
+    "form_success": "Grazie! Ti contatteremo a breve.",
+    "address": "Milano, Italia",
+    "email": "hello@afghantappeti.com",
+    "phone": "+39 02 1234 5678"
+  },
+  "shop": {
+    "title": "Tutti i Tappeti",
+    "filter_collection": "Collezione",
+    "filter_style": "Stile",
+    "filter_material": "Materiale",
+    "filter_origin": "Origine",
+    "filter_color": "Colore",
+    "filter_size": "Misura",
+    "filter_shape": "Forma",
+    "filter_price": "Fascia di Prezzo",
+    "sort": "Ordina per",
+    "sort_newest": "Più recenti",
+    "sort_price_asc": "Prezzo: dal più basso",
+    "sort_price_desc": "Prezzo: dal più alto",
+    "sort_name": "Nome",
+    "no_results": "Nessun tappeto trovato.",
+    "load_more": "Carica Altro",
+    "view_details": "Vedi Dettagli",
+    "add_to_cart": "Aggiungi al Carrello",
+    "from": "Da"
+  },
+  "product": {
+    "add_to_cart": "Aggiungi al Carrello",
+    "request_concierge": "Richiedi Consulenza",
+    "details_care": "Dettagli e Cura",
+    "shipping_returns": "Spedizione e Resi",
+    "shipping_text": "Consegna white-glove gratuita in tutto il mondo. Prova in casa di 30 giorni.",
+    "related_title": "Capolavori Correlati",
+    "view_collection": "Vedi Collezione",
+    "sku": "SKU",
+    "material": "Materiale",
+    "origin": "Origine",
+    "size": "Misura",
+    "color": "Colore"
+  },
+  "cart": {
+    "title": "Carrello",
+    "empty": "Il Carrello è Vuoto",
+    "empty_cta": "Sfoglia i Tappeti",
+    "clear": "Svuota",
+    "subtotal": "Subtotale",
+    "shipping": "Spedizione",
+    "shipping_calc": "Calcolata al checkout",
+    "total": "Totale",
+    "checkout": "Procedi al Checkout",
+    "continue": "Continua lo Shopping"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "contact": "Contatto",
+    "first_name": "Nome",
+    "last_name": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "shipping": "Indirizzo di Spedizione",
+    "address": "Indirizzo",
+    "apt": "Appartamento",
+    "city": "Città",
+    "postal": "CAP",
+    "state": "Provincia",
+    "country": "Paese",
+    "billing_same": "L'indirizzo di fatturazione è lo stesso",
+    "summary": "Riepilogo Ordine",
+    "payment_note": "Pagamento al conferma (bonifico bancario)",
+    "place_order": "Effettua Ordine",
+    "placing": "Ordine in Corso..."
+  },
+  "checkout_success": {
+    "title": "Grazie!",
+    "subtitle": "Il tuo ordine è stato effettuato con successo.",
+    "order_number": "Numero ordine",
+    "message": "Invieremo una conferma alla tua email con le istruzioni di pagamento. I tuoi tappeti verranno spediti una volta confermato il pagamento.",
+    "continue": "Continua lo Shopping",
+    "home": "Home"
+  },
+  "collections": {
+    "title": "Collezioni",
+    "subtitle": "Esplora le nostre collezioni curate di capolavori annodati a mano."
+  },
+  "wishlist": {
+    "title": "I Tuoi Preferiti",
+    "empty": "La tua lista dei desideri è vuota.",
+    "empty_cta": "Scopri i Tappeti",
+    "remove": "Rimuovi",
+    "add_to_cart": "Aggiungi al Carrello"
+  },
+  "blog": {
+    "title": "Il Nostro Journal",
+    "subtitle": "Storie dal mondo dei tappeti annodati a mano.",
+    "read_more": "Leggi di Più",
+    "back": "Torna al Journal",
+    "no_posts": "Ancora nessun articolo."
+  },
+  "footer": {
+    "shop": "Negozio",
+    "about": "Chi Siamo",
+    "contact": "Contatti",
+    "blog": "Journal",
+    "faq": "FAQ",
+    "shipping_returns": "Spedizione e Resi",
+    "care_guide": "Guida alla Cura",
+    "privacy": "Privacy",
+    "terms": "Termini e Condizioni",
+    "newsletter": "Newsletter",
+    "newsletter_placeholder": "La tua email",
+    "newsletter_cta": "Iscriviti",
+    "copyright": "© 2026 Afghan Tappeti. Tutti i diritti riservati.",
+    "follow_us": "Seguici"
+  },
+  "styles": {
+    "title": "Acquista per Stile",
+    "subtitle": "Selezioni curate per valorizzare la personalità unica della tua casa.",
+    "scandinavian": {
+      "name": "Scandinavo",
+      "desc": "Spazi luminosi e ariosi richiedono tappeti con motivi sobri e texture naturali. La nostra collezione Scandinava propone toni tenui e geometrie essenziali."
+    },
+    "classic": {
+      "name": "Classico",
+      "desc": "Eleganza senza tempo e artigianato tradizionale. La collezione Classica presenta motivi a medaglione, bordi ricchi e disegni d'eredità."
+    },
+    "minimal": {
+      "name": "Minimale",
+      "desc": "Linee pulite e palette neutre definiscono il minimalismo moderno. Questi tappeti offrono texture sottile e calore senza sovraccaricare l'ambiente."
+    },
+    "bohemian": {
+      "name": "Bohémien",
+      "desc": "Spirito libero ed eclettico, la nostra collezione Bohémien porta colori vivaci, motivi tribali ed espressione artistica in ogni stanza."
+    },
+    "luxury": {
+      "name": "Lusso",
+      "desc": "Concediti il meglio della seta e della lana filata a mano. Ogni pezzo è un capolavoro di artigianato di lusso, creato per collezionisti esigenti."
+    },
+    "modern": {
+      "name": "Moderno",
+      "desc": "Astratti audaci, pattern contemporanei e design innovativi definiscono la nostra collezione Moderna, perfetta per gli interni più innovativi."
+    }
+  },
+  "rooms": {
+    "title": "Trova lo Spazio Perfetto",
+    "subtitle": "Scopri il tappeto ideale per ogni ambiente della tua casa.",
+    "living_room": {
+      "name": "Soggiorno",
+      "desc": "Il cuore della tua casa merita un tappeto che ancorì lo spazio con calore e stile. Dai grandi pezzi tradizionali ai tappeti contemporanei di tendenza."
+    },
+    "bedroom": {
+      "name": "Camera da Letto",
+      "desc": "Crea un rifugio sereno con tappeti morbidi e soffice che accolgono i piedi nudi. La nostra selezione per la camera da letto privilegia il comfort senza rinunciare alla bellezza."
+    },
+    "dining_room": {
+      "name": "Sala da Pranzo",
+      "desc": "Rendi ogni pasto memorabile con un tappeto che definisce la zona pranzo. Durevoli ma eleganti, i nostri tappeti sono progettati per resistere all'uso quotidiano."
+    },
+    "office": {
+      "name": "Home Office",
+      "desc": "Valorizza il tuo spazio di lavoro con un tappeto che ispira produttività e comfort. Motivi professionali incontrano una costruzione durevole per il moderno ufficio domestico."
+    },
+    "hallway": {
+      "name": "Corridoio e Ingresso",
+      "desc": "Crea un'impressione duratura. I nostri runner e tappeti d'ingresso sono realizzati per aree ad alto traffico aggiungendo un tocco di raffinatezza."
+    },
+    "nursery": {
+      "name": "Camera dei Bambini",
+      "desc": "Sicuri, morbidi e deliziosi — la nostra collezione per bambini utilizza materiali naturali e trame a pelo basso, perfetti per giocare e crescere."
+    }
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Qualcosa è andato storto.",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "create": "Crea",
+    "search": "Cerca",
+    "no_results": "Nessun risultato trovato."
+  }
+}

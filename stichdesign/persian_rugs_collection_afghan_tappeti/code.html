@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Persian Rugs | Afghan Tappeti</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#675c54",
+                    "surface-bright": "#fef8f6",
+                    "on-primary-container": "#978a81",
+                    "inverse-surface": "#32302f",
+                    "error-container": "#ffdad6",
+                    "outline": "#7f756e",
+                    "inverse-on-surface": "#f5f0ee",
+                    "on-primary-fixed-variant": "#4f453d",
+                    "surface-container-high": "#ece7e5",
+                    "on-background": "#1d1b1a",
+                    "on-secondary-fixed-variant": "#624000",
+                    "primary-fixed": "#efe0d5",
+                    "tertiary-fixed-dim": "#c2c7cc",
+                    "tertiary-container": "#21262a",
+                    "secondary-container": "#fec97c",
+                    "primary-container": "#2c241d",
+                    "secondary-fixed": "#ffddb1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#78520f",
+                    "on-tertiary-fixed": "#171c20",
+                    "tertiary-fixed": "#dfe3e8",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f8f2f1",
+                    "on-secondary-fixed": "#291800",
+                    "on-tertiary-fixed-variant": "#42474c",
+                    "on-surface-variant": "#4d453f",
+                    "surface-dim": "#ded9d7",
+                    "on-surface": "#1d1b1a",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#d0c4bc",
+                    "background": "#fef8f6",
+                    "tertiary": "#0c1115",
+                    "primary": "#160f09",
+                    "secondary": "#7e5714"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "container-max": "1440px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Playfair Display"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fef8f6;
+            color: #160f09;
+            scroll-behavior: smooth;
+        }
+        .filter-sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #d0c4bc transparent;
+        }
+        .filter-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .filter-sidebar::-webkit-scrollbar-thumb {
+            background-color: #d0c4bc;
+            border-radius: 10px;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(254, 248, 246, 0.85);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="bg-transparent text-primary flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 z-50 docked full-width top-0 sticky transition-colors duration-300 ease-in-out" id="top-nav">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary">
+            Afghan Tappeti
+        </div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Shop</a>
+<a class="text-primary border-b border-primary pb-1 font-label-md text-label-md" href="#">Collections</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Styles</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Rooms</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">About</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined">search</span></button>
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+<button class="hover:text-secondary transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-secondary text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">0</span>
+</button>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Breadcrumb -->
+<nav class="flex py-8 gap-2 items-center text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Collections</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Persian Rugs</span>
+</nav>
+<!-- Editorial Header -->
+<header class="mb-section-gap max-w-4xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+                The Heritage of Persian Artistry
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                Experience the timeless allure of Persian rug-making, a craft perfected over centuries in the heart of ancient Persia. Each hand-knotted masterpiece in our collection is a narrative of culture, woven with high-altitude wool and natural dyes to bring warmth, history, and "Quiet Luxury" into the modern home.
+            </p>
+</header>
+<!-- Layout Wrapper -->
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Filter Sidebar -->
+<aside class="md:w-1/4 filter-sidebar md:sticky md:top-32 h-fit pb-10">
+<div class="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm">Filters</h3>
+<button class="text-label-sm font-label-sm text-secondary uppercase">Clear All</button>
+</div>
+<!-- Filter Groups -->
+<div class="space-y-10">
+<!-- Origin -->
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-wider mb-4">Origin</h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Isfahan</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Tabriz</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Kashan</span>
+</label>
+</div>
+</div>
+<!-- Material -->
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-wider mb-4">Material</h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">Silk &amp; Wool Blend</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span class="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">100% Organic Wool</span>
+</label>
+</div>
+</div>
+<!-- Color -->
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-wider mb-4">Color</h4>
+<div class="flex flex-wrap gap-3">
+<button class="w-8 h-8 rounded-full bg-[#2C241D] border-2 border-transparent hover:border-secondary transition-all" title="Dark Brown"></button>
+<button class="w-8 h-8 rounded-full bg-[#B88A44] border-2 border-white ring-1 ring-secondary transition-all" title="Antique Gold"></button>
+<button class="w-8 h-8 rounded-full bg-[#D1CDC7] border-2 border-transparent hover:border-secondary transition-all" title="Soft Gray"></button>
+<button class="w-8 h-8 rounded-full bg-[#722F37] border-2 border-transparent hover:border-secondary transition-all" title="Deep Wine"></button>
+<button class="w-8 h-8 rounded-full bg-[#1A2E35] border-2 border-transparent hover:border-secondary transition-all" title="Midnight Blue"></button>
+</div>
+</div>
+<!-- Size -->
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-wider mb-4">Size</h4>
+<div class="grid grid-cols-2 gap-2">
+<button class="border border-outline-variant px-3 py-2 text-label-sm font-label-sm hover:border-secondary transition-colors text-center">6' x 9'</button>
+<button class="border border-secondary bg-surface-container-low px-3 py-2 text-label-sm font-label-sm transition-colors text-center">8' x 10'</button>
+<button class="border border-outline-variant px-3 py-2 text-label-sm font-label-sm hover:border-secondary transition-colors text-center">9' x 12'</button>
+<button class="border border-outline-variant px-3 py-2 text-label-sm font-label-sm hover:border-secondary transition-colors text-center">Runner</button>
+</div>
+</div>
+<!-- Price -->
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-wider mb-4">Price Range</h4>
+<input class="w-full h-1 bg-outline-variant appearance-none cursor-pointer accent-secondary" max="25000" min="1000" step="500" type="range"/>
+<div class="flex justify-between mt-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>$1,000</span>
+<span>$25,000+</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<section class="md:w-3/4">
+<div class="flex justify-between items-center mb-8">
+<p class="font-body-md text-on-surface-variant italic">Showing 48 exquisite pieces</p>
+<div class="flex items-center gap-4">
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-on-surface-variant">Sort By</span>
+<select class="bg-transparent border-none font-label-md text-label-md focus:ring-0 cursor-pointer">
+<option>New Arrivals</option>
+<option>Price: High to Low</option>
+<option>Price: Low to High</option>
+<option>Oldest First</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8">
+<!-- Rug Card 1 -->
+<article class="group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-container-low aspect-[3/4]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A top-down view of a luxurious hand-knotted Persian Isfahan rug with intricate floral patterns in deep burgundy and gold. The rug is showcased in a minimalist architectural room with warm, directional sunlight casting soft shadows across the fine wool texture. The overall aesthetic is refined and elegant, emphasizing the artisan quality and rich detail of the traditional motifs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbxGD9Syq3Xm56724gwrGz6ezOGS5FrRmQKy5hl83wFy2gXuL06psZMbH65HRF-IqCFaVhPy8kmR90gtipWUbJ94Rj6I1X79DoiXdJxaet1yZooesaROGmBgoZoB6vwqj6jhmgAU1RyquDxrbws0W-Z3eUWDWIxvi-9M9DRBZEUhGy9EuYH2oWkAFpwzb-v5VHaXMYgbECfXfrm5cA3NZL3lsWKmE8Eds2X6rky2kwhA7gcfoSWTbyTRV2AGEQALd-19XA1P59Rg61"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-effect flex items-center justify-center text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+</div>
+<header>
+<h3 class="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">The Royal Isfahan</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">8' x 10' • Hand-Spun Wool</p>
+<div class="flex justify-between items-end">
+<p class="font-headline-sm text-headline-sm text-primary">$12,400</p>
+<span class="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">View Details</span>
+</div>
+</header>
+</article>
+<!-- Rug Card 2 -->
+<article class="group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-container-low aspect-[3/4]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up high-resolution shot of a Tabriz silk rug featuring a complex central medallion and delicate arabesque vines in cream, sage green, and muted terra cotta. The lighting is soft and even, highlighting the shimmering silk threads and tight knotting. Set against a clean, warm-toned museum floor, the image exudes a sense of heritage and high-end artisanal craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtPdY-Htm5farPSn7VVJNlH0DXVJm9uMfiuSstgWTX6gdU4xioktTMxfQcgqo2wY8Xzs76Bsenx2eMOMwjBVvPaUJrOBnbCWH5BCdyWzzjYZUBymC0yUKvuQ7Cwm9L7ypk4mQTDY5nd-hSJtPtLnfHjm1QsjIJkJIINORqfdl9Jp9mAE-Ut_BYuCRjrIpS5RN5nXbGhr9LeN2ArTpPqa04fV6V6tjaFr7TPbfqx1wMXuhKyQA5chfzat2wLw1sKpNS7CWvV4WBIIBO"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-effect flex items-center justify-center text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+</div>
+<header>
+<h3 class="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">Medallion Silk Tabriz</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">9' x 12' • Pure Silk</p>
+<div class="flex justify-between items-end">
+<p class="font-headline-sm text-headline-sm text-primary">$18,900</p>
+<span class="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">View Details</span>
+</div>
+</header>
+</article>
+<!-- Rug Card 3 -->
+<article class="group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-container-low aspect-[3/4]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An editorial photograph of a contemporary Persian rug with a minimalist geometric pattern in charcoal gray and warm ivory. The rug lies in a spacious, sun-drenched loft with concrete floors and large windows. The lighting is natural and atmospheric, emphasizing the tactile, organic texture of the high-altitude wool. The mood is modern, serene, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm0nRSkrTh6BRzglwwTdGtV9u8T9LTno7ARUJOHn48OBMdlvrqkmvmTIm1j7L30Qgzt2UP9zt4HNwF5MFW6mKC025gmT5TCr3a1QEhcjdoz7sRYLNM_2cxXoPGWVemX8tPN5apqx0Ep0na-gVkkawrca_ITw8tgr4aYmjR7EH00xLrIbTYux6nLSF-FLeUW71qWm2q9tSRxEjpVOdEcrwJEsoU5YaAkGw1fDx8oqyEWsh6mxifIF4DA1bN4jZSTCuMeMVuhfklSzyG"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-effect flex items-center justify-center text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+</div>
+<header>
+<h3 class="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">Nomadic Shadow Kashan</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">6' x 9' • Organic Wool</p>
+<div class="flex justify-between items-end">
+<p class="font-headline-sm text-headline-sm text-primary">$7,800</p>
+<span class="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">View Details</span>
+</div>
+</header>
+</article>
+<!-- Rug Card 4 -->
+<article class="group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-container-low aspect-[3/4]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vintage Persian rug with an 'Herati' pattern featuring small fish-like motifs and rosettes in deep navy and terracotta red. The rug shows a slight, beautiful patina suggesting its heritage. It is staged in a library with dark wood bookshelves and a leather armchair, illuminated by the warm glow of a floor lamp. The aesthetic is academic, luxurious, and timeless." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJuKoAPa62sFbGdvtNm_-JdrDmtACH_sJuWxWcYhruUVbYk9eagnZUheZOmvs4in85AP_obdy-Np97nSHKuHRPO_7xQstcukmdjK-q96I7PsLUtPEDwP2-e4wWHF7-MrkhdXM0t3ohVJc6QrHM-2-4hlBBaBvRUtBBrGwu5Syctdqxu-eoX0mo6CwxPzHvLhDEVGLuDYkralH2o5ej5TlXGRwCMsI8CRpGcgHHxOG8iWpwWpoOuUjoX3xCyY_RceCVEKIA_hU1UHEi"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-effect flex items-center justify-center text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+</div>
+<header>
+<h3 class="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">The Heritage Herati</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">8' x 10' • Hand-Spun Wool</p>
+<div class="flex justify-between items-end">
+<p class="font-headline-sm text-headline-sm text-primary">$14,200</p>
+<span class="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">View Details</span>
+</div>
+</header>
+</article>
+<!-- Rug Card 5 -->
+<article class="group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-container-low aspect-[3/4]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A stunning Persian Gabbeh rug with bold, large-scale abstract blocks of color in earthy ochre, rust, and forest green. The texture is noticeably plush and thick, made from high-quality tribal wool. The setting is a bright, modern living room with mid-century furniture and white walls, creating a high-contrast, editorial visual style that focuses on the rug as a piece of art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFbrmXHUZD3Yb_3teUK4B9lnzCzy7kX6-iGZVcNQ2HtuYkAI-quzJK8TgC_M0kLFdfzc8iXk3UhSEk9h9cMGxCx-lk5jOyMuA-HW76JH_yQ-Y3PYvV9pt8BgokwQ2Tc3pHWuiFPCuPmOyuPoBA4AqeFW_WX6sO5nV_zqC7C0wycNS8T-y2pxyTEPuL6wFIPL1huDr-OgsXDCkW08MJfkmwXNKzsQIn5MqSYZeu7fkFaJkT6q8sNOfODLJGqTffE4zWG_HNN6nf7OjU"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-effect flex items-center justify-center text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+</div>
+<header>
+<h3 class="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">Tribal Gabbeh Abstract</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">5' x 7' • Hand-Tufted Wool</p>
+<div class="flex justify-between items-end">
+<p class="font-headline-sm text-headline-sm text-primary">$4,500</p>
+<span class="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">View Details</span>
+</div>
+</header>
+</article>
+<!-- Rug Card 6 -->
+<article class="group cursor-pointer">
+<div class="relative overflow-hidden mb-6 bg-surface-container-low aspect-[3/4]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A rare Qum silk rug with a dense 'Tree of Life' pictorial pattern in jewel tones of sapphire and emerald on a cream field. The silk has an incredible luminous quality. Photographed in a gallery-like setting with spot lighting that emphasizes the three-dimensional appearance of the weaving. The mood is one of extreme exclusivity and masterpieces of textile art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAOXmOkFg94u_4_gDdvfdY2-VkO-X7gZrukEEcAZ3gyFj3JWMJKyR2idOuWbLsnXfci6iS89WwM9v0JUQy6gbaq8lUzCSLv4tS8O7iPah03m9rTvSPbLnczTxs0kUNMm54jaityJMpjNo_iuGPvcJzTzb7Rhz69bIIWH3HW7wzzNg8kisV6WSZyFGKJ3HmZSSVQh3RC2oeVNxTk__BiKol6sVGy--YJ9rSHPhQskNHcTD4C_UTGluFE3mtZazMDlrcPGcBNkvir-5J"/>
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full glass-effect flex items-center justify-center text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+</div>
+<header>
+<h3 class="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">Qum Silk Tree of Life</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">4' x 6' • Rare Pure Silk</p>
+<div class="flex justify-between items-end">
+<p class="font-headline-sm text-headline-sm text-primary">$21,000</p>
+<span class="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">View Details</span>
+</div>
+</header>
+</article>
+</div>
+<!-- Pagination -->
+<nav class="flex justify-center items-center mt-section-gap gap-4">
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center border border-primary bg-primary text-white font-label-md">1</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors font-label-md">2</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors font-label-md">3</button>
+<span class="px-2">...</span>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors font-label-md">8</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-section-gap border-t border-outline-variant bg-surface-container-low">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="col-span-2 md:col-span-1">
+<div class="font-display-lg text-headline-sm text-primary mb-8">Afghan Tappeti</div>
+<p class="text-on-surface-variant font-body-md pr-8">Curating the world's most exquisite hand-knotted rugs since 1984.</p>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md uppercase tracking-wider text-primary">Explore</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Shop</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Collections</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Our Story</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Craftsmanship</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md uppercase tracking-wider text-primary">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Shipping</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Returns</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md uppercase tracking-wider text-primary">Social</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Instagram</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Pinterest</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 border-t border-outline-variant/30 flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm">
+<span>© 2024 Afghan Tappeti. All rights reserved.</span>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for Sticky Nav background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('top-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('glass-effect', 'shadow-sm');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('glass-effect', 'shadow-sm');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Wishlist Toggle Interaction
+        const favoriteBtns = document.querySelectorAll('button span.material-symbols-outlined');
+        favoriteBtns.forEach(btn => {
+            if (btn.innerText === 'favorite') {
+                btn.parentElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    btn.classList.toggle('icon-fill');
+                    btn.classList.toggle('text-secondary');
+                });
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,232 @@
+{
+  "nav": {
+    "shop": "Shop",
+    "collections": "Collections",
+    "styles": "Styles",
+    "rooms": "Rooms",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero_title": "Discover Timeless\nHand-Knotted Rugs",
+    "hero_subtitle": "Authentic Afghan, Persian & Oriental masterpieces, curated for the discerning home.",
+    "hero_cta": "Explore Collection",
+    "search_placeholder": "Search by name, style, material or origin...",
+    "search_cta": "Search",
+    "featured_collections": "Featured Collections",
+    "shop_by_style": "Shop by Style",
+    "shop_by_room": "Shop by Room",
+    "shop_by_color": "Shop by Color",
+    "shop_by_size": "Shop by Size",
+    "best_sellers": "Best Sellers",
+    "why_choose_us": "Why Choose Us",
+    "our_story": "Our Story",
+    "our_story_text": "For generations, we have sourced the finest hand-knotted rugs from the ancient weaving regions of Afghanistan, Persia and beyond.",
+    "our_story_cta": "Read Our Story",
+    "what_our_customers_say": "What Our Customers Say",
+    "follow_us": "Follow Us on Instagram",
+    "newsletter_title": "Join Our Inner Circle",
+    "newsletter_subtitle": "Be the first to discover new arrivals, exclusive collections and weaving stories.",
+    "newsletter_placeholder": "Enter your email",
+    "newsletter_cta": "Subscribe"
+  },
+  "about": {
+    "hero_title": "Our Story",
+    "heritage_title": "A Heritage of Excellence",
+    "heritage_text": "Afghan Tappeti was born from a deep reverence for the ancient art of hand-knotting. For centuries, the weavers of Afghanistan, Persia and Anatolia have passed down techniques that transform raw wool and natural dyes into heirloom masterpieces.",
+    "knotting_title": "The Art of Hand-Knotting",
+    "knotting_text": "Every rug in our collection is entirely hand-knotted — a process that can take months or even years to complete. Each knot is tied by hand, following patterns held in memory and tradition.",
+    "ethical_title": "Ethical Sourcing",
+    "ethical_text": "We work directly with weaving families and cooperatives, ensuring fair wages and preserving traditions that might otherwise be lost. Every purchase supports artisan communities.",
+    "quote": "A rug is not made to be walked on. It is made to be walked through — a landscape of thread and color."
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We would love to hear from you. Whether you are looking for a specific piece or need design advice, our team is here to help.",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_phone": "Phone",
+    "form_message": "Message",
+    "form_submit": "Send Message",
+    "form_success": "Thank you! We will be in touch shortly.",
+    "address": "Milan, Italy",
+    "email": "hello@afghantappeti.com",
+    "phone": "+39 02 1234 5678"
+  },
+  "shop": {
+    "title": "All Rugs",
+    "filter_collection": "Collection",
+    "filter_style": "Style",
+    "filter_material": "Material",
+    "filter_origin": "Origin",
+    "filter_color": "Color",
+    "filter_size": "Size",
+    "filter_shape": "Shape",
+    "filter_price": "Price Range",
+    "sort": "Sort by",
+    "sort_newest": "Newest",
+    "sort_price_asc": "Price: Low to High",
+    "sort_price_desc": "Price: High to Low",
+    "sort_name": "Name",
+    "no_results": "No rugs found matching your criteria.",
+    "load_more": "Load More",
+    "view_details": "View Details",
+    "add_to_cart": "Add to Cart",
+    "from": "From"
+  },
+  "product": {
+    "add_to_cart": "Add to Bag",
+    "request_concierge": "Request Concierge",
+    "details_care": "Details & Care",
+    "shipping_returns": "Shipping & Returns",
+    "shipping_text": "Complimentary white-glove delivery worldwide. 30-day in-home trial.",
+    "related_title": "Related Masterpieces",
+    "view_collection": "View Collection",
+    "sku": "SKU",
+    "material": "Material",
+    "origin": "Origin",
+    "size": "Size",
+    "color": "Color"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your Cart is Empty",
+    "empty_cta": "Browse Rugs",
+    "clear": "Clear All",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shipping_calc": "Calculated at checkout",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "continue": "Continue Shopping"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "contact": "Contact",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "shipping": "Shipping Address",
+    "address": "Address",
+    "apt": "Apt / Suite",
+    "city": "City",
+    "postal": "Postal Code",
+    "state": "State / Province",
+    "country": "Country",
+    "billing_same": "Billing address same as shipping",
+    "summary": "Order Summary",
+    "payment_note": "Payment upon confirmation (bank transfer or wire)",
+    "place_order": "Place Order",
+    "placing": "Placing Order..."
+  },
+  "checkout_success": {
+    "title": "Thank You!",
+    "subtitle": "Your order has been placed successfully.",
+    "order_number": "Order number",
+    "message": "We will send a confirmation to your email with payment instructions. Your rugs will be shipped once payment is confirmed.",
+    "continue": "Continue Shopping",
+    "home": "Home"
+  },
+  "collections": {
+    "title": "Collections",
+    "subtitle": "Explore our curated collections of hand-knotted masterpieces."
+  },
+  "wishlist": {
+    "title": "Your Wishlist",
+    "empty": "Your wishlist is empty.",
+    "empty_cta": "Discover Rugs",
+    "remove": "Remove",
+    "add_to_cart": "Add to Cart"
+  },
+  "blog": {
+    "title": "Our Journal",
+    "subtitle": "Stories from the world of hand-knotted rugs.",
+    "read_more": "Read More",
+    "back": "Back to Journal",
+    "no_posts": "No posts yet."
+  },
+  "footer": {
+    "shop": "Shop",
+    "about": "About Us",
+    "contact": "Contact",
+    "blog": "Journal",
+    "faq": "FAQ",
+    "shipping_returns": "Shipping & Returns",
+    "care_guide": "Care Guide",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "newsletter": "Newsletter",
+    "newsletter_placeholder": "Your email",
+    "newsletter_cta": "Subscribe",
+    "copyright": "© 2026 Afghan Tappeti. All rights reserved.",
+    "follow_us": "Follow Us"
+  },
+  "styles": {
+    "title": "Shop by Style",
+    "subtitle": "Curated selections to match your home&apos;s unique personality.",
+    "scandinavian": {
+      "name": "Scandinavian",
+      "desc": "Light, airy spaces call for rugs with understated patterns and natural textures. Our Scandinavian collection features muted tones and simple geometric motifs."
+    },
+    "classic": {
+      "name": "Classic",
+      "desc": "Timeless elegance meets traditional craftsmanship. Our Classic collection showcases medallion patterns, rich borders, and heritage designs."
+    },
+    "minimal": {
+      "name": "Minimal",
+      "desc": "Clean lines and neutral palettes define modern minimalism. These rugs provide subtle texture and warmth without overwhelming the space."
+    },
+    "bohemian": {
+      "name": "Bohemian",
+      "desc": "Free-spirited and eclectic, our Bohemian collection brings vibrant colors, tribal motifs, and artistic expression to any room."
+    },
+    "luxury": {
+      "name": "Luxury",
+      "desc": "Indulge in the finest silk and hand-spun wool rugs. Each piece is a masterpiece of luxury craftsmanship, designed for discerning collectors."
+    },
+    "modern": {
+      "name": "Modern",
+      "desc": "Bold abstracts, contemporary patterns, and innovative designs define our Modern collection — perfect for today&apos;s forward-thinking interiors."
+    }
+  },
+  "rooms": {
+    "title": "Find Your Perfect Space",
+    "subtitle": "Discover the ideal rug for every room in your home.",
+    "living_room": {
+      "name": "Living Room",
+      "desc": "The heart of your home deserves a rug that anchors the space with warmth and style. From large-format traditional pieces to contemporary statement rugs."
+    },
+    "bedroom": {
+      "name": "Bedroom",
+      "desc": "Create a serene sanctuary with plush, soft rugs that invite bare feet. Our bedroom selection prioritizes comfort without compromising on beauty."
+    },
+    "dining_room": {
+      "name": "Dining Room",
+      "desc": "Make every meal memorable with a rug that defines the dining area. Durable yet elegant, our dining room rugs are designed to withstand daily use."
+    },
+    "office": {
+      "name": "Home Office",
+      "desc": "Elevate your workspace with a rug that inspires productivity and comfort. Professional patterns meet durable construction for the modern home office."
+    },
+    "hallway": {
+      "name": "Hallway & Entryway",
+      "desc": "Make a lasting first impression. Our runner and entryway rugs are crafted for high-traffic areas while adding a touch of sophistication."
+    },
+    "nursery": {
+      "name": "Nursery & Kids Room",
+      "desc": "Safe, soft, and delightful — our nursery collection uses natural materials and low-pile weaves, perfect for little ones to play and grow."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "no_results": "No results found."
+  }
+}

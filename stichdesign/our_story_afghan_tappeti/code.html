@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Story | Afghan Tappeti</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .parallax-section {
+            background-attachment: fixed;
+        }
+        @media (max-width: 768px) {
+            .parallax-section {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+<!-- Tailwind Config Injection -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#675c54",
+                    "surface-bright": "#fef8f6",
+                    "on-primary-container": "#978a81",
+                    "inverse-surface": "#32302f",
+                    "error-container": "#ffdad6",
+                    "outline": "#7f756e",
+                    "inverse-on-surface": "#f5f0ee",
+                    "on-primary-fixed-variant": "#4f453d",
+                    "surface-container-high": "#ece7e5",
+                    "on-background": "#1d1b1a",
+                    "on-secondary-fixed-variant": "#624000",
+                    "primary-fixed": "#efe0d5",
+                    "tertiary-fixed-dim": "#c2c7cc",
+                    "tertiary-container": "#21262a",
+                    "secondary-container": "#fec97c",
+                    "primary-container": "#2c241d",
+                    "secondary-fixed": "#ffddb1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#78520f",
+                    "on-tertiary-fixed": "#171c20",
+                    "tertiary-fixed": "#dfe3e8",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f8f2f1",
+                    "on-secondary-fixed": "#291800",
+                    "on-tertiary-fixed-variant": "#42474c",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#f2be72",
+                    "primary": "#160f09",
+                    "surface-variant": "#e6e1e0",
+                    "secondary": "#7e5714",
+                    "primary-fixed-dim": "#d2c4b9",
+                    "on-primary-fixed": "#221a14",
+                    "surface-container-highest": "#e6e1e0",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#d2c4b9",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fef8f6",
+                    "surface-container": "#f2edeb",
+                    "on-surface-variant": "#4d453f",
+                    "surface-dim": "#ded9d7",
+                    "on-surface": "#1d1b1a",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#d0c4bc",
+                    "background": "#fef8f6",
+                    "tertiary": "#0c1115"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "container-max": "1440px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Playfair Display"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-transparent text-primary transition-colors duration-300 ease-in-out flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 z-50 fixed top-0 left-0 right-0" id="top-nav">
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary">
+            Afghan Tappeti
+        </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Collections</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Styles</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Rooms</a>
+<a class="text-primary border-b border-primary pb-1 font-label-md text-label-md" href="#">About</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span></button>
+</div>
+</header>
+<main>
+<!-- Editorial Hero Section -->
+<section class="relative h-[921px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/30 z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A wide cinematic landscape of a historic weaving workshop in Herat at sunset. Golden light streams through tall windows, illuminating dust motes and the rich textures of several large hand-knotted rugs hanging from massive wooden looms. The atmosphere is warm, serene, and steeped in tradition, featuring a color palette of deep ochre, warm mahogany, and soft cream." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWt7yk3souNLq3PE1Cx23px_KY9MUTR2UaeFtY3pXkxMhD22TZlO6wCGi5WgqN2Bqqh4io_57c3_nJx9bTIv1n5uspEtr3UqaxlOsNzd93azrYLty5futrOMKkeeXc2c8_mMj5huAPhyBHW-GJ8L7fmoCMC6yAPrHA7ckmCjmrm8ZRU4rbMEUdPSEdQIXy46D26WprUWOb-hbkj9-asizqMCu2KDbC5xviQ5NpF-2XSY0JcKCIUpF8W5cOxvV0_nzAAgRZSjopWrUs"/>
+</div>
+<div class="relative z-20 text-center px-margin-mobile">
+<span class="block font-label-sm text-label-sm text-white uppercase tracking-[0.2em] mb-6">Established 1924</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-8 max-w-4xl mx-auto">The Heritage of the Silk Road</h1>
+<p class="font-body-lg text-body-lg text-white/90 max-w-2xl mx-auto opacity-0 translate-y-4 transition-all duration-700 ease-out" id="hero-subtext">Weaving the past into the modern home with timeless craftsmanship from the heart of Afghanistan.</p>
+</div>
+</section>
+<!-- Our Heritage: Asymmetric Editorial Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 md:pr-12" data-aos="fade-right">
+<span class="text-secondary font-label-sm text-label-sm uppercase tracking-widest block mb-4">Chapter One</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-8">Our Heritage</h2>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6 leading-relaxed">
+                        For three generations, the Afghan Tappeti family has curated the finest hand-knotted rugs from the nomadic tribes and urban master-weavers of Herat and Persia. What began as a small stall in the Silk Road markets has evolved into a global symbol of textile artistry.
+                    </p>
+<p class="text-on-surface-variant font-body-md text-body-md mb-8 leading-relaxed">
+                        Each rug is more than a floor covering; it is a repository of history, featuring motifs passed down through centuries, representing the unique identity of the hands that tied each individual knot.
+                    </p>
+<div class="h-px w-24 bg-outline-variant mb-8"></div>
+</div>
+<div class="md:col-span-7 relative" data-aos="fade-left">
+<div class="aspect-[4/5] md:aspect-[16/10] overflow-hidden rounded-sm shadow-xl">
+<img class="w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-105" data-alt="Close-up portrait of an elderly master weaver in Persia, his hands weathered and stained with natural indigo dye. He is carefully inspecting a complex geometric pattern on a rug loom. The lighting is focused and dramatic, highlighting the intricate details of his craft and the deep, saturated colors of the wool. A quiet luxury aesthetic with deep shadows and soft highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9hUqLsogpEI2IkI1_0NS1uFNgF2beoV6u4Me2I9SqE5Tbs18MczJBP8hGOL8WIR_ouDBNJQrMlq73DPwj05b3XzfDbufJ0jzPSgZitwq2Ub3qwyoRozmwbAQvg0fL4wJ3zPKjHA_neBQgn0tUh3GrCISlZ1ak3Ld57sxYWfFDnwTe9lv_9NRwImtBwONuMwV5wwjSTZb5mmDJyLvcH92fTL-WoVfyjMYV2FCKL9qYf2cvzNij9Slv2eatZYuWXP0TtrfrQn4yEPlS"/>
+</div>
+<div class="absolute -bottom-10 -left-10 hidden md:block w-64 h-80 overflow-hidden rounded-sm shadow-2xl border-4 border-surface shadow-primary-container/10">
+<img class="w-full h-full object-cover" data-alt="Macro detail of a high-pile Afghan rug showing the tight, individual silk knots. The pattern is a traditional red and dark blue medallion. The shallow depth of field emphasizes the texture and the artisanal quality of the hand-knotted work. Bright, natural daylight brings out the vibrant sheen of the silk fibers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdnKOTyuH8c3_DskjIkDPUhBVRzNDe8AC9aFafTbT55QlEFSWLqYqQo9SgTAabUIatlPCUqZSeG2IC_7i5GTBLES94kZEwm-UB0jRUZhNgM1VQxeRWLwYL5Wr7sRRuYy4G3aVL4G1bQW7gSPrRUv6kUrPnLsCdGc9vZMSPiMphVnhskiAtRj1SzuJVF1fhIAsM2Nox8QWhy3pt7kzHupEfa_TTqL3w5of8xcRzxOvAw23iZqZYt6N9G_UDUdm9igFO5pEAnzKGfK7y"/>
+</div>
+</div>
+</div>
+</section>
+<!-- The Art of Hand-Knotting: Immersive Full Width -->
+<section class="bg-primary-container py-section-gap overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center mb-20">
+<h2 class="font-headline-md text-headline-md text-white mb-6">The Art of Hand-Knotting</h2>
+<div class="w-16 h-px bg-secondary mx-auto mb-10"></div>
+<p class="text-on-primary-container font-body-lg text-body-lg max-w-3xl mx-auto">
+                    A single Afghan Tappeti can take up to 14 months to complete. Our artisans use the traditional asymmetrical knotting technique, ensuring a level of detail and durability that machine-made replicas can never achieve.
+                </p>
+</div>
+<div class="flex flex-col md:flex-row gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex-1 space-y-6 group">
+<div class="aspect-square overflow-hidden rounded-sm">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Artisans preparing natural dyes in large clay pots outdoors. Bundles of wool are being dipped into deep pools of madder root red and walnut husk brown. The scene is bright and earthy, with the colorful wool drying on wooden racks in the background under a clear blue sky. High-end editorial style focusing on raw materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoCGKKRtNqMSKI7BglBkv7O2KVcg27hiD8EnsAuj8TAMoaa4OsvYmlVs_cESweOqL7aSmvcM-yylLo0iygGCzY7RUcy12PiRsMTdstIIUKyV1P9HlygHX_WhiOj3vGskTyJ8FquXt5wlVEVv6aYIbRRl4SMrLw3RHqN4DEic7n7D13x7CckSDsTBD-FKuRuGeEiuU2CGzZjmlLl4rYGXrh1cRTosnTK5m4Gz00LysLv1fgbqZSkcKpD4jrJ_MoZHHdLsQ6UFgpjtjF"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white">Natural Pigments</h3>
+<p class="text-on-primary-container font-body-md text-body-md">We use only organic dyes derived from madder root, pomegranate rinds, and indigo—colors that age gracefully over decades.</p>
+</div>
+<div class="flex-1 space-y-6 group mt-12 md:mt-0">
+<div class="aspect-square overflow-hidden rounded-sm">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A focused view of a vertical wooden loom with hundreds of white cotton warp threads stretched tightly. A woman's hand is visible holding a small metal comb used to pack the knots down. The light is soft and diffused, creating a peaceful and industrious atmosphere. Minimalist and elegant framing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByeWTTgDB19p-EUvsUX1FciPg8Ntj5SbSW5L2E5InX7e_shaQVkCEzJd6nUIcj5FdRvK8q9lvKLAi8sPMlMayaYozpW3gByYqz8nN4_5847Yi35MSI56iqJOWTtu9V0PNKoB-dcz8j4k8BcnJSVK896jGKUh5cjnmoMQS-1D4wrSkVHXaQcSH7neq-SKycSFvuK8u1rBe2F9uPLqlz9CLLazoBdO53fl5Si-sIQgjWgaz294aOuIgF8K2s1sO8SSWIJVRVyUq8kDQg"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white">The Loom</h3>
+<p class="text-on-primary-container font-body-md text-body-md">Every rug begins on a vertical loom, where the weaver translates mental maps into intricate physical patterns knot by knot.</p>
+</div>
+<div class="flex-1 space-y-6 group mt-12 md:mt-24">
+<div class="aspect-square overflow-hidden rounded-sm">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Final finishing process where a rug is being sheared by hand with large, specialized flat scissors to ensure a perfectly even pile height. Fine wool dust rises in the sunlight. The rug features a sophisticated cream and taupe palette. The image conveys precision, care, and the final touch of luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Z9O9GNWlPNtdBQVHfI1SFiezhbY_mqYJIJSagz21brr4uRdUhTs9XqXU-ap7G1Mitpveo1Lj_meMLPeB3uR2-Ihwk6BIOGQO_x7SHH3RAEW0bsPUNSgu5Th4KJcUnOnJRdNoYGkrzyJ_K_4s6iub7k0qpaqfEm7ZT-q_swHA63jr1laKtJEXKmoq_BZRU7_dOv-2esqKXxBqDoJegwoElmG1bYw6z7JqKcTKU-QA4v6nNSADUOxe16PiSgdRjswkLW117aysU1Xe"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white">Final Shearing</h3>
+<p class="text-on-primary-container font-body-md text-body-md">After weaving, the rug is sheared and washed in mountain spring water to bring out the natural luster of the wool.</p>
+</div>
+</div>
+</section>
+<!-- Ethical Sourcing: Minimalist Trust Section -->
+<section class="py-section-gap bg-surface px-margin-mobile md:px-margin-desktop">
+<div class="max-w-4xl mx-auto">
+<div class="flex flex-col md:flex-row items-start gap-12">
+<div class="md:w-1/3">
+<h2 class="font-headline-md text-headline-md text-primary sticky top-32">Ethical Sourcing</h2>
+</div>
+<div class="md:w-2/3 space-y-12">
+<div>
+<h4 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">Empowering Artisans</h4>
+<p class="text-on-surface-variant font-body-md text-body-md leading-relaxed">
+                                We believe in a transparent supply chain. Our weavers are partners, not just producers. We ensure fair living wages that are 40% above the local industry average, providing economic stability to over 500 weaving families in the Herat province.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-8 py-8 border-y border-outline-variant">
+<div class="text-center">
+<span class="block font-display-lg text-headline-md text-primary">100%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Hand-Spun Wool</span>
+</div>
+<div class="text-center">
+<span class="block font-display-lg text-headline-md text-primary">Zero</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Child Labor</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4">Environmental Stewardship</h4>
+<p class="text-on-surface-variant font-body-md text-body-md leading-relaxed">
+                                Traditional methods are inherently sustainable. By using locally sourced Ghazni wool and plant-based dyes, we minimize our ecological footprint. These rugs are built to last for generations, the ultimate antithesis to fast furniture culture.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quote Transition -->
+<section class="py-section-gap px-margin-mobile bg-surface-container-low">
+<div class="max-w-3xl mx-auto text-center italic">
+<blockquote class="font-headline-md text-headline-md text-on-surface mb-8">
+                    "A rug is the soul of the room. It anchors the space and carries the echoes of ancient winds."
+                </blockquote>
+<cite class="font-label-md text-label-md not-italic text-secondary tracking-[0.2em]">— Javad Tappeti, Founder</cite>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="col-span-2 md:col-span-1">
+<div class="font-display-lg text-headline-sm text-primary mb-8">Afghan Tappeti</div>
+<p class="text-on-surface-variant text-body-md max-w-xs mb-8">Preserving the heritage of ancient weaving for the modern sanctuary.</p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-md text-label-md text-primary font-bold mb-2">Explore</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Collections</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Our Story</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Craftsmanship</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-md text-label-md text-primary font-bold mb-2">Support</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Shipping</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Returns</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">FAQ</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-md text-label-md text-primary font-bold mb-2">Social</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Instagram</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Pinterest</a>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop py-8 border-t border-outline-variant/30 text-center">
+<p class="text-on-surface-variant font-label-sm text-label-sm">© 2024 Afghan Tappeti. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Navbar scroll effect
+        const nav = document.getElementById('top-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface/90', 'glass-header', 'shadow-sm');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('bg-surface/90', 'glass-header', 'shadow-sm');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Simple Fade-in for Hero
+        window.addEventListener('DOMContentLoaded', () => {
+            const subtext = document.getElementById('hero-subtext');
+            setTimeout(() => {
+                subtext.classList.remove('opacity-0', 'translate-y-4');
+                subtext.classList.add('opacity-100', 'translate-y-0');
+            }, 500);
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            if (el.dataset.aos === 'fade-right') el.style.transform = 'translateX(-30px)';
+            if (el.dataset.aos === 'fade-left') el.style.transform = 'translateX(30px)';
+            
+            const animateIn = () => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateX(0)';
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateIn();
+                    }
+                });
+            }, {threshold: 0.2});
+            observer.observe(el);
+        });
+    </script>
+</body></html>
