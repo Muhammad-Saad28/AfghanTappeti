@@ -3,6 +3,7 @@ export const siteUrl = "https://afghantappeti.com"
 const routes = [
   "", "shop", "collections", "styles", "rooms",
   "about", "contact", "blog", "cart", "checkout", "wishlist",
+  "faq", "privacy", "terms", "shipping", "care-guide",
 ] as const
 
 export function getAlternates(lang: string, path: string = "") {

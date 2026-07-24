@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
-import { createSection, updateSection, deleteSection, toggleSection } from "./actions"
+import { createSection, deleteSection, toggleSection } from "./actions"
 
 export const dynamic = "force-dynamic"
 

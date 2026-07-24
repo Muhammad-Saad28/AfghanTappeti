@@ -45,16 +45,16 @@ export default async function StylesPage({
 
   return (
     <>
-      <Section background="none">
-        <div className="text-center py-section-gap">
-          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">
-            {t.styles.title}
-          </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-            {t.styles.subtitle}
-          </p>
+      <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
         </div>
-      </Section>
+        <div className="relative z-20 text-center px-margin-mobile">
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-4 drop-shadow-lg">{t.styles.title}</h1>
+          <p className="font-body-lg text-body-lg text-white/90 max-w-xl mx-auto drop-shadow">{t.styles.subtitle}</p>
+        </div>
+      </section>
       <Section background="muted">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
           {styles.map((key, i) => {

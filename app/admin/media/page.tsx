@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
+import Image from "next/image"
 
 export const dynamic = "force-dynamic"
 
@@ -50,7 +51,7 @@ export default async function AdminMediaPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 p-6">
             {files.map((file) => (
               <div key={file.name} className="relative group aspect-square bg-surface-container-low rounded-lg overflow-hidden">
-                <img src={getProductImageUrl(file.name)} alt={file.name} className="w-full h-full object-cover" />
+                <Image src={getProductImageUrl(file.name)} alt={file.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <p className="text-white text-label-xs font-label-xs truncate">{file.name}</p>
                 </div>

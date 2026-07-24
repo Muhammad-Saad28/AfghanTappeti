@@ -37,13 +37,15 @@ export function Navbar({ lang }: { lang?: string }) {
 
   return (
     <nav
-      className={`flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 z-50 fixed top-0 left-0 right-0 transition-all duration-300 bg-surface text-on-surface ${
-        scrolled ? "shadow-sm" : ""
+      className={`flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 z-50 fixed top-0 left-0 right-0 transition-all duration-300 ${
+        scrolled
+          ? "bg-surface/95 backdrop-blur-md shadow-sm border-b border-outline-variant/50 text-on-surface"
+          : "bg-surface/80 backdrop-blur-sm text-on-surface"
       }`}
     >
       <Link
         href={`/${locale}`}
-        className="font-display-lg text-display-lg-mobile md:text-display-lg tracking-tight no-underline text-secondary"
+        className="font-display-lg text-2xl md:text-3xl tracking-tight no-underline text-secondary"
       >
         Afghan Tappeti
       </Link>

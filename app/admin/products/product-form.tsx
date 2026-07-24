@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { deleteProductImage, reorderProductImage } from "./actions"
+import Image from "next/image"
 
 export async function ProductForm({
   product,
@@ -297,7 +298,7 @@ export async function ProductForm({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {images.map((img, idx) => (
                 <div key={img.id} className="relative group aspect-[3/4] bg-surface-container-low rounded-lg overflow-hidden">
-                  <img src={getProductImageUrl(img.image_url)} alt="" className="w-full h-full object-cover" />
+                  <Image src={getProductImageUrl(img.image_url)} alt="" fill className="object-cover" sizes="25vw" />
                   {img.is_primary && (
                     <span className="absolute top-2 left-2 bg-secondary text-on-secondary text-label-xs font-label-xs px-1.5 py-0.5 rounded">Primary</span>
                   )}

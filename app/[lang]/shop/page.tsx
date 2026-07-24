@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { siteUrl } from "@/lib/seo"
 import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { ShopSort } from "@/components/shop/shop-sort"
+import { WishlistButton } from "@/components/home/wishlist-button"
 
 export async function generateMetadata({
   params,
@@ -103,16 +105,18 @@ export default async function ShopPage({
 
   return (
     <>
-      <nav className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex py-8 gap-2 items-center text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
-        <span className="text-primary font-bold">{t.shop.title}</span>
-      </nav>
+      <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
+        </div>
+        <div className="relative z-20 text-center px-margin-mobile">
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-4 drop-shadow-lg">{t.shop.hero_title}</h1>
+          <p className="font-body-lg text-body-lg text-white/90 max-w-xl mx-auto drop-shadow">{t.shop.hero_subtitle}</p>
+        </div>
+      </section>
 
-      <header className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap max-w-4xl">
-        <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">{t.shop.hero_title}</h1>
-        <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-2xl">{t.shop.hero_subtitle}</p>
-      </header>
-
-      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row gap-gutter">
+      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row gap-gutter mt-16 mb-section-gap">
         <aside className="md:w-1/4 md:sticky md:top-32 h-fit pb-10">
           <form method="GET" className="space-y-10">
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant">
@@ -146,12 +150,12 @@ export default async function ShopPage({
 
             <div>
               <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_color}</h4>
-              <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3">
                 {colors.data?.map((c) => (
-                  <label key={c.id} className="cursor-pointer">
+                  <label key={c.id} className="cursor-pointer group relative">
                     <input type="checkbox" name="color" value={c.id} defaultChecked={selColor.includes(c.id)} className="sr-only peer" />
                     <span
-                      className="w-8 h-8 rounded-full border-2 block peer-checked:border-secondary transition-all"
+                      className="w-9 h-9 rounded-full border-2 border-outline block peer-checked:border-secondary peer-checked:ring-2 peer-checked:ring-secondary/40 transition-all group-hover:scale-110 group-hover:border-secondary shadow-sm"
                       style={{ backgroundColor: c.hex_code || "#ccc" }}
                       title={c.name}
                     />
@@ -173,7 +177,7 @@ export default async function ShopPage({
             </div>
 
             <div className="flex gap-4">
-              <button type="submit" className="flex-1 bg-primary text-on-primary px-4 py-3 rounded-lg text-label-sm hover:bg-primary-fixed-dim transition-colors">"Apply"</button>
+              <button type="submit" className="flex-1 bg-primary text-on-primary px-4 py-3 rounded-lg text-label-sm hover:bg-primary-fixed-dim transition-colors">Apply</button>
             </div>
           </form>
         </aside>
@@ -216,10 +220,9 @@ export default async function ShopPage({
               const imgUrl = getProductImageUrl(imageMap.get(product.id))
               return (
                 <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="group no-underline">
-                  <div className="relative overflow-hidden mb-6 aspect-[3/4] bg-cover bg-center" style={imgUrl ? { backgroundImage: `url(${imgUrl})` } : undefined}>
-                    <button onClick={(e) => e.preventDefault()} className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 backdrop-blur flex items-center justify-center text-primary hover:text-secondary transition-colors z-10">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                    </button>
+                  <div className="relative overflow-hidden mb-6 aspect-[3/4] bg-surface-container-low">
+                    {imgUrl && <Image src={imgUrl} alt={product.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
+                    <WishlistButton slug={product.slug} />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                   </div>
                   <header>

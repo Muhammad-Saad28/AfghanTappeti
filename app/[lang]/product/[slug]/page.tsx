@@ -74,7 +74,7 @@ export default async function ProductDetailPage({
   })
 
   return (
-    <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-8 md:pt-16">
+    <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-24 md:pt-28">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
         <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 sticky top-32">
@@ -90,9 +90,10 @@ export default async function ProductDetailPage({
           </div>
           <div className="order-2 relative group overflow-hidden bg-surface-container-low">
             <div
-              className="aspect-[4/5] bg-surface-container-high bg-cover bg-center"
-              style={primaryImageUrl ? { backgroundImage: `url(${primaryImageUrl})` } : undefined}
-            />
+              className="aspect-[4/5] bg-surface-container-high relative"
+            >
+              {primaryImageUrl && <Image src={primaryImageUrl} alt={product.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 60vw" />}
+            </div>
             <div className="absolute bottom-6 right-6 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="font-label-sm text-label-sm">{t.product.roll_to_zoom}</span>
             </div>

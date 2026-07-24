@@ -34,13 +34,49 @@ Bug fixes
 
 # [Unreleased]
 
-## Planned
+None
 
-- Multi-language support (EN/IT)
-- SEO optimization (sitemap, robots, structured data)
-- Performance optimization
-- Testing
-- Deployment to Netlify
+---
+
+# [3.1.0] - 2026-07-24
+
+Status
+
+Released
+
+## Added
+
+- Brand hero image (`/images/homepage.jpeg`) now used in hero section instead of generic Unsplash photo
+- Enhanced hero visual treatment: gradient overlay, drop-shadow text, responsive height, animated buttons
+
+---
+
+# [3.0.0] - 2026-07-24
+
+Status
+
+All Phases Complete (1-16)
+
+## Added
+
+### New Pages
+- FAQ page (`/[lang]/faq`) with accordion — 8 questions in EN/IT
+- Privacy Policy page (`/[lang]/privacy`) with full content in EN/IT
+- Terms & Conditions page (`/[lang]/terms`) with full content in EN/IT
+- Shipping & Returns page (`/[lang]/shipping`) with full content in EN/IT
+- Rug Care Guide page (`/[lang]/care-guide`) with grid of care tips in EN/IT
+
+### Infrastructure
+- Footer links now point to real pages (FAQ, Shipping, Care Guide, Privacy, Terms)
+- Sitemap updated with all new static routes
+- SEO alternates configured for all new pages
+- Translation files (en.json, it.json) expanded with 5 new page sections
+
+## Changed
+
+- Phases.md: All phases 1-16 marked 100% complete
+- Memory.md: Updated to v2.2 with final project status
+- Documentation: All docs finalized
 
 ---
 
@@ -417,7 +453,9 @@ Before every release verify
 
 | Version | Status | Description |
 |----------|--------|-------------|
-| 2.1.0 | Current | Image organization, WebP, Netlify setup |
+| 3.1.0 | Current | Brand hero image, hero section enhanced |
+| 3.0.0 | Complete | All phases 1-16 complete, final pages added |
+| 2.1.0 | Complete | Image organization, WebP, Netlify setup |
 | 2.0.0 | Complete | Phase 14 testing, lint/TS cleanup |
 | 1.1.0 | Complete | Phases 1-10 implementation |
 | 1.0.0 | Planning | Initial project planning and documentation |

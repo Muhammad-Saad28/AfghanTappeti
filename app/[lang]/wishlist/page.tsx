@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { useWishlist } from "@/lib/wishlist"
@@ -60,7 +61,9 @@ export default function WishlistPage() {
             return (
               <div key={slug} className="group">
                 <Link href={`/${locale}/product/${slug}`} className="no-underline">
-                  <div className="aspect-[3/4] bg-cover bg-center mb-4 overflow-hidden" style={imgUrl ? { backgroundImage: `url(${imgUrl})` } : undefined} />
+                  <div className="aspect-[3/4] relative overflow-hidden mb-4 bg-surface-container-low">
+                    {imgUrl && <Image src={imgUrl} alt={slug.replace(/-/g, " ")} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" />}
+                  </div>
                   <h3 className="font-label-md text-label-md text-on-surface group-hover:text-secondary transition-colors capitalize">{slug.replace(/-/g, " ")}</h3>
                 </Link>
               </div>

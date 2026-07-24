@@ -1,5 +1,5 @@
 import sharp from "sharp"
-import { readdirSync, mkdirSync, renameSync, existsSync, copyFileSync } from "fs"
+import { readdirSync, mkdirSync, renameSync, existsSync } from "fs"
 import { join, parse } from "path"
 
 const srcDir = join(import.meta.dirname, "..", "public", "images")

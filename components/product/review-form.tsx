@@ -2,7 +2,6 @@
 
 import { useActionState } from "react"
 import { submitReview } from "@/lib/review-actions"
-import type { submitReview as SubmitReviewType } from "@/lib/review-actions"
 
 export function ReviewForm({
   productId,

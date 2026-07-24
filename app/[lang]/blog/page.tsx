@@ -41,11 +41,14 @@ export default async function BlogPage({
 
   return (
     <>
-      <section className="relative h-[400px] flex items-center justify-center overflow-hidden bg-surface-container-high">
-        <div className="absolute inset-0 bg-black/20 z-10" />
+      <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
+        </div>
         <div className="relative z-20 text-center px-margin-mobile">
-          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-4">{t.blog.title}</h1>
-          <p className="font-body-lg text-body-lg text-white/90 max-w-xl mx-auto">{t.blog.subtitle}</p>
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-4 drop-shadow-lg">{t.blog.title}</h1>
+          <p className="font-body-lg text-body-lg text-white/90 max-w-xl mx-auto drop-shadow">{t.blog.subtitle}</p>
         </div>
       </section>
       <Section background="none">

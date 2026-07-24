@@ -4,6 +4,21 @@ import { createClient } from "@/lib/supabase/server"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { getWhatsAppLink, buildOrderMessage } from "@/lib/whatsapp"
 
+interface OrderItem {
+  id: string
+  quantity: number
+  price: number
+  products?: { name: string } | null
+}
+
+interface OrderData {
+  id: string
+  order_number: string
+  total: number
+  customer_email: string
+  order_items?: OrderItem[] | null
+}
+
 export default async function CheckoutSuccessPage(props: {
   params: Promise<{ lang: string }>
   searchParams: Promise<{ order?: string }>
@@ -20,13 +35,13 @@ export default async function CheckoutSuccessPage(props: {
     supabase.from("site_settings").select("whatsapp, phone").limit(1).maybeSingle(),
   ])
 
-  const orderData = orderRes.data
+  const orderData = orderRes.data as OrderData | null
   const settings = settingsRes.data
 
   if (!orderData) notFound()
 
   const whatsappNumber = settings?.whatsapp || settings?.phone || ""
-  const items = (orderData.order_items ?? []).map((oi: any) => ({
+  const items = (orderData.order_items ?? []).map((oi: OrderItem) => ({
     name: oi.products?.name ?? "Product",
     quantity: oi.quantity,
     price: oi.price,
@@ -47,7 +62,7 @@ export default async function CheckoutSuccessPage(props: {
 
       <div className="bg-surface-container-low rounded-xl border border-outline-variant p-6 mb-6 w-full max-w-md text-left">
         <h3 className="font-label-md text-label-md text-on-surface mb-3">Order Summary</h3>
-        {orderData.order_items?.map((oi: any) => (
+        {orderData.order_items?.map((oi: OrderItem) => (
           <div key={oi.id} className="flex justify-between text-label-sm text-on-surface-variant mb-2">
             <span>{oi.quantity}x {oi.products?.name ?? "Product"}</span>
             <span>€{(oi.price * oi.quantity).toFixed(2)}</span>

@@ -120,7 +120,7 @@
     "heritage_p1": "Per tre generazioni, la famiglia Afghan Tappeti ha curato i migliori tappeti annodati a mano delle tribù nomadi e dei maestri tessitori di Herat e della Persia.",
     "heritage_p2": "Ogni tappeto è più di un rivestimento per pavimenti; è un deposito di storia, con motivi tramandati attraverso i secoli.",
     "knotting_headline": "L'Arte dell'Annodatura a Mano",
-    "knotting_intro": "Un singolo Afghan Tappeti può richiedere fino a 14 mesi per essere completato. I nostri artigiani utilizzano la tecnica tradizionale del nodo asimmetrico, garantendo un livello di dettaglio e durata che le repliche fatte a macchina non possono mai raggiungere.",
+    "knotting_intro": "Ogni tappeto della nostra collezione è annodato interamente a mano — mai prodotto a macchina. Un singolo Afghan Tappeti può richiedere fino a 14 mesi per essere completato. I nostri artigiani utilizzano la tecnica tradizionale del nodo asimmetrico, garantendo un livello di dettaglio, carattere e durata che le repliche fatte a macchina non possono mai raggiungere. Quando acquisti da Afghan Tappeti, stai comprando un autentico cimelio fatto a mano, non un prodotto industriale.",
     "knotting_1_title": "Pigmenti Naturali",
     "knotting_1_text": "Utilizziamo solo tinture organiche derivate dalla radice di robbia, dalle bucce di melograno e dall'indaco: colori che invecchiano con grazia nei decenni.",
     "knotting_2_title": "Il Telaio",
@@ -316,7 +316,11 @@
     "newsletter_placeholder": "La tua email",
     "newsletter_cta": "Iscriviti",
     "copyright": "© 2026 Afghan Tappeti. Tutti i diritti riservati.",
-    "follow_us": "Seguici"
+    "follow_us": "Seguici",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "pinterest": "Pinterest",
+    "collections": "Collezioni"
   },
   "styles": {
     "title": "Acquista per Stile",
@@ -375,6 +379,74 @@
       "name": "Camera dei Bambini",
       "desc": "Sicuri, morbidi e deliziosi — la nostra collezione per bambini utilizza materiali naturali e trame a pelo basso, perfetti per giocare e crescere."
     }
+  },
+  "faq_page": {
+    "title": "Domande Frequenti",
+    "subtitle": "Tutto quello che devi sapere sui nostri tappeti, ordini e cura.",
+    "q1": "I vostri tappeti sono fatti a mano?",
+    "a1": "Sì, ogni tappeto della nostra collezione è annodato a mano da abili artigiani che utilizzano tecniche tradizionali tramandate da generazioni.",
+    "q2": "Come scelgo la misura giusta?",
+    "a2": "Misura la stanza e considera la disposizione dei mobili. Una regola comune è lasciare 45-60 cm di pavimento nudo attorno ai bordi del tappeto. La nostra guida alle misure può aiutarti a decidere.",
+    "q3": "Quali materiali vengono utilizzati?",
+    "a3": "Utilizziamo materiali naturali di alta qualità tra cui lana, seta e cotone. Ogni pagina prodotto elenca i materiali specifici utilizzati.",
+    "q4": "Spedite a livello internazionale?",
+    "a4": "Sì, spediamo in tutta Europa e a livello internazionale. I costi di spedizione e i tempi di consegna vengono calcolati al checkout.",
+    "q5": "Qual è la vostra politica di reso?",
+    "a5": "Offriamo una politica di reso di 14 giorni su tutti i tappeti. Il tappeto deve essere nelle condizioni originali. Gli articoli personalizzati e su misura non sono resi.",
+    "q6": "Come prendermi cura del mio tappeto?",
+    "a6": "Aspirazione regolare, rotazione ogni pochi mesi e pulizia professionale ogni 1-2 anni manterranno il tuo tappeto bello per generazioni.",
+    "q7": "Posso ordinare un campione?",
+    "a7": "Sì, offriamo campioni per la maggior parte dei nostri tappeti. Contatta il nostro team e organizzeremo un campione per te.",
+    "q8": "Quanto tempo impiega la consegna?",
+    "a8": "La consegna standard richiede 5-10 giorni lavorativi in Europa. La spedizione espressa è disponibile a un costo aggiuntivo."
+  },
+  "privacy_page": {
+    "title": "Informativa sulla Privacy",
+    "subtitle": "Come raccogliamo, utilizziamo e proteggiamo le tue informazioni personali.",
+    "intro": "Da Afghan Tappeti, la tua privacy è importante per noi. Questa politica descrive come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali quando utilizzi il nostro sito web.",
+    "data_collected": "Raccogliamo le informazioni che fornisci direttamente, come nome, indirizzo email, numero di telefono, indirizzo di spedizione e dettagli di pagamento quando effettui un ordine. Raccogliamo anche automaticamente dati tecnici tra cui indirizzo IP, tipo di browser e comportamento di navigazione.",
+    "data_usage": "Utilizziamo le tue informazioni per elaborare ordini, comunicare con te, migliorare i nostri servizi e inviare comunicazioni di marketing con il tuo consenso.",
+    "data_sharing": "Non vendiamo i tuoi dati personali. Possiamo condividere informazioni con fornitori di servizi fidati (processori di pagamento, corrieri di spedizione) solo per evadere il tuo ordine.",
+    "cookies": "Il nostro sito web utilizza cookie essenziali per la funzionalità e cookie analitici per migliorare la tua esperienza. Puoi gestire le preferenze dei cookie nelle impostazioni del browser.",
+    "rights": "Hai il diritto di accedere, correggere o eliminare i tuoi dati personali in qualsiasi momento. Contattaci a privacy@afghantappeti.com per qualsiasi richiesta relativa alla privacy.",
+    "changes": "Possiamo aggiornare questa politica di tanto in tanto. Le modifiche verranno pubblicate su questa pagina con una data aggiornata."
+  },
+  "terms_page": {
+    "title": "Termini e Condizioni",
+    "subtitle": "Leggi attentamente questi termini prima di utilizzare il nostro sito web.",
+    "intro": "Accedendo o acquistando da Afghan Tappeti, accetti di essere vincolato da questi termini e condizioni.",
+    "products": "Tutte le descrizioni dei prodotti, le immagini e i prezzi sono soggetti a modifica senza preavviso. Ci impegniamo a mostrare colori accurati ma il tuo monitor potrebbe mostrare variazioni.",
+    "pricing": "I prezzi sono indicati in Euro (EUR) e includono le tasse applicabili. Ci riserviamo il diritto di modificare i prezzi in qualsiasi momento.",
+    "orders": "Ci riserviamo il diritto di rifiutare o annullare qualsiasi ordine. In caso di errore di prezzo, ti informeremo e offriremo l'opzione di confermare al prezzo corretto o annullare.",
+    "intellectual": "Tutti i contenuti di questo sito web, incluse immagini, testi e design, sono di proprietà di Afghan Tappeti e non possono essere riprodotti senza autorizzazione.",
+    "liability": "Afghan Tappeti non sarà responsabile per danni indiretti, incidentali o consequenziali derivanti dall'uso dei nostri prodotti o del sito web."
+  },
+  "shipping_page": {
+    "title": "Spedizione e Resi",
+    "subtitle": "Informazioni sulle nostre politiche di spedizione e processo di reso.",
+    "shipping_title": "Informazioni sulla Spedizione",
+    "shipping_text": "Offriamo spedizione standard gratuita su tutti gli ordini in Italia. Le tariffe di spedizione internazionale vengono calcolate al checkout in base alla destinazione e alle dimensioni dell'ordine. Tutte le spedizioni sono tracciate e assicurate.",
+    "delivery_times": "La consegna standard richiede 5-10 giorni lavorativi in Europa. La spedizione espressa (2-4 giorni lavorativi) è disponibile a un costo aggiuntivo. Si prega di considerare tempi aggiuntivi per le aree rurali e le destinazioni internazionali.",
+    "returns_title": "Resi e Cambi",
+    "returns_text": "Accettiamo resi entro 14 giorni dalla consegna. Gli articoli devono essere non utilizzati e in condizioni originali. Per avviare un reso, contatta il nostro servizio clienti. I costi di spedizione per il reso sono a carico del cliente salvo che l'articolo sia difettoso.",
+    "refunds": "I rimborsi vengono elaborati entro 5-7 giorni lavorativi dopo aver ricevuto e ispezionato l'articolo reso. Il rimborso verrà emesso sul metodo di pagamento originale.",
+    "exclusions": "Gli articoli personalizzati, su misura e in saldo non sono resi salvo che siano difettosi. Contattaci prima di restituire qualsiasi articolo."
+  },
+  "care_guide_page": {
+    "title": "Guida alla Cura del Tappeto",
+    "subtitle": "Come mantenere il tuo tappeto annodato a mano bello per generazioni.",
+    "vacuuming_title": "Aspirazione Regolare",
+    "vacuuming_text": "Aspira il tuo tappeto regolarmente (almeno una volta a settimana) per rimuovere lo sporco superficiale e la polvere. Usa un aspirapolvere a solo aspirazione o spegni la spazzola rotante per evitare di tirare le fibre.",
+    "rotation_title": "Ruota il Tuo Tappeto",
+    "rotation_text": "Ruota il tuo tappeto ogni 3-6 mesi per garantire un'usura uniforme, specialmente nelle aree esposte alla luce solare diretta per prevenire lo scolorimento irregolare.",
+    "cleaning_title": "Pulizia Professionale",
+    "cleaning_text": "Fai pulire professionalmente il tuo tappeto ogni 1-2 anni. I tappeti annodati a mano richiedono cure speciali — usa sempre un professionista esperto con tappeti in fibra naturale.",
+    "spills_title": "Fuoriuscite e Macchie",
+    "spills_text": "Tampona immediatamente le fuoriuscite con un panno pulito e asciutto. Non strofinare mai. Per le macchie ostinate, consulta un professionista. Evita prodotti chimici aggressivi.",
+    "storage_title": "Conservazione",
+    "storage_text": "Conserva il tuo tappeto arrotolato (mai piegato) in un luogo fresco e asciutto. Usa una copertura in tessuto traspirante. Aggiungi palline di cedro o sacchetti di lavanda per tenere lontane le tarme naturalmente.",
+    "sunlight_title": "Protezione dalla Luce Solare",
+    "sunlight_text": "L'esposizione prolungata alla luce solare diretta può sbiadire i coloranti naturali. Usa tende o persiane durante le ore di punta, o ruota periodicamente il tuo tappeto."
   },
   "common": {
     "loading": "Caricamento...",

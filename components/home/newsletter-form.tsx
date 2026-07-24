@@ -3,7 +3,7 @@
 import { useActionState } from "react"
 import { subscribeNewsletter } from "@/lib/newsletter-actions"
 
-export function NewsletterForm({ placeholder, cta }: { placeholder: string; cta: string }) {
+export function NewsletterForm({ placeholder }: { placeholder: string; cta: string }) {
   const [state, action, pending] = useActionState(subscribeNewsletter, null)
 
   if (state?.success) {

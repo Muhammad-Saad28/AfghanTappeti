@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 
-export function ShopSort({ label, options }: { label: string; options: { value: string; label: string }[] }) {
+export function ShopSort({ options }: { label: string; options: { value: string; label: string }[] }) {
   const router = useRouter()
   const sp = useSearchParams()
 

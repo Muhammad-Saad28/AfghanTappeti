@@ -42,13 +42,12 @@ export default async function AboutPage({
 
   return (
     <>
-      <section className="relative h-[600px] md:h-[921px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[600px] md:min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/30 z-10" />
-          <div className="w-full h-full bg-cover bg-center"
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
+          <div className="w-full h-full bg-cover bg-center scale-105"
             style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1600166898405-da9535204843?w=1600&q=80')",
+              backgroundImage: "url('/images/homepage.png')",
             }}
           />
         </div>
@@ -56,10 +55,10 @@ export default async function AboutPage({
           <span className="block font-label-sm text-label-sm text-white uppercase tracking-[0.2em] mb-6">
             {t.about.hero_established}
           </span>
-          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-8 max-w-4xl mx-auto">
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-8 max-w-4xl mx-auto drop-shadow-lg">
             {t.about.hero_title_line1}
           </h1>
-          <p className="font-body-lg text-body-lg text-white/90 max-w-2xl mx-auto">
+          <p className="font-body-lg text-body-lg text-white/90 max-w-2xl mx-auto drop-shadow">
             {t.about.hero_subtitle}
           </p>
         </div>

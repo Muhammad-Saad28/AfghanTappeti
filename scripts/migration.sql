@@ -561,6 +561,69 @@ insert into public.shapes (name, slug) values
   ('Oval', 'oval')
 on conflict (slug) do nothing;
 
+-- Categories (Database.md §8)
+insert into public.categories (name, slug, description, display_order, is_active) values
+  ('Afghan Rugs', 'afghan-rugs', 'Traditional handmade Afghan rugs.', 1, true),
+  ('Persian Rugs', 'persian-rugs', 'Authentic handmade Persian rugs.', 2, true),
+  ('Runner Rugs', 'runner-rugs', 'Hand-knotted hallway runners.', 3, true),
+  ('Kilim', 'kilim', 'Flatwoven handmade kilims.', 4, true),
+  ('Vintage Rugs', 'vintage-rugs', 'Vintage handmade rugs.', 5, true),
+  ('Modern Rugs', 'modern-rugs', 'Modern handmade rugs.', 6, true),
+  ('Oriental Rugs', 'oriental-rugs', 'Authentic handmade Oriental rugs.', 7, true),
+  ('Round Rugs', 'round-rugs', 'Hand-knotted round rugs.', 8, true),
+  ('Luxury Rugs', 'luxury-rugs', 'Premium luxury handmade rugs.', 9, true)
+on conflict (slug) do nothing;
+
+-- Colors (Database.md §14)
+insert into public.colors (name, hex_code, display_order) values
+  ('Red', '#A32020', 1),
+  ('Blue', '#1E4F91', 2),
+  ('Navy', '#1F2E5A', 3),
+  ('Ivory', '#F6F1E7', 4),
+  ('Cream', '#F9F5E8', 5),
+  ('Beige', '#D8C3A5', 6),
+  ('Brown', '#7A5230', 7),
+  ('Rust', '#A44A2A', 8),
+  ('Terracotta', '#C96A3D', 9),
+  ('Gold', '#C8A23A', 10),
+  ('Green', '#4C7A4A', 11),
+  ('Emerald', '#0F7C5A', 12),
+  ('Turquoise', '#2AA6A6', 13),
+  ('Sky Blue', '#7FB7E6', 14),
+  ('Orange', '#D97A28', 15),
+  ('Burgundy', '#6B1F2A', 16),
+  ('Multicolor', '#999999', 17)
+on conflict (name) do nothing;
+
+-- Sizes (Database.md §15)
+insert into public.sizes (name, width_cm, length_cm, display_order) values
+  ('60 x 90 cm', 60, 90, 1),
+  ('80 x 150 cm', 80, 150, 2),
+  ('100 x 150 cm', 100, 150, 3),
+  ('120 x 180 cm', 120, 180, 4),
+  ('150 x 200 cm', 150, 200, 5),
+  ('150 x 230 cm', 150, 230, 6),
+  ('200 x 250 cm', 200, 250, 7),
+  ('200 x 300 cm', 200, 300, 8),
+  ('250 x 350 cm', 250, 350, 9),
+  ('300 x 400 cm', 300, 400, 10),
+  ('Runner 70 x 200 cm', 70, 200, 11),
+  ('Runner 80 x 300 cm', 80, 300, 12)
+on conflict (name) do nothing;
+
+-- Collections (Database.md §10)
+insert into public.collections (name, slug, description, is_active) values
+  ('New Arrivals', 'new-arrivals', 'Our newest rug arrivals', true),
+  ('Best Sellers', 'best-sellers', 'Our most popular rugs', true),
+  ('Classic Collection', 'classic-collection', 'Timeless classic rug designs', true),
+  ('Luxury Collection', 'luxury-collection', 'Premium luxury carpets', true),
+  ('Artisan Collection', 'artisan-collection', 'Master artisan woven rugs', true),
+  ('Heritage Collection', 'heritage-collection', 'Classic traditional rugs', true),
+  ('Nomad Collection', 'nomad-collection', 'Nomadic tribal rugs', true),
+  ('Royal Collection', 'royal-collection', 'Luxury handmade rugs', true),
+  ('Silk Road Collection', 'silk-road-collection', 'Inspired by the Silk Road', true)
+on conflict (slug) do nothing;
+
 create or replace function public.decrement_stock(product_id uuid, quantity int)
 returns void
 language plpgsql
