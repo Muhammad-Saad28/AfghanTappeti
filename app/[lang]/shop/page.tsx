@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { ShopSort } from "@/components/shop/shop-sort"
 import { WishlistButton } from "@/components/home/wishlist-button"
+import { localizeRow } from "@/lib/localize"
 
 export async function generateMetadata({
   params,
@@ -40,15 +41,20 @@ export default async function ShopPage({
   const supabase = await createClient()
 
   const [origins, materials, sizes, colors] = await Promise.all([
-    supabase.from("origins").select("id, name").order("name"),
-    supabase.from("materials").select("id, name").order("name"),
-    supabase.from("sizes").select("id, name").order("display_order"),
-    supabase.from("colors").select("id, name, hex_code").order("name"),
+    supabase.from("origins").select("id, name, translations").order("name"),
+    supabase.from("materials").select("id, name, translations").order("name"),
+    supabase.from("sizes").select("id, name, translations").order("display_order"),
+    supabase.from("colors").select("id, name, hex_code, translations").order("name"),
   ])
+
+  const localizedOrigins = (origins.data ?? []).map((o) => localizeRow(o, locale))
+  const localizedMaterials = (materials.data ?? []).map((m) => localizeRow(m, locale))
+  const localizedSizes = (sizes.data ?? []).map((s) => localizeRow(s, locale))
+  const localizedColors = (colors.data ?? []).map((c) => localizeRow(c, locale))
 
   let query = supabase
     .from("products")
-    .select("id, name, slug, sku, price, sale_price, short_description, origin_id, material_id, primary_color_id, size_id")
+    .select("id, name, slug, sku, price, sale_price, short_description, origin_id, material_id, primary_color_id, size_id, translations", { count: "exact" })
     .is("deleted_at", null)
     .eq("is_active", true)
 
@@ -84,9 +90,16 @@ export default async function ShopPage({
   else if (sort === "name") query = query.order("name", { ascending: true })
   else query = query.order("created_at", { ascending: false })
 
-  const { data: products } = await query
+  const page = Math.max(1, parseInt(sp.page as string) || 1)
+  const limit = 12
+  const offset = (page - 1) * limit
+  query = query.range(offset, offset + limit - 1)
 
-  const ids = (products ?? []).map((p) => p.id)
+  const { data: products, count: totalCount } = await query
+  const localizedProducts = (products ?? []).map((p) => localizeRow(p, locale))
+  const totalPages = Math.ceil((totalCount ?? 0) / limit)
+
+  const ids = localizedProducts.map((p) => p.id)
   const { data: productImages } = await supabase
     .from("product_images")
     .select("product_id, image_url")
@@ -127,7 +140,7 @@ export default async function ShopPage({
             <div>
               <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_origin}</h4>
               <div className="space-y-3">
-                {origins.data?.map((o) => (
+                {localizedOrigins.map((o) => (
                   <label key={o.id} className="flex items-center gap-3 cursor-pointer group">
                     <input type="checkbox" name="origin" value={o.id} defaultChecked={selOrigin.includes(o.id)} className="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" />
                     <span className="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">{o.name}</span>
@@ -139,7 +152,7 @@ export default async function ShopPage({
             <div>
               <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_material}</h4>
               <div className="space-y-3">
-                {materials.data?.map((m) => (
+                {localizedMaterials.map((m) => (
                   <label key={m.id} className="flex items-center gap-3 cursor-pointer group">
                     <input type="checkbox" name="material" value={m.id} defaultChecked={selMaterial.includes(m.id)} className="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" />
                     <span className="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">{m.name}</span>
@@ -151,7 +164,7 @@ export default async function ShopPage({
             <div>
               <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_color}</h4>
             <div className="flex flex-wrap gap-3">
-                {colors.data?.map((c) => (
+                {localizedColors.map((c) => (
                   <label key={c.id} className="cursor-pointer group relative">
                     <input type="checkbox" name="color" value={c.id} defaultChecked={selColor.includes(c.id)} className="sr-only peer" />
                     <span
@@ -167,7 +180,7 @@ export default async function ShopPage({
             <div>
               <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_size}</h4>
               <div className="grid grid-cols-2 gap-2">
-                {sizes.data?.map((s) => (
+                {localizedSizes.map((s) => (
                   <label key={s.id} className={`border text-center cursor-pointer text-label-sm font-label-sm hover:border-secondary transition-colors ${selSize.includes(s.id) ? "border-secondary bg-secondary-container text-on-secondary-container" : "border-outline-variant"}`}>
                     <input type="checkbox" name="size" value={s.id} defaultChecked={selSize.includes(s.id)} className="sr-only" />
                     <span className="block px-3 py-2">{s.name}</span>
@@ -197,7 +210,7 @@ export default async function ShopPage({
             </div>
           </form>
           <div className="flex justify-between items-center mb-8">
-            <p className="font-body-md text-on-surface-variant italic">{t.shop.showing}</p>
+            <p className="font-body-md text-on-surface-variant italic">{t.shop.showing} {totalCount ? `${offset + 1}–${Math.min(offset + limit, totalCount)} of ${totalCount}` : "0"}</p>
             <div className="flex items-center gap-4">
               <span className="text-label-sm font-label-sm uppercase tracking-widest text-on-surface-variant">{t.shop.sort_by}</span>
               <ShopSort
@@ -213,15 +226,15 @@ export default async function ShopPage({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8">
-            {(!products || products.length === 0) && (
+            {localizedProducts.length === 0 && (
               <p className="col-span-full text-center font-body-md text-on-surface-variant py-12">{t.shop.no_results}</p>
             )}
-            {products?.map((product) => {
+            {localizedProducts.map((product) => {
               const imgUrl = getProductImageUrl(imageMap.get(product.id))
               return (
                 <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="group no-underline">
                   <div className="relative overflow-hidden mb-6 aspect-[3/4] bg-surface-container-low">
-                    {imgUrl && <Image src={imgUrl} alt={product.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
+                    {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
                     <WishlistButton slug={product.slug} />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                   </div>
@@ -231,12 +244,28 @@ export default async function ShopPage({
                     <div className="flex justify-between items-end">
                       <p className="font-headline-sm text-headline-sm text-primary">€{(product.sale_price ?? product.price).toLocaleString()}</p>
                       <span className="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">{t.shop.view_details}</span>
-                    </div>
+          </div>
                   </header>
                 </Link>
               )
             })}
           </div>
+
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-4 mt-16">
+              {page > 1 && (
+                <Link href={`/${locale}/shop?${new URLSearchParams({ ...Object.fromEntries(Object.entries(sp).filter(([_, v]) => v)), page: String(page - 1) }).toString()}`} className="border border-outline-variant px-5 py-2 text-label-sm font-label-sm hover:border-secondary transition-colors no-underline">
+                  Previous
+                </Link>
+              )}
+              <span className="text-label-sm font-label-sm text-on-surface-variant">Page {page} of {totalPages}</span>
+              {page < totalPages && (
+                <Link href={`/${locale}/shop?${new URLSearchParams({ ...Object.fromEntries(Object.entries(sp).filter(([_, v]) => v)), page: String(page + 1) }).toString()}`} className="border border-outline-variant px-5 py-2 text-label-sm font-label-sm hover:border-secondary transition-colors no-underline">
+                  Next
+                </Link>
+              )}
+            </div>
+          )}
         </section>
       </div>
     </>

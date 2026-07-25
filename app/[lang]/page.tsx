@@ -14,6 +14,7 @@ import {
 } from "@/components/home/home-client"
 import { NewsletterForm } from "@/components/home/newsletter-form"
 import { WishlistButton } from "@/components/home/wishlist-button"
+import { localizeRow } from "@/lib/localize"
 
 export async function generateMetadata({
   params,
@@ -70,7 +71,7 @@ export default async function Home({
   if (topProductIds.length > 0) {
     const { data } = await supabase
       .from("products")
-      .select("id, name, slug, sku, price, sale_price")
+      .select("id, name, slug, sku, price, sale_price, translations")
       .is("deleted_at", null)
       .eq("is_active", true)
       .in("id", topProductIds)
@@ -79,7 +80,7 @@ export default async function Home({
   } else {
     const { data } = await supabase
       .from("products")
-      .select("id, name, slug, sku, price, sale_price")
+      .select("id, name, slug, sku, price, sale_price, translations")
       .is("deleted_at", null)
       .eq("is_active", true)
       .eq("is_best_seller", true)
@@ -134,9 +135,14 @@ export default async function Home({
 
   const storyImage = "/images/home/story.jpg"
 
-  const { data: colors } = await supabase.from("colors").select("id, name, hex_code").order("display_order")
-  const { data: sizes } = await supabase.from("sizes").select("id, name").order("display_order")
-  const { data: categories } = await supabase.from("categories").select("id, name, slug").order("display_order").limit(6)
+  const { data: colors } = await supabase.from("colors").select("id, name, hex_code, translations").order("display_order")
+  const { data: sizes } = await supabase.from("sizes").select("id, name, translations").order("display_order")
+  const { data: categories } = await supabase.from("categories").select("id, name, slug, translations").order("display_order").limit(6)
+
+  const localizedCategories = (categories ?? []).map((c) => localizeRow(c, locale))
+  const localizedColors = (colors ?? []).map((c) => localizeRow(c, locale))
+  const localizedSizes = (sizes ?? []).map((s) => localizeRow(s, locale))
+  const localizedBestSellers = (bestSellers ?? []).map((p) => localizeRow(p, locale))
 
   return (
     <>
@@ -193,8 +199,8 @@ export default async function Home({
       <Section background="none">
         <SectionHeading title={t.home.featured_collections} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {(categories ?? []).map((cat, i) => (
-            <Link key={cat.id} href={`/${locale}/shop?q=${encodeURIComponent(cat.name)}`} className="relative group h-[500px] overflow-hidden no-underline block">
+          {(localizedCategories).map((cat, i) => (
+            <Link key={cat.id} href={`/${locale}/category/${cat.slug}`} className="relative group h-[500px] overflow-hidden no-underline block">
               <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${collectionImages[i % collectionImages.length]})` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8">
@@ -252,7 +258,7 @@ export default async function Home({
           <div>
             <h3 className="font-headline-sm text-headline-sm mb-10">{t.home.shop_by_color}</h3>
             <div className="grid grid-cols-4 gap-y-8 gap-x-4">
-              {(colors ?? []).map((c) => (
+              {(localizedColors).map((c) => (
                 <ColorSwatch key={c.id} name={c.name} color={c.hex_code || "#ccc"} href={`/${locale}/shop?color=${c.id}`} />
               ))}
             </div>
@@ -260,7 +266,7 @@ export default async function Home({
           <div>
             <h3 className="font-headline-sm text-headline-sm mb-10">{t.home.shop_by_size}</h3>
             <div className="grid grid-cols-3 gap-4">
-              {(sizes ?? []).map((s) => (
+              {(localizedSizes).map((s) => (
                 <SizeCard key={s.id} label={s.name} size="" href={`/${locale}/shop?size=${s.id}`} />
               ))}
             </div>
@@ -271,12 +277,12 @@ export default async function Home({
       <Section background="none">
         <h2 className="font-headline-md text-headline-md mb-6">{t.home.best_sellers}</h2>
         <BestSellersCarousel>
-          {(bestSellers ?? []).slice(0, 4).map((product) => {
+          {(localizedBestSellers).slice(0, 4).map((product) => {
             const imgUrl = getProductImageUrl(primaryMap.get(product.id))
             return (
               <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="min-w-[320px] group no-underline">
                 <div className="relative overflow-hidden aspect-[4/5] mb-6 bg-surface-container-low">
-                  {imgUrl && <Image src={imgUrl} alt={product.name} fill className="object-cover" sizes="320px" />}
+                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover" sizes="320px" />}
                   <WishlistButton slug={product.slug} />
                 </div>
                 <div className="space-y-1">

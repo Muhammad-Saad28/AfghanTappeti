@@ -52,11 +52,28 @@ export async function createProduct(formData: FormData) {
       is_featured: raw.is_featured === "on",
       is_best_seller: raw.is_best_seller === "on",
       is_active: raw.is_active !== "off",
+      seo_id: raw.seo_id || null,
     })
     .select("id")
     .single()
 
   if (error) throw new Error(error.message)
+
+  const categories = formData.getAll("categories") as string[]
+  if (categories.length > 0) {
+    const { error: catError } = await supabase.from("product_categories").insert(
+      categories.map((category_id) => ({ product_id: product.id, category_id }))
+    )
+    if (catError) throw new Error(`Category assign failed: ${catError.message}`)
+  }
+
+  const collections = formData.getAll("collections") as string[]
+  if (collections.length > 0) {
+    const { error: colError } = await supabase.from("product_collections").insert(
+      collections.map((collection_id) => ({ product_id: product.id, collection_id }))
+    )
+    if (colError) throw new Error(`Collection assign failed: ${colError.message}`)
+  }
 
   const sku = raw.sku as string
   const imageRows = []
@@ -108,10 +125,29 @@ export async function updateProduct(id: string, formData: FormData) {
       is_featured: raw.is_featured === "on",
       is_best_seller: raw.is_best_seller === "on",
       is_active: raw.is_active !== "off",
+      seo_id: raw.seo_id || null,
     })
     .eq("id", id)
 
   if (error) throw new Error(error.message)
+
+  const categories = formData.getAll("categories") as string[]
+  await supabase.from("product_categories").delete().eq("product_id", id)
+  if (categories.length > 0) {
+    const { error: catError } = await supabase.from("product_categories").insert(
+      categories.map((category_id) => ({ product_id: id, category_id }))
+    )
+    if (catError) throw new Error(`Category assign failed: ${catError.message}`)
+  }
+
+  const collections = formData.getAll("collections") as string[]
+  await supabase.from("product_collections").delete().eq("product_id", id)
+  if (collections.length > 0) {
+    const { error: colError } = await supabase.from("product_collections").insert(
+      collections.map((collection_id) => ({ product_id: id, collection_id }))
+    )
+    if (colError) throw new Error(`Collection assign failed: ${colError.message}`)
+  }
 
   const deleteIds = formData.get("delete_images") as string
   if (deleteIds) {
@@ -249,5 +285,77 @@ export async function restoreProduct(id: string) {
     .update({ deleted_at: null })
     .eq("id", id)
   if (error) throw new Error(error.message)
+  revalidatePath("/admin/products")
+}
+
+export async function duplicateProduct(id: string) {
+  const supabase = await createClient()
+
+  const { data: original } = await supabase
+    .from("products")
+    .select("*, product_images(*)")
+    .eq("id", id)
+    .single()
+
+  if (!original) throw new Error("Product not found")
+
+  const newName = `${original.name} (Copy)`
+  const newSku = `${original.sku}-CPY`
+
+  const { data: product, error } = await supabase
+    .from("products")
+    .insert({
+      name: newName,
+      slug: slugify(newName),
+      short_description: original.short_description,
+      description: original.description,
+      sku: newSku,
+      price: original.price,
+      sale_price: original.sale_price,
+      stock_quantity: original.stock_quantity,
+      weight: original.weight,
+      origin_id: original.origin_id,
+      material_id: original.material_id,
+      size_id: original.size_id,
+      shape_id: original.shape_id,
+      primary_color_id: original.primary_color_id,
+      secondary_color_id: original.secondary_color_id,
+      is_featured: false,
+      is_best_seller: false,
+      is_active: false,
+      seo_id: null,
+    })
+    .select("id")
+    .single()
+
+  if (error) throw new Error(error.message)
+
+  if (original.product_images?.length > 0) {
+    const imageRows = original.product_images.map(
+      (img: { image_url: string; display_order: number; is_primary: boolean }) => ({
+        product_id: product.id,
+        image_url: img.image_url,
+        display_order: img.display_order,
+        is_primary: img.is_primary,
+      })
+    )
+    const { error: imgError } = await supabase.from("product_images").insert(imageRows)
+    if (imgError) throw new Error(`Image copy failed: ${imgError.message}`)
+  }
+
+  const { data: pc } = await supabase.from("product_categories").select("category_id").eq("product_id", id)
+  if (pc && pc.length > 0) {
+    await supabase.from("product_categories").insert(
+      pc.map((r: { category_id: string }) => ({ product_id: product.id, category_id: r.category_id }))
+    )
+  }
+
+  const { data: pcol } = await supabase.from("product_collections").select("collection_id").eq("product_id", id)
+  if (pcol && pcol.length > 0) {
+    await supabase.from("product_collections").insert(
+      pcol.map((r: { collection_id: string }) => ({ product_id: product.id, collection_id: r.collection_id }))
+    )
+  }
+
   revalidatePath("/admin/products")
 }

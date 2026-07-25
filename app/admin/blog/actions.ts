@@ -17,6 +17,7 @@ export async function createBlog(formData: FormData) {
     slug: slugify(raw.title as string),
     excerpt: raw.excerpt as string,
     content: raw.content as string,
+    category_id: (raw.category_id as string) || null,
     status: (raw.status as string) || "draft",
     published_at: raw.status === "published" ? new Date().toISOString() : null,
   })
@@ -38,6 +39,7 @@ export async function updateBlog(id: string, formData: FormData) {
       slug: slugify(raw.title as string),
       excerpt: raw.excerpt as string,
       content: raw.content as string,
+      category_id: (raw.category_id as string) || null,
       status: raw.status as string,
       published_at: wasPublished ? new Date().toISOString() : undefined,
     })

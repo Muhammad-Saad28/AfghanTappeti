@@ -62,7 +62,7 @@ export default function WishlistPage() {
               <div key={slug} className="group">
                 <Link href={`/${locale}/product/${slug}`} className="no-underline">
                   <div className="aspect-[3/4] relative overflow-hidden mb-4 bg-surface-container-low">
-                    {imgUrl && <Image src={imgUrl} alt={slug.replace(/-/g, " ")} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" />}
+                    {imgUrl && <Image src={imgUrl} alt={slug.replace(/-/g, " ")} fill unoptimized className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw" />}
                   </div>
                   <h3 className="font-label-md text-label-md text-on-surface group-hover:text-secondary transition-colors capitalize">{slug.replace(/-/g, " ")}</h3>
                 </Link>

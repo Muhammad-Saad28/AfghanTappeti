@@ -229,7 +229,8 @@
     "review_text": "La Tua Recensione",
     "rating": "Valutazione",
     "submit_review": "Invia Recensione",
-    "review_thanks": "Grazie! La tua recensione è stata inviata e apparirà dopo la moderazione."
+    "review_thanks": "Grazie! La tua recensione è stata inviata e apparirà dopo la moderazione.",
+    "related_products": "Potrebbe Piacerti Anche"
   },
   "cart": {
     "title": "Carrello",
@@ -457,6 +458,17 @@
     "edit": "Modifica",
     "create": "Crea",
     "search": "Cerca",
-    "no_results": "Nessun risultato trovato."
+    "no_results": "Nessun risultato trovato.",
+    "register": "Registrati",
+    "sign_in": "Accedi",
+    "sign_out": "Esci",
+    "have_account": "Hai già un account?",
+    "no_account": "Non hai un account?",
+    "my_account": "Il Mio Account",
+    "profile": "Profilo",
+    "name": "Nome",
+    "phone": "Telefono",
+    "order_history": "Cronologia Ordini",
+    "no_orders": "Nessun ordine ancora."
   }
 }

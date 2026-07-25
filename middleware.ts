@@ -9,14 +9,26 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   const isAdminRoute = pathname.startsWith("/admin")
-  const isLoginRoute = pathname === "/login"
+  const isAdminLoginRoute = pathname === "/login"
+  const isCustomerRoute = pathname.match(/^\/(en|it)\/account(\/.*)?$/)
+  const isCustomerAuthRoute = pathname.match(/^\/(en|it)\/(login|register)$/)
 
   if (isAdminRoute && !user) {
     return NextResponse.redirect(new URL("/login", request.url))
   }
 
-  if (isLoginRoute && user) {
+  if (isAdminLoginRoute && user) {
     return NextResponse.redirect(new URL("/admin", request.url))
+  }
+
+  if (isCustomerRoute && !user) {
+    const lang = pathname.split("/")[1]
+    return NextResponse.redirect(new URL(`/${lang}/login`, request.url))
+  }
+
+  if (isCustomerAuthRoute && user) {
+    const lang = pathname.split("/")[1]
+    return NextResponse.redirect(new URL(`/${lang}/account`, request.url))
   }
 
   const i18nResp = i18nMiddleware(request)

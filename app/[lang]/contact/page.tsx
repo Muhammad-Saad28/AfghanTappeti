@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { siteUrl } from "@/lib/seo"
 import { Section } from "@/components/layout/section"
+import { ContactForm } from "@/components/forms/contact-form"
 
 export async function generateMetadata({
   params,
@@ -51,35 +52,7 @@ export default async function ContactPage({
             <h2 className="font-headline-sm text-headline-sm mb-8">
               {t.contact.form_heading}
             </h2>
-            <form className="space-y-8">
-              <div>
-                <label htmlFor="name" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
-                  {t.contact.form_name}
-                </label>
-                <input id="name" type="text" className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md" />
-              </div>
-              <div>
-                <label htmlFor="email" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
-                  {t.contact.form_email}
-                </label>
-                <input id="email" type="email" className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md" />
-              </div>
-              <div>
-                <label htmlFor="subject" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
-                  {t.contact.form_subject}
-                </label>
-                <input id="subject" type="text" className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md" />
-              </div>
-              <div>
-                <label htmlFor="message" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
-                  {t.contact.form_message}
-                </label>
-                <textarea id="message" rows={4} className="w-full bg-transparent border-b border-outline-variant py-3 focus:outline-none focus:border-secondary transition-colors font-body-md resize-none" />
-              </div>
-              <button type="submit" className="bg-primary text-white px-12 py-4 font-label-md text-label-md hover:bg-secondary transition-colors">
-                {t.contact.form_submit}
-              </button>
-            </form>
+            <ContactForm t={t.contact} />
           </div>
 
           <div>

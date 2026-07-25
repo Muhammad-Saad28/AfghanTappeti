@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { getDictionary, type Locale } from "@/lib/i18n"
+import { FooterNewsletter } from "@/components/forms/footer-newsletter"
 
 export async function Footer({ lang }: { lang?: Locale }) {
   const locale = lang ?? "en"
@@ -71,6 +72,10 @@ export async function Footer({ lang }: { lang?: Locale }) {
             <li><Link href={`/${locale}/shipping`} className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors no-underline">{f.shipping_returns}</Link></li>
             <li><Link href={`/${locale}/care-guide`} className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors no-underline">{f.care_guide}</Link></li>
           </ul>
+        </div>
+
+        <div className="space-y-6">
+          <FooterNewsletter placeholder={f.newsletter_placeholder} cta={f.newsletter_cta} />
         </div>
       </div>
 

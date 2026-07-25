@@ -5,6 +5,7 @@ import { siteUrl } from "@/lib/seo"
 import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { Section } from "@/components/layout/section"
+import { localizeRow } from "@/lib/localize"
 
 export async function generateMetadata({
   params,
@@ -35,9 +36,11 @@ export default async function CollectionsPage({
   const supabase = await createClient()
   const { data: categories } = await supabase
     .from("categories")
-    .select("id, name, slug, description")
+    .select("id, name, slug, description, translations")
     .eq("is_active", true)
     .order("display_order")
+
+  const localizedCategories = (categories ?? []).map((c) => localizeRow(c, locale))
 
   const { data: collImages } = await supabase
     .from("product_images")
@@ -66,7 +69,7 @@ export default async function CollectionsPage({
 
       <Section background="none">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-          {(categories ?? []).map((cat, i) => (
+          {(localizedCategories).map((cat, i) => (
             <Link
               key={cat.id}
               href={`/${locale}/category/${cat.slug}`}

@@ -5,6 +5,7 @@ import { siteUrl } from "@/lib/seo"
 import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { Section } from "@/components/layout/section"
+import { localizeRow } from "@/lib/localize"
 
 export async function generateMetadata({
   params,
@@ -35,9 +36,11 @@ export default async function BlogPage({
   const supabase = await createClient()
   const { data: posts } = await supabase
     .from("blogs")
-    .select("id, slug, title, excerpt, featured_image, published_at")
+    .select("id, slug, title, excerpt, featured_image, published_at, translations")
     .order("published_at", { ascending: false })
     .limit(10)
+
+  const localizedPosts = (posts ?? []).map((p) => localizeRow(p, locale))
 
   return (
     <>
@@ -53,10 +56,10 @@ export default async function BlogPage({
       </section>
       <Section background="none">
         <div className="max-w-4xl mx-auto space-y-16">
-          {(posts ?? []).length === 0 && (
+          {(localizedPosts).length === 0 && (
             <p className="text-center font-body-md text-on-surface-variant py-12">{t.blog.no_posts}</p>
           )}
-          {(posts ?? []).map((post) => (
+          {(localizedPosts).map((post) => (
             <Link key={post.id} href={`/${locale}/blog/${post.slug}`} className="group grid md:grid-cols-5 gap-8 items-start border-b border-outline-variant pb-12 no-underline">
               <div className="md:col-span-2 aspect-[4/3] bg-cover bg-center overflow-hidden" style={post.featured_image ? { backgroundImage: `url(${getProductImageUrl(post.featured_image)})` } : undefined} />
               <div className="md:col-span-3 space-y-4">

@@ -1,4 +1,6 @@
-export function BlogForm({
+import { createClient } from "@/lib/supabase/server"
+
+export async function BlogForm({
   post,
   action,
 }: {
@@ -6,6 +8,9 @@ export function BlogForm({
   post?: Record<string, any>
   action: (formData: FormData) => Promise<void>
 }) {
+  const supabase = await createClient()
+  const { data: blogCategories } = await supabase.from("blog_categories").select("id, name").order("name")
+
   return (
     <div className="max-w-3xl">
       <form action={action} className="space-y-8">
@@ -17,6 +22,20 @@ export function BlogForm({
               defaultValue={post?.title ?? ""}
               className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md"
             />
+          </div>
+
+          <div>
+            <label htmlFor="category_id" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">Category</label>
+            <select
+              id="category_id" name="category_id"
+              defaultValue={post?.category_id ?? ""}
+              className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md"
+            >
+              <option value="">No category</option>
+              {blogCategories?.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
           </div>
 
           <div>

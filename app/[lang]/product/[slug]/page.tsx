@@ -5,8 +5,10 @@ import { siteUrl, productStructuredData } from "@/lib/seo"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import Image from "next/image"
+import Link from "next/link"
 import { AddToCartButton } from "./add-to-cart"
 import { ReviewForm } from "@/components/product/review-form"
+import { localizeRow } from "@/lib/localize"
 
 export async function generateMetadata({
   params,
@@ -17,22 +19,24 @@ export async function generateMetadata({
   const supabase = await createClient()
   const { data: product } = await supabase
     .from("products")
-    .select("name, short_description, description")
+    .select("name, short_description, description, translations")
     .eq("slug", slug)
     .single()
 
   if (!product) return {}
 
+  const localized = localizeRow(product, lang as Locale)
+
   return {
-    title: product.name,
-    description: product.short_description || product.description?.substring(0, 160) || "",
+    title: localized.name as string,
+    description: (localized.short_description || localized.description)?.substring(0, 160) ?? "",
     alternates: {
       canonical: `${siteUrl}/${lang}/product/${slug}`,
       languages: { en: `${siteUrl}/en/product/${slug}`, it: `${siteUrl}/it/product/${slug}`, "x-default": `${siteUrl}/en/product/${slug}` },
     },
     openGraph: {
-      title: product.name,
-      description: product.short_description || undefined,
+      title: localized.name as string,
+      description: (localized.short_description as string) || undefined,
     },
   }
 }
@@ -49,24 +53,66 @@ export default async function ProductDetailPage({
 
   const { data: product } = await supabase
     .from("products")
-    .select("*, origins(name), materials(name), colors!primary_color_id(name, hex_code), sizes(name)")
+    .select("*, origins(name, translations), materials(name, translations), colors!primary_color_id(name, hex_code, translations), sizes(name, translations), translations")
     .eq("slug", slug)
     .single()
 
   if (!product) notFound()
 
-  const [{ data: images }, { data: reviews }] = await Promise.all([
+  const localizedProduct = localizeRow(product, locale)
+  const localizedOrigin = product.origins ? localizeRow(product.origins, locale) : null
+  const localizedMaterial = product.materials ? localizeRow(product.materials, locale) : null
+  const localizedColor = product.colors ? localizeRow(product.colors, locale) : null
+  const localizedSize = product.sizes ? localizeRow(product.sizes, locale) : null
+
+  const [{ data: images }, { data: reviews }, { data: relIds }] = await Promise.all([
     supabase.from("product_images").select("*").eq("product_id", product.id).order("display_order"),
     supabase.from("reviews").select("*").eq("product_id", product.id).eq("is_approved", true).order("created_at", { ascending: false }),
+    supabase.from("product_categories").select("category_id").eq("product_id", product.id),
   ])
+
+  let relatedProducts: Record<string, unknown>[] = []
+  const catIds = (relIds ?? []).map((r) => r.category_id)
+  if (catIds.length > 0) {
+    const { data: siblingIds } = await supabase
+      .from("product_categories")
+      .select("product_id")
+      .in("category_id", catIds)
+      .neq("product_id", product.id)
+      .limit(20)
+    const sibIds = [...new Set((siblingIds ?? []).map((r) => r.product_id))].slice(0, 8)
+    if (sibIds.length > 0) {
+      const { data: rel } = await supabase
+        .from("products")
+        .select("id, name, slug, sku, price, sale_price, translations")
+        .is("deleted_at", null)
+        .eq("is_active", true)
+        .in("id", sibIds)
+        .limit(4)
+      relatedProducts = (rel ?? []).map((p) => localizeRow(p, locale))
+    }
+  }
+
+  let relatedImages: Record<string, string> = {}
+  if (relatedProducts.length > 0) {
+    const rpIds = relatedProducts.map((p) => p.id as string)
+    const { data: ri } = await supabase
+      .from("product_images")
+      .select("product_id, image_url")
+      .in("product_id", rpIds)
+      .eq("display_order", 0)
+    for (const img of ri ?? []) {
+      if (!relatedImages[img.product_id]) relatedImages[img.product_id] = img.image_url
+    }
+  }
 
   const price = product.sale_price ?? product.price
   const primaryImageUrl = getProductImageUrl(images?.[0]?.image_url)
 
   const productUrl = `${siteUrl}/${lang}/product/${slug}`
   const jsonLd = productStructuredData({
-    name: product.name,
-    description: product.description || product.short_description,
+    name: localizedProduct.name,
+    description: localizedProduct.description || localizedProduct.short_description,
     sku: product.sku,
     price,
     image: primaryImageUrl,
@@ -84,7 +130,7 @@ export default async function ProductDetailPage({
                 key={img.id}
                 className={`aspect-[3/4] relative cursor-pointer ring-1 ${i === 0 ? "ring-secondary" : "ring-primary/10 opacity-50 hover:opacity-100"} hover:ring-secondary transition-all bg-surface-container-low overflow-hidden`}
               >
-                {img.image_url && <Image src={getProductImageUrl(img.image_url)} alt={product.name} fill className="object-cover" sizes="100px" priority={i < 4} />}
+                {img.image_url && <Image src={getProductImageUrl(img.image_url)} alt={localizedProduct.name} fill unoptimized className="object-cover" sizes="100px" priority={i < 4} />}
               </div>
             ))}
           </div>
@@ -92,7 +138,7 @@ export default async function ProductDetailPage({
             <div
               className="aspect-[4/5] bg-surface-container-high relative"
             >
-              {primaryImageUrl && <Image src={primaryImageUrl} alt={product.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 60vw" priority />}
+              {primaryImageUrl && <Image src={primaryImageUrl} alt={localizedProduct.name} fill unoptimized className="object-cover" sizes="(max-width: 1024px) 100vw, 60vw" priority />}
             </div>
             <div className="absolute bottom-6 right-6 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="font-label-sm text-label-sm">{t.product.roll_to_zoom}</span>
@@ -107,9 +153,9 @@ export default async function ProductDetailPage({
           </nav>
 
           <div className="mb-8">
-            <h1 className="font-display-lg text-headline-md lg:text-display-lg mb-2 leading-tight">{product.name}</h1>
+            <h1 className="font-display-lg text-headline-md lg:text-display-lg mb-2 leading-tight">{localizedProduct.name}</h1>
             <div className="flex items-center gap-4 text-on-surface-variant">
-              {product.origins && <span className="font-label-md text-label-md">{t.product.origin}: {product.origins.name.toUpperCase()}</span>}
+              {product.origins && <span className="font-label-md text-label-md">{t.product.origin}: {localizedOrigin?.name?.toUpperCase() ?? ""}</span>}
             </div>
           </div>
 
@@ -121,19 +167,19 @@ export default async function ProductDetailPage({
           </div>
 
           <div className="space-y-6 mb-10">
-            <p className="font-body-md text-body-lg text-on-surface-variant leading-relaxed">{product.description || product.short_description}</p>
+            <p className="font-body-md text-body-lg text-on-surface-variant leading-relaxed">{localizedProduct.description || localizedProduct.short_description}</p>
             <div className="grid grid-cols-2 gap-y-4 border-y border-outline-variant py-8">
               {product.sku && <Spec label={t.product.sku} value={product.sku} />}
-              {product.materials && <Spec label={t.product.material} value={product.materials.name} />}
-              {product.sizes && <Spec label={t.product.size} value={product.sizes.name} />}
-              {product.colors && <Spec label={t.product.color} value={product.colors.name} />}
+              {product.materials && <Spec label={t.product.material} value={localizedMaterial?.name ?? ""} />}
+              {product.sizes && <Spec label={t.product.size} value={localizedSize?.name ?? ""} />}
+              {product.colors && <Spec label={t.product.color} value={localizedColor?.name ?? ""} />}
             </div>
           </div>
 
           <div className="flex flex-col gap-4">
             <AddToCartButton
               id={product.id}
-              name={product.name}
+              name={localizedProduct.name}
               slug={product.slug}
               price={product.price}
               salePrice={product.sale_price}
@@ -151,7 +197,7 @@ export default async function ProductDetailPage({
                 <span className="transition-transform group-open:rotate-180 text-lg">›</span>
               </summary>
               <div className="pt-4 font-body-md text-on-surface-variant text-sm leading-relaxed">
-                {product.short_description || t.product.details_care_text}
+                {localizedProduct.short_description || t.product.details_care_text}
               </div>
             </details>
             <details className="group border-b border-outline-variant pb-4">
@@ -204,6 +250,28 @@ export default async function ProductDetailPage({
           />
         </div>
       </section>
+
+      {relatedProducts.length > 0 && (
+        <section className="mt-section-gap border-t border-outline-variant pt-section-gap">
+          <h2 className="font-headline-md text-headline-md mb-8">{t.product.related_products ?? "You May Also Like"}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+            {relatedProducts.map((rp) => {
+              const rpLocal = rp as Record<string, unknown>
+              const rpImg = getProductImageUrl(relatedImages[rpLocal.id as string] ?? null)
+              return (
+                <Link key={rpLocal.id as string} href={`/${locale}/product/${rpLocal.slug as string}`} className="group no-underline">
+                  <div className="aspect-[3/4] relative overflow-hidden bg-surface-container-low mb-4">
+                    {rpImg && <Image src={rpImg} alt={rpLocal.name as string} fill unoptimized className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />}
+                  </div>
+                  <h3 className="font-body-md text-body-md font-semibold group-hover:text-secondary transition-colors mb-1">{rpLocal.name as string}</h3>
+                  <p className="font-label-sm text-label-sm text-on-surface-variant">{rpLocal.sku as string}</p>
+                  <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{((rpLocal.sale_price ?? rpLocal.price) as number).toLocaleString()}</p>
+                </Link>
+              )
+            })}
+          </div>
+        </section>
+      )}
     </main>
   )
 }

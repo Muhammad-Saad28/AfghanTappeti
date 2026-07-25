@@ -15,14 +15,28 @@ export async function ProductForm({
 }) {
   const supabase = await createClient()
 
-  const [{ data: origins }, { data: materials }, { data: sizes }, { data: shapes }, { data: colors }] =
+  const [{ data: origins }, { data: materials }, { data: sizes }, { data: shapes }, { data: colors }, { data: categories }, { data: collections }, { data: seoList }] =
     await Promise.all([
       supabase.from("origins").select("id, name").order("name"),
       supabase.from("materials").select("id, name").order("name"),
       supabase.from("sizes").select("id, name").order("display_order"),
       supabase.from("shapes").select("id, name").order("name"),
       supabase.from("colors").select("id, name").order("name"),
+      supabase.from("categories").select("id, name").eq("is_active", true).order("display_order"),
+      supabase.from("collections").select("id, name").eq("is_active", true).order("name"),
+      supabase.from("seo_metadata").select("id, meta_title").order("meta_title"),
     ])
+
+  let assignedCategoryIds: string[] = []
+  let assignedCollectionIds: string[] = []
+  if (product) {
+    const [{ data: pc }, { data: pcol }] = await Promise.all([
+      supabase.from("product_categories").select("category_id").eq("product_id", product.id),
+      supabase.from("product_collections").select("collection_id").eq("product_id", product.id),
+    ])
+    assignedCategoryIds = (pc ?? []).map((r) => r.category_id)
+    assignedCollectionIds = (pcol ?? []).map((r) => r.collection_id)
+  }
 
   return (
     <div className="max-w-3xl">
@@ -286,6 +300,43 @@ export async function ProductForm({
               />
               <span className="font-body-md text-on-surface">Active</span>
             </label>
+          </div>
+        </div>
+
+        <div className="bg-surface rounded-xl border border-outline-variant p-6 space-y-6">
+          <h2 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Categories</h2>
+          <div className="flex flex-wrap gap-4">
+            {categories?.map((cat) => (
+              <label key={cat.id} className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="categories" value={cat.id} defaultChecked={assignedCategoryIds.includes(cat.id)} className="rounded border-outline-variant text-secondary focus:ring-secondary w-4 h-4" />
+                <span className="font-body-md text-sm">{cat.name}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-surface rounded-xl border border-outline-variant p-6 space-y-6">
+          <h2 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Collections</h2>
+          <div className="flex flex-wrap gap-4">
+            {collections?.map((col) => (
+              <label key={col.id} className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="collections" value={col.id} defaultChecked={assignedCollectionIds.includes(col.id)} className="rounded border-outline-variant text-secondary focus:ring-secondary w-4 h-4" />
+                <span className="font-body-md text-sm">{col.name}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-surface rounded-xl border border-outline-variant p-6 space-y-6">
+          <h2 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">SEO</h2>
+          <div>
+            <label htmlFor="seo_id" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">SEO Metadata</label>
+            <select id="seo_id" name="seo_id" defaultValue={product?.seo_id ?? ""} className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md">
+              <option value="">No SEO metadata</option>
+              {seoList?.map((s) => (
+                <option key={s.id} value={s.id}>{s.meta_title || s.id}</option>
+              ))}
+            </select>
           </div>
         </div>
 

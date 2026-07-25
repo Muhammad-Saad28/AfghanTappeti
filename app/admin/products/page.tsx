@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
-import { deleteProduct } from "./actions"
+import { deleteProduct, duplicateProduct } from "./actions"
 
 export default async function AdminProductsPage() {
   const supabase = await createClient()
@@ -82,21 +82,29 @@ export default async function AdminProductsPage() {
                 </td>
                 <td className="px-4 py-4 text-right">
                   <div className="flex items-center justify-end gap-2">
-                    <Link
-                      href={`/admin/products/${product.id}`}
-                      className="text-label-sm text-on-surface-variant hover:text-secondary no-underline transition-colors"
-                    >
-                      Edit
-                    </Link>
-                    <form action={deleteProduct.bind(null, product.id)}>
-                      <button
-                        type="submit"
-                        className="text-label-sm text-on-surface-variant hover:text-error transition-colors"
+                      <Link
+                        href={`/admin/products/${product.id}`}
+                        className="text-label-sm text-on-surface-variant hover:text-secondary no-underline transition-colors"
                       >
-                        Delete
-                      </button>
-                    </form>
-                  </div>
+                        Edit
+                      </Link>
+                      <form action={duplicateProduct.bind(null, product.id)}>
+                        <button
+                          type="submit"
+                          className="text-label-sm text-on-surface-variant hover:text-secondary transition-colors"
+                        >
+                          Duplicate
+                        </button>
+                      </form>
+                      <form action={deleteProduct.bind(null, product.id)}>
+                        <button
+                          type="submit"
+                          className="text-label-sm text-on-surface-variant hover:text-error transition-colors"
+                        >
+                          Delete
+                        </button>
+                      </form>
+                    </div>
                 </td>
               </tr>
             ))}

@@ -229,7 +229,8 @@
     "review_text": "Your Review",
     "rating": "Rating",
     "submit_review": "Submit Review",
-    "review_thanks": "Thank you! Your review has been submitted and will appear after moderation."
+    "review_thanks": "Thank you! Your review has been submitted and will appear after moderation.",
+    "related_products": "You May Also Like"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -457,6 +458,17 @@
     "edit": "Edit",
     "create": "Create",
     "search": "Search",
-    "no_results": "No results found."
+    "no_results": "No results found.",
+    "register": "Register",
+    "sign_in": "Sign In",
+    "sign_out": "Sign Out",
+    "have_account": "Already have an account?",
+    "no_account": "Don't have an account?",
+    "my_account": "My Account",
+    "profile": "Profile",
+    "name": "Name",
+    "phone": "Phone",
+    "order_history": "Order History",
+    "no_orders": "No orders yet."
   }
 }

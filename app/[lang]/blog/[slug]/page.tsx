@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server"
 import { siteUrl, blogStructuredData } from "@/lib/seo"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { Section } from "@/components/layout/section"
+import { localizeRow } from "@/lib/localize"
 
 export async function generateMetadata({
   params,
@@ -14,14 +15,15 @@ export async function generateMetadata({
   const supabase = await createClient()
   const { data: post } = await supabase
     .from("blogs")
-    .select("title, excerpt")
+    .select("title, excerpt, translations")
     .eq("slug", slug)
     .single()
 
   if (!post) return {}
+  const localized = localizeRow(post, lang as Locale)
   return {
-    title: post.title,
-    description: post.excerpt || undefined,
+    title: localized.title as string,
+    description: (localized.excerpt as string) || undefined,
     alternates: {
       canonical: `${siteUrl}/${lang}/blog/${slug}`,
       languages: { en: `${siteUrl}/en/blog/${slug}`, it: `${siteUrl}/it/blog/${slug}`, "x-default": `${siteUrl}/en/blog/${slug}` },
@@ -41,18 +43,19 @@ export default async function BlogPostPage({
   const t = await getDictionary(locale)
   const { data: post } = await supabase
     .from("blogs")
-    .select("*")
+    .select("*, translations")
     .eq("slug", slug)
     .single()
 
-  const title = post?.title ?? slug.replace(/-/g, " ")
-  const date = post?.published_at
-  const jsonLd = post ? blogStructuredData({
-    title: post.title,
-    excerpt: post.excerpt,
-    published_at: post.published_at,
+  const localized = post ? localizeRow(post, locale) : null
+  const title = localized?.title ?? slug.replace(/-/g, " ")
+  const date = localized?.published_at
+  const jsonLd = localized ? blogStructuredData({
+    title: localized.title,
+    excerpt: localized.excerpt,
+    published_at: localized.published_at,
     url: `${siteUrl}/${lang}/blog/${slug}`,
-    image: post.featured_image,
+    image: localized.featured_image,
   }) : null
 
   return (
@@ -61,7 +64,7 @@ export default async function BlogPostPage({
       <Section background="none">
         <article className="max-w-3xl mx-auto">
           <div className="mb-8">
-            {post?.status && <span className="font-label-sm text-label-sm text-secondary uppercase tracking-widest">{post.status}</span>}
+            {localized?.status && <span className="font-label-sm text-label-sm text-secondary uppercase tracking-widest">{localized.status}</span>}
             <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mt-4 mb-4 capitalize">
               {title}
             </h1>
@@ -72,11 +75,11 @@ export default async function BlogPostPage({
 
           <div
             className="aspect-[16/9] bg-surface-container-low mb-12 bg-cover bg-center"
-            style={post?.featured_image ? { backgroundImage: `url(${post.featured_image})` } : undefined}
+            style={localized?.featured_image ? { backgroundImage: `url(${localized.featured_image})` } : undefined}
           />
 
           <div className="prose max-w-none space-y-6">
-            {post?.content ? (
+            {localized?.content ? (
               post.content.split("\n").map((p: string, i: number) => (
                 <p key={i} className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{p}</p>
               ))
