@@ -84,7 +84,7 @@ export default async function ProductDetailPage({
                 key={img.id}
                 className={`aspect-[3/4] relative cursor-pointer ring-1 ${i === 0 ? "ring-secondary" : "ring-primary/10 opacity-50 hover:opacity-100"} hover:ring-secondary transition-all bg-surface-container-low overflow-hidden`}
               >
-                {img.image_url && <Image src={getProductImageUrl(img.image_url)} alt={product.name} fill className="object-cover" sizes="100px" />}
+                {img.image_url && <Image src={getProductImageUrl(img.image_url)} alt={product.name} fill className="object-cover" sizes="100px" priority={i < 4} />}
               </div>
             ))}
           </div>
@@ -92,7 +92,7 @@ export default async function ProductDetailPage({
             <div
               className="aspect-[4/5] bg-surface-container-high relative"
             >
-              {primaryImageUrl && <Image src={primaryImageUrl} alt={product.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 60vw" />}
+              {primaryImageUrl && <Image src={primaryImageUrl} alt={product.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 60vw" priority />}
             </div>
             <div className="absolute bottom-6 right-6 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="font-label-sm text-label-sm">{t.product.roll_to_zoom}</span>

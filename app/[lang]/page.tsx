@@ -51,13 +51,41 @@ export default async function Home({
 
   const supabase = await createClient()
 
-  const { data: bestSellers } = await supabase
-    .from("products")
-    .select("id, name, slug, sku, price, sale_price, is_best_seller, is_featured")
-    .is("deleted_at", null)
-    .eq("is_active", true)
-    .order("is_best_seller", { ascending: false })
-    .limit(8)
+  const { data: orderProductIds } = await supabase
+    .from("order_items")
+    .select("product_id")
+    .limit(50)
+
+  const orderCounts = new Map<string, number>()
+  for (const item of orderProductIds ?? []) {
+    orderCounts.set(item.product_id, (orderCounts.get(item.product_id) ?? 0) + 1)
+  }
+
+  const topProductIds = [...orderCounts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([id]) => id)
+
+  let bestSellers
+  if (topProductIds.length > 0) {
+    const { data } = await supabase
+      .from("products")
+      .select("id, name, slug, sku, price, sale_price")
+      .is("deleted_at", null)
+      .eq("is_active", true)
+      .in("id", topProductIds)
+      .limit(8)
+    bestSellers = data
+  } else {
+    const { data } = await supabase
+      .from("products")
+      .select("id, name, slug, sku, price, sale_price")
+      .is("deleted_at", null)
+      .eq("is_active", true)
+      .eq("is_best_seller", true)
+      .limit(8)
+    bestSellers = data
+  }
 
   const productIds = bestSellers?.map((p) => p.id) ?? []
 
@@ -74,26 +102,47 @@ export default async function Home({
     }
   }
 
-  const { data: randomImages } = await supabase
-    .from("product_images")
-    .select("image_url")
-    .order("display_order")
-    .limit(30)
+  const collectionImages = [
+    "/images/home/collection_1.jpg",
+    "/images/home/collection_2.jpg",
+    "/images/home/collection_4.jpg",
+    "/images/home/collection_5.jpg",
+    "/images/home/collection_6.jpg",
+  ]
+
+  const styleImages = [
+    "/images/home/style_scandinavian.jpg",
+    "/images/home/style_classic.jpg",
+    "/images/home/style_minimal.jpg",
+    "/images/home/style_bohemian.jpg",
+    "/images/home/style_luxury.jpg",
+    "/images/home/style_modern.jpg",
+  ]
+
+  const roomImages = [
+    "/images/home/style_modern.jpg",
+    "/images/home/room_living.jpg",
+    "/images/home/collection_6.jpg",
+  ]
+
+  const instagramImages = [
+    "/images/home/instagram_3.jpg",
+    "/images/home/instagram_4.jpg",
+    "/images/home/instagram_5.jpg",
+    "/images/home/instagram_6.jpg",
+  ]
+
+  const storyImage = "/images/home/story.jpg"
 
   const { data: colors } = await supabase.from("colors").select("id, name, hex_code").order("display_order")
   const { data: sizes } = await supabase.from("sizes").select("id, name").order("display_order")
   const { data: categories } = await supabase.from("categories").select("id, name, slug").order("display_order").limit(6)
 
-  const randomUrls = (randomImages ?? []).map((i) => getProductImageUrl(i.image_url)).filter(Boolean)
-  function pick(idx: number) {
-    return randomUrls[idx % randomUrls.length] || ""
-  }
-
   return (
     <>
       <header className="relative h-[80vh] min-h-[600px] md:h-screen flex items-end md:items-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <Image src="/images/home/hero.jpg" alt="Afghan Tappeti" fill priority className="object-cover scale-105" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
         <div className="relative z-10 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto text-white pb-16 md:pb-0">
@@ -145,8 +194,8 @@ export default async function Home({
         <SectionHeading title={t.home.featured_collections} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           {(categories ?? []).map((cat, i) => (
-            <Link key={cat.id} href={`/${locale}/category/${cat.slug}`} className="relative group h-[500px] overflow-hidden no-underline block">
-              <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${pick(i)})` }} />
+            <Link key={cat.id} href={`/${locale}/shop?q=${encodeURIComponent(cat.name)}`} className="relative group h-[500px] overflow-hidden no-underline block">
+              <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${collectionImages[i % collectionImages.length]})` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8">
                 <h3 className="text-white font-headline-sm text-headline-sm">{cat.name}</h3>
@@ -168,7 +217,7 @@ export default async function Home({
         <div className="grid grid-cols-2 md:grid-cols-6 gap-gutter">
           {["scandinavian", "classic", "minimal", "bohemian", "luxury", "modern"].map((s, i) => (
             <div key={s} className="group text-center">
-              <div className="aspect-[3/4] mb-4 overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${pick(6 + i)})` }} />
+              <div className="aspect-[3/4] mb-4 overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${styleImages[i]})` }} />
               <span className="font-label-md text-label-md group-hover:text-secondary transition-colors">{t.home[`style_${s}` as keyof typeof t.home]}</span>
             </div>
           ))}
@@ -178,18 +227,18 @@ export default async function Home({
       <Section background="none">
         <h2 className="font-headline-md text-headline-md text-center mb-16">{t.home.find_your_space}</h2>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter h-[800px]">
-          <div className="md:col-span-7 relative overflow-hidden group bg-cover bg-center" style={{ backgroundImage: `url(${pick(12)})` }}>
+          <div className="md:col-span-7 relative overflow-hidden group bg-cover bg-center" style={{ backgroundImage: `url(${roomImages[0]})` }}>
             <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-colors">
               <span className="font-headline-sm text-headline-sm text-white border-b border-white pb-2">{t.home.room_living}</span>
             </div>
           </div>
           <div className="md:col-span-5 grid grid-rows-2 gap-gutter">
-            <div className="relative overflow-hidden group bg-cover bg-center" style={{ backgroundImage: `url(${pick(13)})` }}>
+            <div className="relative overflow-hidden group bg-cover bg-center" style={{ backgroundImage: `url(${roomImages[1]})` }}>
               <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-colors">
                 <span className="font-headline-sm text-headline-sm text-white border-b border-white pb-2">{t.home.room_bedroom}</span>
               </div>
             </div>
-            <div className="relative overflow-hidden group bg-cover bg-center" style={{ backgroundImage: `url(${pick(14)})` }}>
+            <div className="relative overflow-hidden group bg-cover bg-center" style={{ backgroundImage: `url(${roomImages[2]})` }}>
               <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-colors">
                 <span className="font-headline-sm text-headline-sm text-white border-b border-white pb-2">{t.home.room_dining}</span>
               </div>
@@ -264,7 +313,7 @@ export default async function Home({
       <Section background="none">
         <div className="grid md:grid-cols-2 items-center gap-24">
           <div className="relative">
-            <div className="w-full aspect-square bg-cover bg-center shadow-2xl" style={{ backgroundImage: `url(${pick(15)})` }} />
+            <div className="w-full aspect-square bg-cover bg-center shadow-2xl" style={{ backgroundImage: `url(${storyImage})` }} />
             <div className="absolute -bottom-10 -right-10 bg-secondary p-12 hidden lg:block">
               <p className="text-white font-display-lg text-4xl">{t.home.since}</p>
             </div>
@@ -291,16 +340,6 @@ export default async function Home({
               </div>
             </div>
           ))}
-        </div>
-      </Section>
-
-      <Section background="none">
-        <div className="text-center mb-16">
-          <h2 className="font-headline-md text-headline-md">{t.home.instagram_title}</h2>
-          <p className="font-body-md text-on-surface-variant mt-2">{t.home.instagram_text}</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
-          {Array.from({ length: 6 }).map((_, i) => (<div key={i} className="aspect-square bg-cover bg-center overflow-hidden group" style={{ backgroundImage: `url(${pick(16 + i)})` }} />))}
         </div>
       </Section>
 
