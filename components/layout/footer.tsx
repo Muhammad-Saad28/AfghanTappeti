@@ -2,6 +2,7 @@ import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { FooterNewsletter } from "@/components/forms/footer-newsletter"
+import { localizeRow } from "@/lib/localize"
 
 export async function Footer({ lang }: { lang?: Locale }) {
   const locale = lang ?? "en"
@@ -11,9 +12,11 @@ export async function Footer({ lang }: { lang?: Locale }) {
   const supabase = await createClient()
   const { data: categories } = await supabase
     .from("categories")
-    .select("id, name, slug")
+    .select("id, name, slug, translations")
     .eq("is_active", true)
     .order("display_order")
+
+  const localizedCategories = (categories ?? []).map((c) => localizeRow(c, locale as Locale))
 
   return (
     <footer className="bg-surface-container-low border-t border-outline-variant">
@@ -50,7 +53,7 @@ export async function Footer({ lang }: { lang?: Locale }) {
         <div className="space-y-6">
           <h4 className="font-label-md text-label-md font-bold uppercase tracking-widest text-primary">Categories</h4>
           <ul className="space-y-4">
-            {(categories ?? []).slice(0, 4).map((cat) => (
+            {localizedCategories.map((cat) => (
               <li key={cat.id}><Link href={`/${locale}/category/${cat.slug}`} className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors no-underline">{cat.name}</Link></li>
             ))}
           </ul>

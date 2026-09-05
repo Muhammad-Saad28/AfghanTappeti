@@ -37,8 +37,13 @@ function getSnapshotInternal() {
   return items
 }
 
+const emptyCart: CartItem[] = []
+function getServerSnapshot() {
+  return emptyCart
+}
+
 export function useCart() {
-  const cart = useSyncExternalStore(subscribeInternal, getSnapshotInternal, getSnapshotInternal)
+  const cart = useSyncExternalStore(subscribeInternal, getSnapshotInternal, getServerSnapshot)
 
   const addItem = useCallback(
     (item: Omit<CartItem, "quantity"> & { quantity?: number }) => {

@@ -42,10 +42,10 @@
     "shop_by_style": "Acquista per Stile d'Interni",
     "shop_by_style_desc": "Selezioni curate per valorizzare la personalità unica della tua casa.",
     "view_all_styles": "Vedi Tutti gli Stili",
-    "style_scandinavian": "Scandinavo",
+    "style_scandinavian": "Scandinavo Moderno",
     "style_classic": "Classico",
-    "style_minimal": "Minimale",
-    "style_bohemian": "Bohémien",
+    "style_minimal": "Kilims",
+    "style_bohemian": "Royal Sultani",
     "style_luxury": "Lusso",
     "style_modern": "Moderno",
     "shop_by_room": "Acquista per Ambiente",
@@ -100,7 +100,7 @@
     "newsletter_subtitle": "Iscriviti per ricevere anteprime esclusive delle collezioni, storie di artigiani e ispirazioni di interior design.",
     "newsletter_placeholder": "Indirizzo email",
     "newsletter_cta": "Iscriviti",
-    "since": "Dal 1924",
+    "since": "Dal 1948",
     "why_choose_us": "Perché Sceglierci"
   },
   "about": {
@@ -328,20 +328,20 @@
     "subtitle": "Selezioni curate per valorizzare la personalità unica della tua casa.",
     "explore_cta": "Esplora Tappeti {name}",
     "scandinavian": {
-      "name": "Scandinavo",
-      "desc": "Spazi luminosi e ariosi richiedono tappeti con motivi sobri e texture naturali. La nostra collezione Scandinava propone toni tenui e geometrie essenziali."
+      "name": "Moderno",
+      "desc": "Spazi luminosi e ariosi richiedono tappeti con motivi sobri e texture naturali. La nostra collezione Moderna propone toni tenui e geometrie essenziali."
     },
     "classic": {
       "name": "Classico",
       "desc": "Eleganza senza tempo e artigianato tradizionale. La collezione Classica presenta motivi a medaglione, bordi ricchi e disegni d'eredità."
     },
     "minimal": {
-      "name": "Minimale",
-      "desc": "Linee pulite e palette neutre definiscono il minimalismo moderno. Questi tappeti offrono texture sottile e calore senza sovraccaricare l'ambiente."
+      "name": "Kilims",
+      "desc": "Linee pulite e motivi geometrici audaci definiscono la nostra collezione Kilim. Questi tappeti tessuti a piatto offrono texture sottile e calore senza sovraccaricare l'ambiente."
     },
     "bohemian": {
-      "name": "Bohémien",
-      "desc": "Spirito libero ed eclettico, la nostra collezione Bohémien porta colori vivaci, motivi tribali ed espressione artistica in ogni stanza."
+      "name": "Royal Sultani",
+      "desc": "Spirito libero ed eclettico, la nostra collezione Royal Sultani porta colori vivaci, motivi tribali ed espressione artistica in ogni stanza."
     },
     "luxury": {
       "name": "Lusso",

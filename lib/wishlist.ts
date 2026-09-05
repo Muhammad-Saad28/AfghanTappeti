@@ -23,13 +23,18 @@ function getSnapshot() {
   return items
 }
 
+const emptyArray: string[] = []
+function getServerSnapshot() {
+  return emptyArray
+}
+
 function emit() {
   localStorage.setItem("afghan-wishlist", JSON.stringify(items))
   listeners.forEach((l) => l())
 }
 
 export function useWishlist() {
-  const wishlist = useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
+  const wishlist = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
   const toggle = useCallback((slug: string) => {
     const next = items.includes(slug)

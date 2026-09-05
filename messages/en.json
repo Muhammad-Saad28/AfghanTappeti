@@ -42,10 +42,10 @@
     "shop_by_style": "Shop by Interior Style",
     "shop_by_style_desc": "Curated selections to match your home&apos;s unique personality.",
     "view_all_styles": "View All Styles",
-    "style_scandinavian": "Scandinavian",
+    "style_scandinavian": "Modern Look",
     "style_classic": "Classic",
-    "style_minimal": "Minimal",
-    "style_bohemian": "Bohemian",
+    "style_minimal": "Kilims",
+    "style_bohemian": "Royal Sultani",
     "style_luxury": "Luxury",
     "style_modern": "Modern",
     "shop_by_room": "Shop by Room",
@@ -100,7 +100,7 @@
     "newsletter_subtitle": "Subscribe to receive exclusive collection previews, artisan stories, and interior design inspiration.",
     "newsletter_placeholder": "Email address",
     "newsletter_cta": "Subscribe",
-    "since": "Since 1924",
+    "since": "Since 1948",
     "why_choose_us": "Why Choose Us"
   },
   "about": {
@@ -328,20 +328,20 @@
     "subtitle": "Curated selections to match your home&apos;s unique personality.",
     "explore_cta": "Explore {name} Rugs",
     "scandinavian": {
-      "name": "Scandinavian",
-      "desc": "Light, airy spaces call for rugs with understated patterns and natural textures. Our Scandinavian collection features muted tones and simple geometric motifs."
+      "name": "Modern Look",
+      "desc": "Light, airy spaces call for rugs with understated patterns and natural textures. Our Modern Look collection features muted tones and simple geometric motifs."
     },
     "classic": {
       "name": "Classic",
       "desc": "Timeless elegance meets traditional craftsmanship. Our Classic collection showcases medallion patterns, rich borders, and heritage designs."
     },
     "minimal": {
-      "name": "Minimal",
-      "desc": "Clean lines and neutral palettes define modern minimalism. These rugs provide subtle texture and warmth without overwhelming the space."
+      "name": "Kilims",
+      "desc": "Clean lines and bold geometric patterns define our Kilim collection. These flatwoven rugs provide subtle texture and warmth without overwhelming the space."
     },
     "bohemian": {
-      "name": "Bohemian",
-      "desc": "Free-spirited and eclectic, our Bohemian collection brings vibrant colors, tribal motifs, and artistic expression to any room."
+      "name": "Royal Sultani",
+      "desc": "Free-spirited and eclectic, our Royal Sultani collection brings vibrant colors, tribal motifs, and artistic expression to any room."
     },
     "luxury": {
       "name": "Luxury",
