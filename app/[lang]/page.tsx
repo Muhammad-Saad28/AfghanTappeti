@@ -133,7 +133,7 @@ export default async function Home({
     "/images/home/instagram_6.jpg",
   ]
 
-  const storyImage = "/images/home/story.jpg"
+  const storyImage = "/legacyofknots.jpeg"
 
   const { data: colors } = await supabase.from("colors").select("id, name, hex_code, translations").order("display_order")
   const { data: sizes } = await supabase.from("sizes").select("id, name, translations").order("display_order")
