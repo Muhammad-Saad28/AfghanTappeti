@@ -8,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { AddToCartButton } from "./add-to-cart"
 import { ReviewForm } from "@/components/product/review-form"
+import { ProductImageCarousel } from "@/components/product/product-image-carousel"
 import { localizeRow } from "@/lib/localize"
 
 export async function generateMetadata({
@@ -122,28 +123,9 @@ export default async function ProductDetailPage({
   return (
     <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-24 md:pt-28">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
-        <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 sticky top-32">
-          <div className="hidden md:flex flex-col gap-4 order-1 max-h-[700px] overflow-y-auto pr-2">
-            {images?.map((img, i) => (
-              <div
-                key={img.id}
-                className={`aspect-[3/4] relative cursor-pointer ring-1 ${i === 0 ? "ring-secondary" : "ring-primary/10 opacity-50 hover:opacity-100"} hover:ring-secondary transition-all bg-surface-container-low overflow-hidden`}
-              >
-                {img.image_url && <Image src={getProductImageUrl(img.image_url)} alt={localizedProduct.name} fill unoptimized className="object-cover" sizes="100px" priority={i < 4} />}
-              </div>
-            ))}
-          </div>
-          <div className="order-2 relative group overflow-hidden bg-surface-container-low">
-            <div
-              className="aspect-[4/5] bg-surface-container-high relative"
-            >
-              {primaryImageUrl && <Image src={primaryImageUrl} alt={localizedProduct.name} fill unoptimized className="object-cover" sizes="(max-width: 1024px) 100vw, 60vw" priority />}
-            </div>
-            <div className="absolute bottom-6 right-6 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span className="font-label-sm text-label-sm">{t.product.roll_to_zoom}</span>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="lg:col-span-7 sticky top-32">
+          <ProductImageCarousel images={images ?? []} productName={localizedProduct.name as string} />
         </div>
 
         <div className="lg:col-span-5 lg:pl-12 flex flex-col pt-8 lg:pt-0">
@@ -153,13 +135,14 @@ export default async function ProductDetailPage({
           </nav>
 
           <div className="mb-8">
-            <h1 className="font-display-lg text-headline-md lg:text-display-lg mb-2 leading-tight">{localizedProduct.name}</h1>
-            <div className="flex items-center gap-4 text-on-surface-variant">
-              {product.origins && <span className="font-label-md text-label-md">{t.product.origin}: {localizedOrigin?.name?.toUpperCase() ?? ""}</span>}
+            <h1 className="font-display-lg text-headline-md lg:text-display-lg mb-3 leading-tight">{localizedProduct.name}</h1>
+            <div className="space-y-1 text-on-surface-variant">
+              {product.sizes && <p className="font-label-md text-label-md">{localizedSize?.name ?? ""}</p>}
+              {product.origins && <p className="font-label-md text-label-md">{t.product.origin}: {localizedOrigin?.name?.toUpperCase() ?? ""}</p>}
             </div>
           </div>
 
-          <div className="mb-10">
+          <div className="mb-10 pb-10 border-b border-outline-variant">
             <span className="text-primary font-display-lg text-headline-md">€{price.toLocaleString()}</span>
             {product.sale_price && (
               <span className="ml-3 text-on-surface-variant font-body-md line-through">€{product.price.toLocaleString()}</span>
@@ -168,7 +151,7 @@ export default async function ProductDetailPage({
 
           <div className="space-y-6 mb-10">
             <p className="font-body-md text-body-lg text-on-surface-variant leading-relaxed">{localizedProduct.description || localizedProduct.short_description}</p>
-            <div className="grid grid-cols-2 gap-y-4 border-y border-outline-variant py-8">
+            <div className="grid grid-cols-2 gap-y-5 gap-x-8 border-y border-outline-variant py-8">
               {product.sku && <Spec label={t.product.sku} value={product.sku} />}
               {product.materials && <Spec label={t.product.material} value={localizedMaterial?.name ?? ""} />}
               {product.sizes && <Spec label={t.product.size} value={localizedSize?.name ?? ""} />}
@@ -176,7 +159,7 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 mt-2">
             <AddToCartButton
               id={product.id}
               name={localizedProduct.name}
@@ -185,7 +168,7 @@ export default async function ProductDetailPage({
               salePrice={product.sale_price}
               image={primaryImageUrl}
             />
-            <button className="border border-outline py-5 px-8 font-label-md text-label-md tracking-widest hover:bg-surface-container hover:border-primary transition-all duration-300">
+            <button className="border border-outline-variant py-3 px-5 md:py-5 md:px-8 font-label-md text-label-md tracking-widest hover:bg-surface-container hover:border-primary transition-all duration-300 text-on-surface-variant">
               {t.product.request_concierge}
             </button>
           </div>
@@ -279,8 +262,8 @@ export default async function ProductDetailPage({
 function Spec({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <span className="block font-label-sm text-label-sm text-on-surface-variant mb-1">{label}</span>
-      <span className="font-body-md text-primary">{value}</span>
+      <span className="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1.5">{label}</span>
+      <span className="font-body-md text-on-surface">{value}</span>
     </div>
   )
 }

@@ -125,6 +125,16 @@ export function Navbar({ lang }: { lang?: string }) {
               {link.label}
             </Link>
           ))}
+          <div className="border-t border-outline-variant pt-4 mt-2 flex flex-col gap-4">
+            <Link href={`/${locale}/wishlist`} className="flex items-center gap-3 font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors no-underline" onClick={() => setMobileOpen(false)}>
+              <Heart size={18} />
+              Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
+            </Link>
+            <Link href={`/${locale}/account`} className="flex items-center gap-3 font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors no-underline" onClick={() => setMobileOpen(false)}>
+              <svg className="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              Account
+            </Link>
+          </div>
         </div>
       )}
     </nav>

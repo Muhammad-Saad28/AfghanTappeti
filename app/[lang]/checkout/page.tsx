@@ -72,7 +72,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen pt-32 pb-16 px-margin-mobile md:px-margin-desktop max-w-6xl mx-auto">
       <h1 className="font-headline-sm text-headline-sm text-on-surface mb-8">{t.title}</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-12">
+      <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-6 lg:gap-12">
         <div className="flex-1 space-y-8">
           <section className="bg-surface rounded-xl border border-outline-variant p-6 space-y-4">
             <h2 className="font-headline-xs text-headline-xs text-on-surface">{t.contact}</h2>

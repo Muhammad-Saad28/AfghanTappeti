@@ -69,7 +69,7 @@ export default async function CategoryPage({
 
   const { data: products } = await supabase
     .from("products")
-    .select("id, name, slug, sku, price, sale_price, short_description, translations")
+    .select("id, name, slug, sku, price, sale_price, short_description, translations, sizes(name, width_cm, length_cm, translations)")
     .is("deleted_at", null)
     .eq("is_active", true)
     .in("id", ids.length > 0 ? ids : ["00000000-0000-0000-0000-000000000000"])
@@ -104,7 +104,7 @@ export default async function CategoryPage({
       </section>
 
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-4 md:gap-y-16 md:gap-x-8">
           {localizedProducts.length === 0 && (
             <p className="col-span-full text-center font-body-md text-on-surface-variant py-12">{t.shop.no_results}</p>
           )}
@@ -113,13 +113,14 @@ export default async function CategoryPage({
             return (
               <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="group no-underline">
                 <div className="relative overflow-hidden mb-6 aspect-[3/4] bg-surface-container-low">
-                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
+                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover scale-125" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
                   <WishlistButton slug={product.slug} />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                 </div>
                 <header>
                   <h3 className="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">{product.name}</h3>
-                  <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">{product.sku}</p>
+                  <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">{product.sku}</p>
+                  {product.sizes && <p className="text-label-sm font-label-sm text-on-surface-variant mb-2">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
                   <p className="font-headline-sm text-headline-sm text-primary">€{(product.sale_price ?? product.price).toLocaleString()}</p>
                 </header>
               </Link>

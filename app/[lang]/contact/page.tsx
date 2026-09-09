@@ -31,7 +31,7 @@ export default async function ContactPage({
 
   return (
     <>
-      <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative h-[250px] md:h-[350px] lg:h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
@@ -47,7 +47,7 @@ export default async function ContactPage({
       </section>
 
       <Section background="none">
-        <div className="grid md:grid-cols-2 gap-24">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-24">
           <div>
             <h2 className="font-headline-sm text-headline-sm mb-8">
               {t.contact.form_heading}

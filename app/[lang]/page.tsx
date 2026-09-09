@@ -71,7 +71,7 @@ export default async function Home({
   if (topProductIds.length > 0) {
     const { data } = await supabase
       .from("products")
-      .select("id, name, slug, sku, price, sale_price, translations")
+      .select("id, name, slug, sku, price, sale_price, translations, sizes(name, width_cm, length_cm, translations)")
       .is("deleted_at", null)
       .eq("is_active", true)
       .in("id", topProductIds)
@@ -80,7 +80,7 @@ export default async function Home({
   } else {
     const { data } = await supabase
       .from("products")
-      .select("id, name, slug, sku, price, sale_price, translations")
+      .select("id, name, slug, sku, price, sale_price, translations, sizes(name, width_cm, length_cm, translations)")
       .is("deleted_at", null)
       .eq("is_active", true)
       .eq("is_best_seller", true)
@@ -148,21 +148,21 @@ export default async function Home({
     <>
       <header className="relative h-[80vh] min-h-[600px] md:h-screen flex items-end md:items-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/home/hero.jpg" alt="Afghan Tappeti" fill priority className="object-cover scale-105" sizes="100vw" />
+          <Image src="/images/home/hero.jpg" alt="Afghan Tappeti" fill priority className="object-cover scale-125" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
         <div className="relative z-10 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto text-white pb-16 md:pb-0">
           <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight max-w-2xl drop-shadow-lg">{t.home.hero_title_line1}</h1>
           <p className="font-body-lg text-body-lg mb-8 max-w-lg opacity-95 drop-shadow">{t.home.hero_subtitle_line1}</p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href={`/${locale}/shop`} className="bg-secondary text-white px-10 py-5 font-label-md text-label-md transition-all hover:bg-secondary-fixed-dim hover:scale-105 no-underline inline-block text-center shadow-lg">{t.home.hero_cta}</Link>
-            <Link href={`/${locale}/about`} className="border-2 border-white/80 text-white px-10 py-5 font-label-md text-label-md transition-all hover:bg-white hover:text-primary hover:border-white no-underline inline-block text-center backdrop-blur-sm">{t.home.our_story_cta}</Link>
+            <Link href={`/${locale}/shop`} className="bg-secondary text-white px-6 py-3 md:px-10 md:py-5 font-label-md text-label-md transition-all hover:bg-secondary-fixed-dim hover:scale-105 no-underline inline-block text-center shadow-lg">{t.home.hero_cta}</Link>
+            <Link href={`/${locale}/about`} className="border-2 border-white/80 text-white px-6 py-3 md:px-10 md:py-5 font-label-md text-label-md transition-all hover:bg-white hover:text-primary hover:border-white no-underline inline-block text-center backdrop-blur-sm">{t.home.our_story_cta}</Link>
           </div>
         </div>
       </header>
 
       <Section background="none">
-        <form method="GET" action={`/${locale}/shop`} className="-mt-16 relative z-20 bg-surface-container-lowest shadow-xl p-8 md:p-10 flex flex-col md:flex-row gap-gutter items-center">
+        <form method="GET" action={`/${locale}/shop`} className="-mt-16 relative z-20 bg-surface-container-lowest shadow-xl p-4 md:p-8 lg:p-10 flex flex-col md:flex-row gap-gutter items-center">
           <div className="flex-1 w-full relative">
             <input name="q" className="w-full bg-transparent border-b border-outline-variant py-3 pl-0 focus:outline-none focus:border-secondary transition-colors font-body-md placeholder:text-on-surface-variant/60" placeholder={t.home.search_placeholder} type="text" />
           </div>
@@ -192,7 +192,7 @@ export default async function Home({
               <option value="turkey">{t.home.search_turkey}</option>
             </select>
           </div>
-          <button type="submit" className="w-full md:w-auto bg-secondary text-white px-12 py-4 font-label-md text-label-md hover:bg-secondary-fixed-dim transition-colors">{t.home.search_cta}</button>
+          <button type="submit" className="w-full md:w-auto bg-secondary text-white px-6 py-3 md:px-12 md:py-4 font-label-md text-label-md hover:bg-secondary-fixed-dim transition-colors">{t.home.search_cta}</button>
         </form>
       </Section>
 
@@ -200,7 +200,7 @@ export default async function Home({
         <SectionHeading title={t.home.featured_collections} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           {(localizedCategories).map((cat, i) => (
-            <Link key={cat.id} href={`/${locale}/category/${cat.slug}`} className="relative group h-[500px] overflow-hidden no-underline block">
+            <Link key={cat.id} href={`/${locale}/category/${cat.slug}`} className="relative group h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden no-underline block">
               <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${collectionImages[i % collectionImages.length]})` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8">
@@ -232,7 +232,7 @@ export default async function Home({
 
       <Section background="none">
         <h2 className="font-headline-md text-headline-md text-center mb-16">{t.home.find_your_space}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter h-[800px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto md:h-[600px] lg:h-[800px]">
           <div className="md:col-span-7 relative overflow-hidden group bg-cover bg-center" style={{ backgroundImage: `url(${roomImages[0]})` }}>
             <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-colors">
               <span className="font-headline-sm text-headline-sm text-white border-b border-white pb-2">{t.home.room_living}</span>
@@ -254,7 +254,7 @@ export default async function Home({
       </Section>
 
       <Section background="muted">
-        <div className="grid md:grid-cols-2 gap-24">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-24">
           <div>
             <h3 className="font-headline-sm text-headline-sm mb-10">{t.home.shop_by_color}</h3>
             <div className="grid grid-cols-4 gap-y-8 gap-x-4">
@@ -266,7 +266,7 @@ export default async function Home({
           <div>
             <h3 className="font-headline-sm text-headline-sm mb-10">{t.home.shop_by_size}</h3>
             <div className="grid grid-cols-3 gap-4">
-              {(localizedSizes).map((s) => (
+              {(localizedSizes).slice(0, 12).map((s) => (
                 <SizeCard key={s.id} label={s.name} size="" href={`/${locale}/shop?size=${s.id}`} />
               ))}
             </div>
@@ -282,12 +282,13 @@ export default async function Home({
             return (
               <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="min-w-[320px] group no-underline">
                 <div className="relative overflow-hidden aspect-[4/5] mb-6 bg-surface-container-low">
-                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover" sizes="320px" />}
+                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover scale-125" sizes="320px" />}
                   <WishlistButton slug={product.slug} />
                 </div>
                 <div className="space-y-1">
                   <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">{product.sku}</p>
                   <h4 className="font-body-lg text-body-lg font-semibold">{product.name}</h4>
+                  {product.sizes && <p className="font-label-sm text-label-sm text-on-surface-variant">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
                   <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{(product.sale_price ?? product.price).toLocaleString()}</p>
                 </div>
               </Link>

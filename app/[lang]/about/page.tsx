@@ -42,7 +42,7 @@ export default async function AboutPage({
 
   return (
     <>
-      <section className="relative h-[600px] md:min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+      <section className="relative h-[400px] md:min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
           <div className="w-full h-full bg-cover bg-center scale-105"
@@ -89,7 +89,7 @@ export default async function AboutPage({
       </Section>
 
       <section className="bg-primary-container py-section-gap overflow-hidden">
-        <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center mb-20">
+        <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center mb-8 md:mb-12 lg:mb-20">
           <h2 className="font-headline-md text-headline-md text-white mb-6">
             {t.about.knotting_headline}
           </h2>
@@ -104,7 +104,7 @@ export default async function AboutPage({
             { key: "2" as const },
             { key: "3" as const },
           ].map((item, i) => (
-            <div key={item.key} className={`flex-1 space-y-6 group ${i === 1 ? "mt-12 md:mt-0" : ""} ${i === 2 ? "mt-12 md:mt-24" : ""}`}>
+            <div key={item.key} className={`flex-1 space-y-6 group ${i === 1 ? "mt-6 md:mt-0" : ""} ${i === 2 ? "mt-6 md:mt-24" : ""}`}>
               <div className="aspect-square overflow-hidden rounded-sm bg-cover bg-center" style={{ backgroundImage: `url(${pick(2 + i)})` }} />
               <h3 className="font-headline-sm text-headline-sm text-white">
                 {t.about[`knotting_${item.key}_title` as keyof typeof t.about]}

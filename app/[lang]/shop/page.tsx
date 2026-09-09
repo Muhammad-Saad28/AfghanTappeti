@@ -54,7 +54,7 @@ export default async function ShopPage({
 
   let query = supabase
     .from("products")
-    .select("id, name, slug, sku, price, sale_price, short_description, origin_id, material_id, primary_color_id, size_id, translations", { count: "exact" })
+    .select("id, name, slug, sku, price, sale_price, short_description, origin_id, material_id, primary_color_id, size_id, translations, sizes(name, width_cm, length_cm, translations)", { count: "exact" })
     .is("deleted_at", null)
     .eq("is_active", true)
 
@@ -118,7 +118,7 @@ export default async function ShopPage({
 
   return (
     <>
-      <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative h-[250px] md:h-[350px] lg:h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
@@ -131,8 +131,14 @@ export default async function ShopPage({
 
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row gap-gutter mt-16 mb-section-gap">
         <aside className="md:w-1/4 md:sticky md:top-32 h-fit pb-10">
+          <details className="md:contents group">
+            <summary className="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant cursor-pointer md:cursor-default list-none">
+              <h3 className="font-headline-sm text-headline-sm">{t.shop.filters}</h3>
+              <span className="text-label-sm font-label-sm text-secondary md:hidden">Show / Hide</span>
+              <Link href={`/${locale}/shop`} className="text-label-sm font-label-sm text-secondary uppercase no-underline hidden md:inline">{t.shop.clear_all}</Link>
+            </summary>
           <form method="GET" className="space-y-10">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant">
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant md:hidden">
               <h3 className="font-headline-sm text-headline-sm">{t.shop.filters}</h3>
               <Link href={`/${locale}/shop`} className="text-label-sm font-label-sm text-secondary uppercase no-underline">{t.shop.clear_all}</Link>
             </div>
@@ -193,6 +199,7 @@ export default async function ShopPage({
               <button type="submit" className="flex-1 bg-primary text-on-primary px-4 py-3 rounded-lg text-label-sm hover:bg-primary-fixed-dim transition-colors">Apply</button>
             </div>
           </form>
+          </details>
         </aside>
 
         <section className="md:w-3/4">
@@ -225,7 +232,7 @@ export default async function ShopPage({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-4 md:gap-y-16 md:gap-x-8">
             {localizedProducts.length === 0 && (
               <p className="col-span-full text-center font-body-md text-on-surface-variant py-12">{t.shop.no_results}</p>
             )}
@@ -234,13 +241,14 @@ export default async function ShopPage({
               return (
                 <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="group no-underline">
                   <div className="relative overflow-hidden mb-6 aspect-[3/4] bg-surface-container-low">
-                    {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
+                    {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover scale-125" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
                     <WishlistButton slug={product.slug} />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                   </div>
                   <header>
                     <h3 className="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">{product.name}</h3>
-                    <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-3">{product.sku}</p>
+                    <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">{product.sku}</p>
+                    {product.sizes && <p className="text-label-sm font-label-sm text-on-surface-variant mb-2">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
                     <div className="flex justify-between items-end">
                       <p className="font-headline-sm text-headline-sm text-primary">€{(product.sale_price ?? product.price).toLocaleString()}</p>
                       <span className="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">{t.shop.view_details}</span>
