@@ -319,7 +319,7 @@ export default async function Home({
       <Section background="none">
         <div className="grid md:grid-cols-2 items-center gap-24">
           <div className="relative">
-            <div className="w-full aspect-square bg-cover bg-center shadow-2xl" style={{ backgroundImage: `url(${storyImage})` }} />
+            <div className="w-full aspect-square bg-contain bg-no-repeat bg-center shadow-2xl" style={{ backgroundImage: `url(${storyImage})` }} />
             <div className="absolute -bottom-10 -right-10 bg-secondary p-12 hidden lg:block">
               <p className="text-white font-display-lg text-4xl">{t.home.since}</p>
             </div>
