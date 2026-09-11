@@ -21,6 +21,8 @@ const PREFIX_FOLDER = {
   SKG: "Sultani Kazak Gold",
   STD: "Sultani Tree Design",
   SG: "Sultani gabah",
+  SKH: "4-Sultani Khurgeen",
+  MLK: "2-Mamluk-48-cropped",
 }
 
 // Map SKU number to raw product number

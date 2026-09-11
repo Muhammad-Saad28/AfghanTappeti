@@ -137,7 +137,7 @@ export default async function Home({
 
   const { data: colors } = await supabase.from("colors").select("id, name, hex_code, translations").order("display_order")
   const { data: sizes } = await supabase.from("sizes").select("id, name, translations").order("display_order")
-  const { data: categories } = await supabase.from("categories").select("id, name, slug, translations").order("display_order").limit(6)
+  const { data: categories } = await supabase.from("categories").select("id, name, slug, image, translations").order("display_order", { ascending: false }).limit(3)
 
   const localizedCategories = (categories ?? []).map((c) => localizeRow(c, locale))
   const localizedColors = (colors ?? []).map((c) => localizeRow(c, locale))
@@ -199,9 +199,9 @@ export default async function Home({
       <Section background="none">
         <SectionHeading title={t.home.featured_collections} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {(localizedCategories).map((cat, i) => (
+          {(localizedCategories).map((cat) => (
             <Link key={cat.id} href={`/${locale}/category/${cat.slug}`} className="relative group h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden no-underline block">
-              <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${collectionImages[i % collectionImages.length]})` }} />
+              <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${cat.image || collectionImages[0]})` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8">
                 <h3 className="text-white font-headline-sm text-headline-sm">{cat.name}</h3>
