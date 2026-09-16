@@ -52,32 +52,34 @@ export default async function Home({
 
   const supabase = await createClient()
 
-  const { data: orderProductIds } = await supabase
-    .from("order_items")
-    .select("product_id")
-    .limit(50)
-
-  const orderCounts = new Map<string, number>()
-  for (const item of orderProductIds ?? []) {
-    orderCounts.set(item.product_id, (orderCounts.get(item.product_id) ?? 0) + 1)
-  }
-
-  const topProductIds = [...orderCounts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
-    .map(([id]) => id)
+  const { data: sultaniGabahCategory } = await supabase
+    .from("categories")
+    .select("id")
+    .eq("name", "Sultani Gabah")
+    .single()
 
   let bestSellers
-  if (topProductIds.length > 0) {
-    const { data } = await supabase
-      .from("products")
-      .select("id, name, slug, sku, price, sale_price, translations, sizes(name, width_cm, length_cm, translations)")
-      .is("deleted_at", null)
-      .eq("is_active", true)
-      .in("id", topProductIds)
-      .limit(8)
-    bestSellers = data
-  } else {
+  if (sultaniGabahCategory) {
+    const { data: productIds } = await supabase
+      .from("product_categories")
+      .select("product_id")
+      .eq("category_id", sultaniGabahCategory.id)
+
+    const sgIds = (productIds ?? []).map((r) => r.product_id)
+
+    if (sgIds.length > 0) {
+      const { data } = await supabase
+        .from("products")
+        .select("id, name, slug, sku, price, sale_price, translations, sizes(name, width_cm, length_cm, translations)")
+        .is("deleted_at", null)
+        .eq("is_active", true)
+        .in("id", sgIds)
+        .limit(8)
+      bestSellers = data
+    }
+  }
+
+  if (!bestSellers || bestSellers.length === 0) {
     const { data } = await supabase
       .from("products")
       .select("id, name, slug, sku, price, sale_price, translations, sizes(name, width_cm, length_cm, translations)")
@@ -106,13 +108,9 @@ export default async function Home({
   const categoryImageMap: Record<string, string> = {
     "afghan-rugs": "/AfghanRugs.jpeg",
     "persian-rugs": "/afghankilims.jpeg",
-    "runner-rugs": "/legacyofknots.jpeg",
-    "kilim": "/modernluxurykilims.jpeg",
+    "afghan-kilim": "/modernluxurykilims.jpeg",
     "vintage-rugs": "/persianvintage.jpeg",
-    "modern-rugs": "/images/home/collection_4.jpg",
-    "oriental-rugs": "/images/home/collection_5.jpg",
-    "round-rugs": "/images/home/collection_6.jpg",
-    "luxury-rugs": "/images/home/collection_1.jpg",
+    "modern-rugs": "/modernluxurykilims.jpeg",
   }
 
   const styleImages = [
@@ -134,9 +132,11 @@ export default async function Home({
 
   const { data: colors } = await supabase.from("colors").select("id, name, hex_code, translations").order("display_order")
   const { data: sizes } = await supabase.from("sizes").select("id, name, translations").order("display_order")
-  const { data: categories } = await supabase.from("categories").select("id, name, slug, image, translations").order("display_order", { ascending: false }).limit(3)
+  const { data: allCategories } = await supabase.from("categories").select("id, name, slug, image, translations, product_categories(id)").order("display_order").limit(20)
 
-  const localizedCategories = (categories ?? []).map((c) => localizeRow(c, locale))
+  const categoriesWithProducts = (allCategories ?? []).filter((c) => c.product_categories && c.product_categories.length > 0).slice(0, 6)
+
+  const localizedCategories = (categoriesWithProducts ?? []).map((c) => localizeRow(c, locale))
   const localizedColors = (colors ?? []).map((c) => localizeRow(c, locale))
   const localizedSizes = (sizes ?? []).map((s) => localizeRow(s, locale))
   const localizedBestSellers = (bestSellers ?? []).map((p) => localizeRow(p, locale))
@@ -201,6 +201,7 @@ export default async function Home({
               "/AfghanRugs.jpeg",
               "/afghankilims.jpeg",
               "/persianvintage.jpeg",
+              "/modernluxurykilims.jpeg",
             ]
             const bgImage = cat.image || categoryImageMap[cat.slug] || fallbackImages[index % fallbackImages.length]
             
@@ -217,7 +218,7 @@ export default async function Home({
           })}
         </div>
       </Section>
-
+      
       <Section background="muted">
         <div className="flex justify-between items-end mb-16">
           <div>
@@ -333,8 +334,8 @@ export default async function Home({
           </div>
           <div className="space-y-8">
             <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">{t.home.legacy_title}</h2>
-            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">{t.home.legacy_text1}</p>
-            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">{t.home.legacy_text2}</p>
+            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed text-justify">{t.home.legacy_text1}</p>
+            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed text-justify">{t.home.legacy_text2}</p>
             <Link href={`/${locale}/about`} className="font-label-md text-label-md text-primary border-b-2 border-secondary pb-1 mt-4 hover:opacity-70 transition-opacity no-underline inline-block">{t.home.our_story_cta}</Link>
           </div>
         </div>
