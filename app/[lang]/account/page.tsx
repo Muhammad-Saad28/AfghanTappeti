@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { siteUrl } from "@/lib/seo"
 import { logoutCustomer } from "@/lib/customer-actions"
+import { roundPrice } from "@/lib/utils"
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
@@ -69,7 +70,7 @@ export default async function AccountPage({ params }: { params: Promise<{ lang: 
                   <div>
                     <p className="font-body-md font-semibold">{order.order_number}</p>
                     <p className="font-label-sm text-label-sm text-on-surface-variant">
-                      {new Date(order.created_at).toLocaleDateString()} — €{Number(order.total_amount).toFixed(2)}
+                      {new Date(order.created_at).toLocaleDateString()} — €{roundPrice(Number(order.total_amount)).toLocaleString()}
                     </p>
                   </div>
                   <span className={`inline-block px-2 py-0.5 rounded text-label-sm font-label-sm ${

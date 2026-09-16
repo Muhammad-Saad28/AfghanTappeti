@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useParams } from "next/navigation"
 import { useCart } from "@/lib/cart"
 import { Trash2, Minus, Plus, ArrowLeft } from "lucide-react"
+import { roundPrice } from "@/lib/utils"
 import en from "@/messages/en.json"
 import it from "@/messages/it.json"
 
@@ -41,7 +42,7 @@ export default function CartPage() {
               </div>
               <div className="flex-1 min-w-0">
                 <Link href={`/${locale}/product/${item.slug}`} className="font-body-md text-on-surface hover:text-secondary no-underline transition-colors">{item.name}</Link>
-                <p className="font-label-sm text-label-sm text-on-surface-variant mt-0.5">€{(item.sale_price ?? item.price).toLocaleString()}</p>
+                <p className="font-label-sm text-label-sm text-on-surface-variant mt-0.5">€{roundPrice(item.sale_price ?? item.price).toLocaleString()}</p>
                 <div className="flex items-center gap-3 mt-2">
                   <div className="flex items-center border border-outline-variant rounded">
                     <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="p-1.5 hover:bg-surface-variant transition-colors"><Minus size={14} /></button>
@@ -52,7 +53,7 @@ export default function CartPage() {
                 </div>
               </div>
               <div className="text-right flex-shrink-0">
-                <p className="font-body-md text-on-surface">€{((item.sale_price ?? item.price) * item.quantity).toLocaleString()}</p>
+                <p className="font-body-md text-on-surface">€{roundPrice((item.sale_price ?? item.price) * item.quantity).toLocaleString()}</p>
               </div>
             </div>
           ))}
@@ -63,7 +64,7 @@ export default function CartPage() {
             <div className="space-y-3 font-body-md">
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">{t.subtotal}</span>
-                <span className="text-on-surface">€{subtotal.toLocaleString()}</span>
+                <span className="text-on-surface">€{roundPrice(subtotal).toLocaleString()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">{t.shipping}</span>
@@ -71,7 +72,7 @@ export default function CartPage() {
               </div>
               <div className="border-t border-outline-variant pt-3 flex justify-between font-label-md">
                 <span className="text-on-surface">{t.total}</span>
-                <span className="text-on-surface">€{subtotal.toLocaleString()}</span>
+                <span className="text-on-surface">€{roundPrice(subtotal).toLocaleString()}</span>
               </div>
             </div>
             <Link href={`/${locale}/checkout`} className="block text-center bg-primary text-on-primary w-full py-3 rounded-lg text-label-md no-underline hover:bg-primary-fixed-dim transition-colors mt-6">{t.checkout}</Link>

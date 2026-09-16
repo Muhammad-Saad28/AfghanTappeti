@@ -4,14 +4,15 @@ export function getWhatsAppLink(phone: string, message: string): string {
 }
 
 export function buildOrderMessage(orderNumber: string, items: { name: string; quantity: number; price: number }[], total: number, customerName: string): string {
+  const roundPrice = (p: number) => Math.round(p)
   const lines = [
     `*New Order — ${orderNumber}*`,
     `Customer: ${customerName}`,
     "",
     "*Items:*",
-    ...items.map((i) => `  ${i.quantity}x ${i.name} — €${(i.price * i.quantity).toFixed(2)}`),
+    ...items.map((i) => `  ${i.quantity}x ${i.name} — €${roundPrice(i.price * i.quantity).toLocaleString()}`),
     "",
-    `*Total: €${total.toFixed(2)}*`,
+    `*Total: €${roundPrice(total).toLocaleString()}*`,
     "",
     "Please confirm this order and arrange payment.",
   ]

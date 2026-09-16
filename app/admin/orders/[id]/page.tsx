@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
+import { roundPrice } from "@/lib/utils"
 
 interface Address {
   line1: string
@@ -90,10 +91,10 @@ export default async function OrderDetailPage({
           <div className="bg-surface rounded-xl border border-outline-variant p-6 space-y-4">
             <h2 className="font-headline-xs text-headline-xs text-on-surface">Summary</h2>
             <div className="space-y-2 font-body-md">
-              <div className="flex justify-between"><span className="text-on-surface-variant">Subtotal</span><span>€{order.subtotal.toLocaleString()}</span></div>
-              <div className="flex justify-between"><span className="text-on-surface-variant">Shipping</span><span>€{order.shipping_cost.toLocaleString()}</span></div>
-              {order.discount > 0 && <div className="flex justify-between"><span className="text-on-surface-variant">Discount</span><span>-€{order.discount.toLocaleString()}</span></div>}
-              <div className="flex justify-between font-label-md border-t border-outline-variant pt-2"><span>Total</span><span>€{order.total.toLocaleString()}</span></div>
+              <div className="flex justify-between"><span className="text-on-surface-variant">Subtotal</span><span>€{roundPrice(order.subtotal).toLocaleString()}</span></div>
+              <div className="flex justify-between"><span className="text-on-surface-variant">Shipping</span><span>€{roundPrice(order.shipping_cost).toLocaleString()}</span></div>
+              {order.discount > 0 && <div className="flex justify-between"><span className="text-on-surface-variant">Discount</span><span>-€{roundPrice(order.discount).toLocaleString()}</span></div>}
+              <div className="flex justify-between font-label-md border-t border-outline-variant pt-2"><span>Total</span><span>€{roundPrice(order.total).toLocaleString()}</span></div>
             </div>
           </div>
 
@@ -167,8 +168,8 @@ export default async function OrderDetailPage({
               <tr key={item.id} className="border-b border-outline-variant/50">
                 <td className="px-4 py-4 font-body-md text-on-surface">{item.products?.name ?? "Deleted product"}</td>
                 <td className="px-4 py-4 font-body-md text-on-surface-variant">{item.quantity}</td>
-                <td className="px-4 py-4 font-body-md text-on-surface text-right">€{item.price.toLocaleString()}</td>
-                <td className="px-4 py-4 font-body-md text-on-surface text-right">€{item.subtotal.toLocaleString()}</td>
+                <td className="px-4 py-4 font-body-md text-on-surface text-right">€{roundPrice(item.price).toLocaleString()}</td>
+                <td className="px-4 py-4 font-body-md text-on-surface text-right">€{roundPrice(item.subtotal).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>

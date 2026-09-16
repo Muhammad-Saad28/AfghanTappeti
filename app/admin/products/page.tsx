@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { deleteProduct, duplicateProduct } from "./actions"
+import { roundPrice } from "@/lib/utils"
 
 export default async function AdminProductsPage() {
   const supabase = await createClient()
@@ -59,10 +60,10 @@ export default async function AdminProductsPage() {
                   {product.sku}
                 </td>
                 <td className="px-4 py-4 font-body-md text-on-surface hidden md:table-cell">
-                  €{product.price?.toFixed(2)}
+                  €{roundPrice(product.price ?? 0).toLocaleString()}
                   {product.sale_price && (
                     <span className="text-on-surface-variant line-through ml-2">
-                      €{product.sale_price.toFixed(2)}
+                      €{roundPrice(product.sale_price).toLocaleString()}
                     </span>
                   )}
                 </td>

@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { WishlistButton } from "@/components/home/wishlist-button"
 import { localizeRow } from "@/lib/localize"
+import { roundPrice } from "@/lib/utils"
 
 export async function generateMetadata({
   params,
@@ -121,7 +122,7 @@ export default async function CategoryPage({
                   <h3 className="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">{product.name}</h3>
                   <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">{product.sku}</p>
                   {product.sizes && <p className="text-label-sm font-label-sm text-on-surface-variant mb-2">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
-                  <p className="font-headline-sm text-headline-sm text-primary">€{(product.sale_price ?? product.price).toLocaleString()}</p>
+                  <p className="font-headline-sm text-headline-sm text-primary">€{roundPrice(product.sale_price ?? product.price).toLocaleString()}</p>
                 </header>
               </Link>
             )

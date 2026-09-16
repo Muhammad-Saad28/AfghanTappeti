@@ -13,6 +13,7 @@ import {
   SectionHeading,
 } from "@/components/home/home-client"
 import { NewsletterForm } from "@/components/home/newsletter-form"
+import { roundPrice } from "@/lib/utils"
 import { WishlistButton } from "@/components/home/wishlist-button"
 import { localizeRow } from "@/lib/localize"
 
@@ -296,7 +297,7 @@ export default async function Home({
                   <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">{product.sku}</p>
                   <h4 className="font-body-lg text-body-lg font-semibold">{product.name}</h4>
                   {product.sizes && <p className="font-label-sm text-label-sm text-on-surface-variant">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
-                  <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{(product.sale_price ?? product.price).toLocaleString()}</p>
+                  <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{roundPrice(product.sale_price ?? product.price).toLocaleString()}</p>
                 </div>
               </Link>
             )

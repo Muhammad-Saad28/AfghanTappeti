@@ -8,6 +8,7 @@ import { getProductImageUrl } from "@/lib/supabase/storage"
 import { ShopSort } from "@/components/shop/shop-sort"
 import { WishlistButton } from "@/components/home/wishlist-button"
 import { localizeRow } from "@/lib/localize"
+import { roundPrice } from "@/lib/utils"
 
 export async function generateMetadata({
   params,
@@ -250,7 +251,7 @@ export default async function ShopPage({
                     <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">{product.sku}</p>
                     {product.sizes && <p className="text-label-sm font-label-sm text-on-surface-variant mb-2">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
                     <div className="flex justify-between items-end">
-                      <p className="font-headline-sm text-headline-sm text-primary">€{(product.sale_price ?? product.price).toLocaleString()}</p>
+                      <p className="font-headline-sm text-headline-sm text-primary">€{roundPrice(product.sale_price ?? product.price).toLocaleString()}</p>
                       <span className="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">{t.shop.view_details}</span>
           </div>
                   </header>

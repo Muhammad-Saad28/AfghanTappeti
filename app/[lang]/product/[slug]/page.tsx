@@ -10,6 +10,7 @@ import { AddToCartButton } from "./add-to-cart"
 import { ReviewForm } from "@/components/product/review-form"
 import { ProductImageCarousel } from "@/components/product/product-image-carousel"
 import { localizeRow } from "@/lib/localize"
+import { roundPrice } from "@/lib/utils"
 
 export async function generateMetadata({
   params,
@@ -144,9 +145,9 @@ export default async function ProductDetailPage({
           </div>
 
           <div className="mb-10 pb-10 border-b border-outline-variant">
-            <span className="text-primary font-headline-sm text-headline-sm">€{price.toLocaleString()}</span>
+            <span className="text-primary font-headline-sm text-headline-sm">€{roundPrice(price).toLocaleString()}</span>
             {product.sale_price && (
-              <span className="ml-3 text-on-surface-variant font-body-md line-through">€{product.price.toLocaleString()}</span>
+              <span className="ml-3 text-on-surface-variant font-body-md line-through">€{roundPrice(product.price).toLocaleString()}</span>
             )}
           </div>
 
@@ -249,7 +250,7 @@ export default async function ProductDetailPage({
                   </div>
                   <h3 className="font-body-md text-body-md font-semibold group-hover:text-secondary transition-colors mb-1">{rpLocal.name as string}</h3>
                   <p className="font-label-sm text-label-sm text-on-surface-variant">{rpLocal.sku as string}</p>
-                  <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{((rpLocal.sale_price ?? rpLocal.price) as number).toLocaleString()}</p>
+                  <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{roundPrice((rpLocal.sale_price ?? rpLocal.price) as number).toLocaleString()}</p>
                 </Link>
               )
             })}

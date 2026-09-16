@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { getDictionary, type Locale } from "@/lib/i18n"
 import { getWhatsAppLink, buildOrderMessage } from "@/lib/whatsapp"
+import { roundPrice } from "@/lib/utils"
 
 interface OrderItem {
   id: string
@@ -65,12 +66,12 @@ export default async function CheckoutSuccessPage(props: {
         {orderData.order_items?.map((oi: OrderItem) => (
           <div key={oi.id} className="flex justify-between text-label-sm text-on-surface-variant mb-2">
             <span>{oi.quantity}x {oi.products?.name ?? "Product"}</span>
-            <span>€{(oi.price * oi.quantity).toFixed(2)}</span>
+            <span>€{roundPrice(oi.price * oi.quantity).toLocaleString()}</span>
           </div>
         ))}
         <div className="border-t border-outline-variant mt-3 pt-3 flex justify-between font-label-md text-label-md text-on-surface">
           <span>Total</span>
-          <span>€{orderData.total.toFixed(2)}</span>
+          <span>€{roundPrice(orderData.total).toLocaleString()}</span>
         </div>
       </div>
 

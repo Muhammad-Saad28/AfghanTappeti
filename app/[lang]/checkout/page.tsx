@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import { useCart } from "@/lib/cart"
 import { placeOrder, type CheckoutInput } from "@/lib/checkout-actions"
+import { roundPrice } from "@/lib/utils"
 import en from "@/messages/en.json"
 import it from "@/messages/it.json"
 
@@ -132,7 +133,7 @@ export default function CheckoutPage() {
           </section>
           {error && <p className="text-error font-body-md">{error}</p>}
           <button type="submit" disabled={pending} className="bg-primary text-on-primary w-full py-3 rounded-lg text-label-md hover:bg-primary-fixed-dim transition-colors disabled:opacity-50">
-            {pending ? t.placing : `${t.place_order} — €${subtotal.toLocaleString()}`}
+            {pending ? t.placing : `${t.place_order} — €${roundPrice(subtotal).toLocaleString()}`}
           </button>
         </div>
         <div className="lg:w-80">
@@ -141,12 +142,12 @@ export default function CheckoutPage() {
             {cart.map((item) => (
               <div key={item.id} className="flex justify-between text-body-md">
                 <span className="text-on-surface-variant truncate mr-2">{item.name} x{item.quantity}</span>
-                <span className="text-on-surface flex-shrink-0">€{((item.sale_price ?? item.price) * item.quantity).toLocaleString()}</span>
+                <span className="text-on-surface flex-shrink-0">€{roundPrice((item.sale_price ?? item.price) * item.quantity).toLocaleString()}</span>
               </div>
             ))}
             <div className="border-t border-outline-variant pt-3 flex justify-between font-label-md">
               <span className="text-on-surface">{cartMessages.total}</span>
-              <span className="text-on-surface">€{subtotal.toLocaleString()}</span>
+              <span className="text-on-surface">€{roundPrice(subtotal).toLocaleString()}</span>
             </div>
             <p className="font-label-sm text-label-sm text-on-surface-variant">{t.payment_note}</p>
           </div>

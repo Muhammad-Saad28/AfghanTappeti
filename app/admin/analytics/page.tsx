@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
+import { roundPrice } from "@/lib/utils"
 
 export const dynamic = "force-dynamic"
 
@@ -39,7 +40,7 @@ export default async function AdminAnalyticsPage() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
-          { label: "Total Revenue", value: `€${totalRevenue.toLocaleString()}`, className: "text-secondary" },
+          { label: "Total Revenue", value: `€${roundPrice(totalRevenue).toLocaleString()}`, className: "text-secondary" },
           { label: "Total Orders", value: totalOrders ?? 0, className: "text-primary" },
           { label: "Products", value: totalProducts ?? 0, className: "text-on-surface" },
           { label: "Customers", value: totalCustomers ?? 0, className: "text-on-surface" },
@@ -67,7 +68,7 @@ export default async function AdminAnalyticsPage() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="font-body-md text-on-surface">€{Number(order.total).toLocaleString()}</p>
+                    <p className="font-body-md text-on-surface">€{roundPrice(Number(order.total)).toLocaleString()}</p>
                     <span className="font-label-sm text-label-sm text-on-surface-variant">{order.status}</span>
                   </div>
                 </div>
@@ -85,7 +86,7 @@ export default async function AdminAnalyticsPage() {
               {topProducts?.map((product) => (
                 <div key={product.name} className="flex justify-between items-center pb-3 border-b border-outline-variant/50 last:border-0">
                   <p className="font-body-md text-on-surface">{product.name}</p>
-                  <p className="font-body-md text-on-surface">€{Number(product.price).toLocaleString()}</p>
+                  <p className="font-body-md text-on-surface">€{roundPrice(Number(product.price)).toLocaleString()}</p>
                 </div>
               ))}
             </div>
