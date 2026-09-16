@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
+import { roundPrice } from "@/lib/utils"
 
 function generateOrderNumber(): string {
   const date = new Date()
@@ -65,11 +66,11 @@ export async function placeOrder(data: CheckoutInput) {
       customer_id: customer?.id ?? null,
       order_number: orderNumber,
       status: "pending",
-      subtotal: data.subtotal,
+      subtotal: roundPrice(data.subtotal),
       shipping_cost: 0,
       discount: 0,
       tax: 0,
-      total: data.subtotal,
+      total: roundPrice(data.subtotal),
       payment_status: "pending",
       customer_email: data.email,
       customer_phone: data.phone,
@@ -86,8 +87,8 @@ export async function placeOrder(data: CheckoutInput) {
     order_id: order.id,
     product_id: item.id,
     quantity: item.quantity,
-    price: item.price,
-    subtotal: item.price * item.quantity,
+    price: roundPrice(item.price),
+    subtotal: roundPrice(item.price * item.quantity),
   }))
 
   const { error: itemsError } = await supabase.from("order_items").insert(orderItems)

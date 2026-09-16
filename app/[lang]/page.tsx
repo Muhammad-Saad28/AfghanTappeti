@@ -325,6 +325,28 @@ export default async function Home({
         </div>
       </Section>
 
+      <section background="muted">
+        <div className="bg-primary-container text-white text-center py-section-gap px-margin-mobile">
+          <div className="max-w-2xl mx-auto space-y-8">
+            <h2 className="font-headline-md text-headline-md text-white">{t.home.newsletter_title}</h2>
+            <p className="font-body-lg text-body-lg text-white/80">{t.home.newsletter_subtitle}</p>
+            <NewsletterForm placeholder={t.home.newsletter_placeholder} cta={t.home.newsletter_cta} />
+          </div>
+        </div>
+      </section>  
+
+      <section Background="muted">
+        <div className="bg-primary-container text-white text-center py-section-gap px-margin-mobile">
+          <div className="max-w-2xl mx-auto space-y-8">
+            <h2 className="font-headline-md text-headline-md text-white">{t.home.newsletter_title}</h2>
+            <p className="font-body-lg text-body-lg text-white/80">{t.home.newsletter_subtitle}</p>
+            <NewsletterForm placeholder={t.home.newsletter_placeholder} cta={t.home.newsletter_cta} />
+          </div>
+        </div>
+      </section>
+
+      
+      
       <Section background="none">
         <div className="grid md:grid-cols-2 items-center gap-24">
           <div className="relative">
