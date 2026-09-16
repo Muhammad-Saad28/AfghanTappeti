@@ -112,6 +112,9 @@ export default async function Home({
     "afghan-kilim": "/modernluxurykilims.jpeg",
     "vintage-rugs": "/persianvintage.jpeg",
     "modern-rugs": "/modernluxurykilims.jpeg",
+    "sultani-farhan-ziegler": "/sultanifarhan.jpeg",
+    "sultani-khurgeen": "/sultani.jpeg",
+      
   }
 
   const styleImages = [
@@ -203,6 +206,7 @@ export default async function Home({
               "/afghankilims.jpeg",
               "/persianvintage.jpeg",
               "/modernluxurykilims.jpeg",
+              "/sultanifarhan.jpeg"
             ]
             const bgImage = cat.image || categoryImageMap[cat.slug] || fallbackImages[index % fallbackImages.length]
             
@@ -368,6 +372,6 @@ export default async function Home({
         </div>
       </Section>
     </>
-    
+
     )
 }
