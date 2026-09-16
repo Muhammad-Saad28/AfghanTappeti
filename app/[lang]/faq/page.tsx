@@ -44,7 +44,7 @@ export default async function FaqPage({
     <>
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/images/homepage.png')" }} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
         </div>
         <div className="relative z-20 text-center px-margin-mobile">

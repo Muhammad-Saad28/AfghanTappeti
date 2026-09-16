@@ -49,7 +49,7 @@ export function ImageGallery({
               src={getProductImageUrl(images[activeIndex].image_url)}
               alt={`${productName} - Image ${activeIndex + 1}`}
               fill
-              className="object-cover scale-[1.4]"
+              className="object-contain"
               sizes="100vw"
               unoptimized
             />

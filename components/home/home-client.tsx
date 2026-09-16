@@ -27,7 +27,7 @@ export function ColorSwatch({
   return (
     <Link href={href} className="flex flex-col items-center gap-2 group no-underline">
       <div
-        className="w-16 h-16 rounded-full border-2 border-outline-variant transition-all group-hover:scale-110 group-hover:border-secondary shadow-sm"
+        className="w-16 h-16 rounded-full border-2 border-outline-variant transition-all group-hover:border-secondary shadow-sm"
         style={{ backgroundColor: color }}
       />
       <span className="font-label-sm text-label-sm text-on-surface-variant group-hover:text-secondary transition-colors">

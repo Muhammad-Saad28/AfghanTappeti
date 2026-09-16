@@ -47,7 +47,7 @@ export default async function StylesPage({
     <>
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/images/homepage.png')" }} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
         </div>
         <div className="relative z-20 text-center px-margin-mobile">
@@ -62,7 +62,7 @@ export default async function StylesPage({
             return (
               <Link key={key} href={`/${locale}/shop`} className="group block bg-surface overflow-hidden no-underline">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${pick(i)})` }} />
+                  <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${pick(i)})` }} />
                 </div>
                 <div className="p-8 space-y-3">
                   <h2 className="font-headline-sm text-headline-sm text-on-surface">{style.name}</h2>

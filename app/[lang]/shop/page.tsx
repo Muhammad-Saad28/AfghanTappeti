@@ -120,7 +120,7 @@ export default async function ShopPage({
     <>
       <section className="relative h-[250px] md:h-[350px] lg:h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/images/homepage.png')" }} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
         </div>
         <div className="relative z-20 text-center px-margin-mobile">
@@ -174,7 +174,7 @@ export default async function ShopPage({
                   <label key={c.id} className="cursor-pointer group relative">
                     <input type="checkbox" name="color" value={c.id} defaultChecked={selColor.includes(c.id)} className="sr-only peer" />
                     <span
-                      className="w-9 h-9 rounded-full border-2 border-outline block peer-checked:border-secondary peer-checked:ring-2 peer-checked:ring-secondary/40 transition-all group-hover:scale-110 group-hover:border-secondary shadow-sm"
+                      className="w-9 h-9 rounded-full border-2 border-outline block peer-checked:border-secondary peer-checked:ring-2 peer-checked:ring-secondary/40 transition-all group-hover:border-secondary shadow-sm"
                       style={{ backgroundColor: c.hex_code || "#ccc" }}
                       title={c.name}
                     />
@@ -241,7 +241,7 @@ export default async function ShopPage({
               return (
                 <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="group no-underline">
                   <div className="relative overflow-hidden mb-6 aspect-[3/4] bg-surface-container-low">
-                    {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover scale-125" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
+                    {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-contain" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
                     <WishlistButton slug={product.slug} />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                   </div>

@@ -55,7 +55,7 @@ export default async function RoomsPage({
     <>
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/homepage.png')" }} />
+          <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/images/homepage.png')" }} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
         </div>
         <div className="relative z-20 text-center px-margin-mobile">
@@ -69,7 +69,7 @@ export default async function RoomsPage({
             const room = t.rooms[key]
             return (
               <Link key={key} href={`/${locale}/shop`} className={`group relative overflow-hidden no-underline ${roomLayouts[key]}`}>
-                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${pick(i)})` }} />
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${pick(i)})` }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h2 className="font-headline-sm text-headline-sm text-white mb-2">{room.name}</h2>

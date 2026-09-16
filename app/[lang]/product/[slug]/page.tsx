@@ -135,15 +135,16 @@ export default async function ProductDetailPage({
           </nav>
 
           <div className="mb-8">
-            <h1 className="font-display-lg text-headline-md lg:text-display-lg mb-3 leading-tight">{localizedProduct.name}</h1>
-            <div className="space-y-1 text-on-surface-variant">
-              {product.sizes && <p className="font-label-md text-label-md">{localizedSize?.name ?? ""}</p>}
-              {product.origins && <p className="font-label-md text-label-md">{t.product.origin}: {localizedOrigin?.name?.toUpperCase() ?? ""}</p>}
+            <h1 className="font-headline-sm text-headline-sm lg:text-headline-md mb-2 leading-tight">{localizedProduct.name}</h1>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-on-surface-variant">
+              {product.sku && <span className="font-label-sm text-label-sm uppercase tracking-widest">{product.sku}</span>}
+              {product.sizes && <span className="font-label-sm text-label-sm">| {localizedSize?.name ?? ""}</span>}
+              {product.origins && <span className="font-label-sm text-label-sm">| {t.product.origin}: {localizedOrigin?.name?.toUpperCase() ?? ""}</span>}
             </div>
           </div>
 
           <div className="mb-10 pb-10 border-b border-outline-variant">
-            <span className="text-primary font-display-lg text-headline-md">€{price.toLocaleString()}</span>
+            <span className="text-primary font-headline-sm text-headline-sm">€{price.toLocaleString()}</span>
             {product.sale_price && (
               <span className="ml-3 text-on-surface-variant font-body-md line-through">€{product.price.toLocaleString()}</span>
             )}
@@ -244,7 +245,7 @@ export default async function ProductDetailPage({
               return (
                 <Link key={rpLocal.id as string} href={`/${locale}/product/${rpLocal.slug as string}`} className="group no-underline">
                   <div className="aspect-[3/4] relative overflow-hidden bg-surface-container-low mb-4">
-                    {rpImg && <Image src={rpImg} alt={rpLocal.name as string} fill unoptimized className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />}
+                    {rpImg && <Image src={rpImg} alt={rpLocal.name as string} fill unoptimized className="object-contain" sizes="(max-width: 768px) 50vw, 25vw" />}
                   </div>
                   <h3 className="font-body-md text-body-md font-semibold group-hover:text-secondary transition-colors mb-1">{rpLocal.name as string}</h3>
                   <p className="font-label-sm text-label-sm text-on-surface-variant">{rpLocal.sku as string}</p>

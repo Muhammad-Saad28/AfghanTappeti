@@ -38,7 +38,7 @@ export function ProductImageCarousel({
                 alt={`${productName} - Image ${i + 1}`}
                 fill
                 unoptimized
-                className="object-cover"
+                className="object-contain"
                 sizes="80px"
               />
             )}
@@ -54,7 +54,7 @@ export function ProductImageCarousel({
             alt={`${productName} - Image ${current + 1}`}
             fill
             unoptimized
-            className="object-cover scale-[1.4]"
+            className="object-contain"
             sizes="(max-width: 1024px) 100vw, 60vw"
             priority
           />

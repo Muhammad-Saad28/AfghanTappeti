@@ -45,7 +45,7 @@ export default async function AboutPage({
       <section className="relative h-[400px] md:min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
-          <div className="w-full h-full bg-cover bg-center scale-105"
+          <div className="w-full h-full bg-cover bg-center"
             style={{
               backgroundImage: "url('/images/homepage.png')",
             }}

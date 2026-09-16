@@ -103,13 +103,17 @@ export default async function Home({
     }
   }
 
-  const collectionImages = [
-    "/images/home/collection_1.jpg",
-    "/images/home/collection_2.jpg",
-    "/images/home/collection_4.jpg",
-    "/images/home/collection_5.jpg",
-    "/images/home/collection_6.jpg",
-  ]
+  const categoryImageMap: Record<string, string> = {
+    "afghan-rugs": "/AfghanRugs.jpeg",
+    "persian-rugs": "/afghankilims.jpeg",
+    "runner-rugs": "/legacyofknots.jpeg",
+    "kilim": "/modernluxurykilims.jpeg",
+    "vintage-rugs": "/persianvintage.jpeg",
+    "modern-rugs": "/images/home/collection_4.jpg",
+    "oriental-rugs": "/images/home/collection_5.jpg",
+    "round-rugs": "/images/home/collection_6.jpg",
+    "luxury-rugs": "/images/home/collection_1.jpg",
+  }
 
   const styleImages = [
     "/images/home/style_scandinavian.jpg",
@@ -124,13 +128,6 @@ export default async function Home({
     "/images/home/style_modern.jpg",
     "/images/home/room_living.jpg",
     "/images/home/collection_6.jpg",
-  ]
-
-  const instagramImages = [
-    "/images/home/instagram_3.jpg",
-    "/images/home/instagram_4.jpg",
-    "/images/home/instagram_5.jpg",
-    "/images/home/instagram_6.jpg",
   ]
 
   const storyImage = "/legacyofknots.jpeg"
@@ -148,14 +145,14 @@ export default async function Home({
     <>
       <header className="relative h-[80vh] min-h-[600px] md:h-screen flex items-end md:items-center overflow-hidden pt-20 md:pt-0">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/home/hero.jpg" alt="Afghan Tappeti" fill priority className="object-cover scale-125" sizes="100vw" />
+          <Image src="/images/home/hero.jpg" alt="Afghan Tappeti" fill priority className="object-contain" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
         <div className="relative z-10 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto text-white pb-16 md:pb-0">
           <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 leading-tight max-w-2xl drop-shadow-lg">{t.home.hero_title_line1}</h1>
           <p className="font-body-lg text-body-lg mb-8 max-w-lg opacity-95 drop-shadow">{t.home.hero_subtitle_line1}</p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href={`/${locale}/shop`} className="bg-secondary text-white px-6 py-3 md:px-10 md:py-5 font-label-md text-label-md transition-all hover:bg-secondary-fixed-dim hover:scale-105 no-underline inline-block text-center shadow-lg">{t.home.hero_cta}</Link>
+            <Link href={`/${locale}/shop`} className="bg-secondary text-white px-6 py-3 md:px-10 md:py-5 font-label-md text-label-md transition-all hover:bg-secondary-fixed-dim no-underline inline-block text-center shadow-lg">{t.home.hero_cta}</Link>
             <Link href={`/${locale}/about`} className="border-2 border-white/80 text-white px-6 py-3 md:px-10 md:py-5 font-label-md text-label-md transition-all hover:bg-white hover:text-primary hover:border-white no-underline inline-block text-center backdrop-blur-sm">{t.home.our_story_cta}</Link>
           </div>
         </div>
@@ -199,16 +196,25 @@ export default async function Home({
       <Section background="none">
         <SectionHeading title={t.home.featured_collections} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {(localizedCategories).map((cat) => (
-            <Link key={cat.id} href={`/${locale}/category/${cat.slug}`} className="relative group h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden no-underline block">
-              <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${cat.image || collectionImages[0]})` }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8">
-                <h3 className="text-white font-headline-sm text-headline-sm">{cat.name}</h3>
-                <span className="text-white/80 font-label-sm text-label-sm uppercase tracking-widest mt-2 block hover:text-secondary-fixed transition-colors">{t.home.explore}</span>
-              </div>
-            </Link>
-          ))}
+          {(localizedCategories).map((cat, index) => {
+            const fallbackImages = [
+              "/AfghanRugs.jpeg",
+              "/afghankilims.jpeg",
+              "/persianvintage.jpeg",
+            ]
+            const bgImage = cat.image || categoryImageMap[cat.slug] || fallbackImages[index % fallbackImages.length]
+            
+            return (
+              <Link key={cat.id} href={`/${locale}/category/${cat.slug}`} className="relative group h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden no-underline block">
+                <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${bgImage})` }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute bottom-8 left-8">
+                  <h3 className="text-white font-headline-sm text-headline-sm">{cat.name}</h3>
+                  <span className="text-white/80 font-label-sm text-label-sm uppercase tracking-widest mt-2 block hover:text-secondary-fixed transition-colors">{t.home.explore}</span>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </Section>
 
@@ -282,7 +288,7 @@ export default async function Home({
             return (
               <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="min-w-[320px] group no-underline">
                 <div className="relative overflow-hidden aspect-[4/5] mb-6 bg-surface-container-low">
-                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover scale-125" sizes="320px" />}
+                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-contain" sizes="320px" />}
                   <WishlistButton slug={product.slug} />
                 </div>
                 <div className="space-y-1">

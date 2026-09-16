@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { deleteProductImage, reorderProductImage } from "./actions"
+import { SizePriceCalculator } from "./size-price-calculator"
 import Image from "next/image"
 
 export async function ProductForm({
@@ -19,7 +20,7 @@ export async function ProductForm({
     await Promise.all([
       supabase.from("origins").select("id, name").order("name"),
       supabase.from("materials").select("id, name").order("name"),
-      supabase.from("sizes").select("id, name").order("display_order"),
+      supabase.from("sizes").select("id, name, width_cm, length_cm").order("display_order"),
       supabase.from("shapes").select("id, name").order("name"),
       supabase.from("colors").select("id, name").order("name"),
       supabase.from("categories").select("id, name").eq("is_active", true).order("display_order"),
@@ -105,21 +106,13 @@ export async function ProductForm({
             Pricing &amp; Inventory
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label htmlFor="price" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
-                Price (€) *
-              </label>
-              <input
-                id="price"
-                name="price"
-                type="number"
-                step="0.01"
-                required
-                defaultValue={product?.price ?? ""}
-                className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md"
-              />
-            </div>
+          <SizePriceCalculator
+            sizes={sizes || []}
+            initialSizeId={product?.size_id}
+            initialPrice={product?.price}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="sale_price" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
                 Sale Price (€)
@@ -197,22 +190,6 @@ export async function ProductForm({
                 <option value="">Select material</option>
                 {materials?.map((m) => (
                   <option key={m.id} value={m.id}>{m.name}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="size_id" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
-                Size
-              </label>
-              <select
-                id="size_id"
-                name="size_id"
-                defaultValue={product?.size_id ?? ""}
-                className="w-full bg-transparent border-b border-outline-variant py-2 focus:outline-none focus:border-secondary transition-colors font-body-md"
-              >
-                <option value="">Select size</option>
-                {sizes?.map((s) => (
-                  <option key={s.id} value={s.id}>{s.name}</option>
                 ))}
               </select>
             </div>
@@ -349,7 +326,7 @@ export async function ProductForm({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {images.map((img, idx) => (
                 <div key={img.id} className="relative group aspect-[3/4] bg-surface-container-low rounded-lg overflow-hidden">
-                  <Image src={getProductImageUrl(img.image_url)} alt="" fill className="object-cover" sizes="25vw" />
+                  <Image src={getProductImageUrl(img.image_url)} alt="" fill className="object-contain" sizes="25vw" />
                   {img.is_primary && (
                     <span className="absolute top-2 left-2 bg-secondary text-on-secondary text-label-xs font-label-xs px-1.5 py-0.5 rounded">Primary</span>
                   )}

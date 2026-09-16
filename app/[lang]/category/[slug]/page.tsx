@@ -92,7 +92,7 @@ export default async function CategoryPage({
     <>
       <section className="relative h-[300px] md:h-[400px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-cover bg-center scale-105" style={{ backgroundImage: `url(${category.image || "/images/homepage.png"})` }} />
+          <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${category.image || "/images/homepage.png"})` }} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20 z-10" />
         </div>
         <div className="relative z-20 text-center px-margin-mobile">
@@ -113,7 +113,7 @@ export default async function CategoryPage({
             return (
               <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="group no-underline">
                 <div className="relative overflow-hidden mb-6 aspect-[3/4] bg-surface-container-low">
-                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-cover scale-125" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
+                  {imgUrl && <Image src={imgUrl} alt={product.name} fill unoptimized className="object-contain" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
                   <WishlistButton slug={product.slug} />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                 </div>
