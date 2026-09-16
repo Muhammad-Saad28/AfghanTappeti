@@ -112,7 +112,7 @@ export default async function Home({
     "afghan-kilim": "/modernluxurykilims.jpeg",
     "vintage-rugs": "/persianvintage.jpeg",
     "modern-rugs": "/modernluxurykilims.jpeg",
-    "sultani-farhan-ziegler": "/sultanifarhan.jpeg",
+    "sultani-farhan-ziegler": "/sultanifarhan.jpg",
     "sultani-khurgeen": "/sultani.jpg",
 
   }
