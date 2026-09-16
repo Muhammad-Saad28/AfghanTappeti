@@ -4,10 +4,10 @@ export const defaultLocale = "en"
 export const locales = ["en", "it"] as const
 export type Locale = (typeof locales)[number]
 
-const dictionaries = {
+const dictionaries: Record<Locale, () => Promise<any>> = {
   en: () => import("@/messages/en.json").then((m) => m.default),
   it: () => import("@/messages/it.json").then((m) => m.default),
-} as const
+}
 
 export const getDictionary = cache(async (locale: Locale) => {
   return dictionaries[locale]()

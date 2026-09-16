@@ -113,8 +113,8 @@ export default async function Home({
     "vintage-rugs": "/persianvintage.jpeg",
     "modern-rugs": "/modernluxurykilims.jpeg",
     "sultani-farhan-ziegler": "/sultanifarhan.jpeg",
-    "sultani-khurgeen": "/sultani.jpeg",
-      
+    "sultani-khurgeen": "/sultani.jpg",
+
   }
 
   const styleImages = [
