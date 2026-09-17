@@ -119,8 +119,7 @@ export default async function CategoryPage({
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                 </div>
                 <header>
-                  <h3 className="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">{product.name}</h3>
-                  <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">{product.sku}</p>
+                  <h3 className="font-body-md text-[20px] mb-1 group-hover:text-secondary transition-colors">{product.name}</h3>
                   {product.sizes && <p className="text-label-sm font-label-sm text-on-surface-variant mb-2">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
                   <p className="font-headline-sm text-headline-sm text-primary">€{roundPrice(product.sale_price ?? product.price).toLocaleString()}</p>
                 </header>

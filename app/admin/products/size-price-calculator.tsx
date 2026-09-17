@@ -12,7 +12,7 @@ interface Size {
 const PRICE_PER_SQM = 310
 
 function calculatePrice(widthCm: number, lengthCm: number): number {
-  return Math.round(Math.round((widthCm / 100) * (lengthCm / 100) * 100) / 100 * PRICE_PER_SQM)
+  return Math.round((widthCm / 100) * (lengthCm / 100) * PRICE_PER_SQM)
 }
 
 export function SizePriceCalculator({

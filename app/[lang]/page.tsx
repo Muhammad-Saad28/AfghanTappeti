@@ -289,7 +289,7 @@ export default async function Home({
       <Section background="none">
         <h2 className="font-headline-md text-headline-md mb-6">{t.home.best_sellers}</h2>
         <BestSellersCarousel>
-          {(localizedBestSellers).slice(0, 4).map((product) => {
+          {(localizedBestSellers).slice(0, 8).map((product) => {
             const imgUrl = getProductImageUrl(primaryMap.get(product.id))
             return (
               <Link key={product.id} href={`/${locale}/product/${product.slug}`} className="min-w-[320px] group no-underline">
@@ -298,7 +298,6 @@ export default async function Home({
                   <WishlistButton slug={product.slug} />
                 </div>
                 <div className="space-y-1">
-                  <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">{product.sku}</p>
                   <h4 className="font-body-lg text-body-lg font-semibold">{product.name}</h4>
                   {product.sizes && <p className="font-label-sm text-label-sm text-on-surface-variant">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
                   <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{roundPrice(product.sale_price ?? product.price).toLocaleString()}</p>

@@ -120,7 +120,7 @@ export default async function ProductDetailPage({
     image: primaryImageUrl,
     url: productUrl,
   })
-
+    
   return (
     <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-24 md:pt-28">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -136,11 +136,10 @@ export default async function ProductDetailPage({
           </nav>
 
           <div className="mb-8">
-            <h1 className="font-headline-sm text-headline-sm lg:text-headline-md mb-2 leading-tight">{localizedProduct.name}</h1>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-on-surface-variant">
-              {product.sku && <span className="font-label-sm text-label-sm uppercase tracking-widest">{product.sku}</span>}
-              {product.sizes && <span className="font-label-sm text-label-sm">| {localizedSize?.name ?? ""}</span>}
-              {product.origins && <span className="font-label-sm text-label-sm">| {t.product.origin}: {localizedOrigin?.name?.toUpperCase() ?? ""}</span>}
+            <h1 className="font-body-md text-headline-sm lg:text-headline-md mb-2 leading-tight">{localizedProduct.name}</h1>
+            <div className="flex flex-col gap-1 text-on-surface-variant">
+              {product.sizes && <span className="font-label-sm text-label-sm">{localizedSize?.name ?? ""}</span>}
+              {product.origins && <span className="font-label-sm text-label-sm">{t.product.origin}: {localizedOrigin?.name?.toUpperCase() ?? ""}</span>}
             </div>
           </div>
 
@@ -154,7 +153,6 @@ export default async function ProductDetailPage({
           <div className="space-y-6 mb-10">
             <p className="font-body-md text-body-lg text-on-surface-variant leading-relaxed">{localizedProduct.description || localizedProduct.short_description}</p>
             <div className="grid grid-cols-2 gap-y-5 gap-x-8 border-y border-outline-variant py-8">
-              {product.sku && <Spec label={t.product.sku} value={product.sku} />}
               {product.materials && <Spec label={t.product.material} value={localizedMaterial?.name ?? ""} />}
               {product.sizes && <Spec label={t.product.size} value={localizedSize?.name ?? ""} />}
               {product.colors && <Spec label={t.product.color} value={localizedColor?.name ?? ""} />}
@@ -249,7 +247,6 @@ export default async function ProductDetailPage({
                     {rpImg && <Image src={rpImg} alt={rpLocal.name as string} fill unoptimized className="object-contain" sizes="(max-width: 768px) 50vw, 25vw" />}
                   </div>
                   <h3 className="font-body-md text-body-md font-semibold group-hover:text-secondary transition-colors mb-1">{rpLocal.name as string}</h3>
-                  <p className="font-label-sm text-label-sm text-on-surface-variant">{rpLocal.sku as string}</p>
                   <p className="font-headline-sm text-headline-sm text-secondary mt-2">€{roundPrice((rpLocal.sale_price ?? rpLocal.price) as number).toLocaleString()}</p>
                 </Link>
               )

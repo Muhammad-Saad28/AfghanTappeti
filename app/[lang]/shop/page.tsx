@@ -6,6 +6,7 @@ import { siteUrl } from "@/lib/seo"
 import { createClient } from "@/lib/supabase/server"
 import { getProductImageUrl } from "@/lib/supabase/storage"
 import { ShopSort } from "@/components/shop/shop-sort"
+import { ShopFilters } from "@/components/shop/shop-filters"
 import { WishlistButton } from "@/components/home/wishlist-button"
 import { localizeRow } from "@/lib/localize"
 import { roundPrice } from "@/lib/utils"
@@ -112,11 +113,6 @@ export default async function ShopPage({
     imageMap.set(img.product_id, img.image_url)
   }
 
-  const selOrigin = (sp.origin as string)?.split(",").filter(Boolean) ?? []
-  const selMaterial = (sp.material as string)?.split(",").filter(Boolean) ?? []
-  const selColor = (sp.color as string)?.split(",").filter(Boolean) ?? []
-  const selSize = (sp.size as string)?.split(",").filter(Boolean) ?? []
-
   return (
     <>
       <section className="relative h-[250px] md:h-[350px] lg:h-[400px] flex items-center justify-center overflow-hidden pt-20">
@@ -132,74 +128,26 @@ export default async function ShopPage({
 
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row gap-gutter mt-16 mb-section-gap">
         <aside className="md:w-1/4 md:sticky md:top-32 h-fit pb-10">
-          <details className="md:contents group">
-            <summary className="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant cursor-pointer md:cursor-default list-none">
+          <details open className="md:contents group">
+            <summary className="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant cursor-pointer md:cursor-default list-none md:hidden">
               <h3 className="font-headline-sm text-headline-sm">{t.shop.filters}</h3>
-              <span className="text-label-sm font-label-sm text-secondary md:hidden">Show / Hide</span>
-              <Link href={`/${locale}/shop`} className="text-label-sm font-label-sm text-secondary uppercase no-underline hidden md:inline">{t.shop.clear_all}</Link>
+              <span className="text-label-sm font-label-sm text-secondary">Show / Hide</span>
             </summary>
-          <form method="GET" className="space-y-10">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant md:hidden">
-              <h3 className="font-headline-sm text-headline-sm">{t.shop.filters}</h3>
-              <Link href={`/${locale}/shop`} className="text-label-sm font-label-sm text-secondary uppercase no-underline">{t.shop.clear_all}</Link>
-            </div>
-
-            <div>
-              <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_origin}</h4>
-              <div className="space-y-3">
-                {localizedOrigins.map((o) => (
-                  <label key={o.id} className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" name="origin" value={o.id} defaultChecked={selOrigin.includes(o.id)} className="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" />
-                    <span className="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">{o.name}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_material}</h4>
-              <div className="space-y-3">
-                {localizedMaterials.map((m) => (
-                  <label key={m.id} className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" name="material" value={m.id} defaultChecked={selMaterial.includes(m.id)} className="rounded border-outline-variant text-primary focus:ring-secondary w-4 h-4" />
-                    <span className="font-body-md text-on-surface-variant group-hover:text-primary transition-colors">{m.name}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_color}</h4>
-            <div className="flex flex-wrap gap-3">
-                {localizedColors.map((c) => (
-                  <label key={c.id} className="cursor-pointer group relative">
-                    <input type="checkbox" name="color" value={c.id} defaultChecked={selColor.includes(c.id)} className="sr-only peer" />
-                    <span
-                      className="w-9 h-9 rounded-full border-2 border-outline block peer-checked:border-secondary peer-checked:ring-2 peer-checked:ring-secondary/40 transition-all group-hover:border-secondary shadow-sm"
-                      style={{ backgroundColor: c.hex_code || "#ccc" }}
-                      title={c.name}
-                    />
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-label-md text-label-md uppercase tracking-wider mb-4">{t.shop.filter_size}</h4>
-              <div className="grid grid-cols-2 gap-2">
-                {localizedSizes.map((s) => (
-                  <label key={s.id} className={`border text-center cursor-pointer text-label-sm font-label-sm hover:border-secondary transition-colors ${selSize.includes(s.id) ? "border-secondary bg-secondary-container text-on-secondary-container" : "border-outline-variant"}`}>
-                    <input type="checkbox" name="size" value={s.id} defaultChecked={selSize.includes(s.id)} className="sr-only" />
-                    <span className="block px-3 py-2">{s.name}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <button type="submit" className="flex-1 bg-primary text-on-primary px-4 py-3 rounded-lg text-label-sm hover:bg-primary-fixed-dim transition-colors">Apply</button>
-            </div>
-          </form>
+            <ShopFilters
+              locale={locale}
+              origins={localizedOrigins}
+              materials={localizedMaterials}
+              colors={localizedColors}
+              sizes={localizedSizes}
+              labels={{
+                filters: t.shop.filters,
+                clear_all: t.shop.clear_all,
+                filter_origin: t.shop.filter_origin,
+                filter_material: t.shop.filter_material,
+                filter_color: t.shop.filter_color,
+                filter_size: t.shop.filter_size,
+              }}
+            />
           </details>
         </aside>
 
@@ -247,13 +195,12 @@ export default async function ShopPage({
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
                   </div>
                   <header>
-                    <h3 className="font-headline-sm text-[20px] mb-1 group-hover:text-secondary transition-colors">{product.name}</h3>
-                    <p className="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">{product.sku}</p>
+                    <h3 className="font-body-md text-[20px] mb-1 group-hover:text-secondary transition-colors">{product.name}</h3>
                     {product.sizes && <p className="text-label-sm font-label-sm text-on-surface-variant mb-2">{(product.sizes as any)?.name ?? (Array.isArray(product.sizes) ? product.sizes[0]?.name : null)}</p>}
                     <div className="flex justify-between items-end">
                       <p className="font-headline-sm text-headline-sm text-primary">€{roundPrice(product.sale_price ?? product.price).toLocaleString()}</p>
                       <span className="text-label-sm font-label-sm text-secondary underline decoration-1 underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity uppercase">{t.shop.view_details}</span>
-          </div>
+                    </div>
                   </header>
                 </Link>
               )

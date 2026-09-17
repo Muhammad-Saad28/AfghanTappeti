@@ -24,7 +24,6 @@ export function Navbar({ lang }: { lang?: string }) {
     { label: t.shop, href: `/${locale}/shop` },
     { label: t.collections, href: `/${locale}/collections` },
     { label: t.styles, href: `/${locale}/styles` },
-    { label: t.rooms, href: `/${locale}/rooms` },
     { label: t.about, href: `/${locale}/about` },
     { label: t.contact, href: `/${locale}/contact` },
   ]
