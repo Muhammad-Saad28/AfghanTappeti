@@ -73,7 +73,7 @@ async function main() {
       slug: `sultani-gabbah-${num}`,
       sku,
       price: size,
-      description: `Hand-knotted Sultani Gabbah rug. Size: ${product.w}×${product.h} cm (${size}).`,
+      description: `Hand-knotted Sultani Gabbah rug.\nSize: ${product.w}×${product.h} cm (${size}).`,
       stock_quantity: 1,
       is_active: true,
     })

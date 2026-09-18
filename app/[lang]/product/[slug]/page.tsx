@@ -143,6 +143,8 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
+          {product.rug_no && <p className="font-label-sm text-label-sm text-on-surface-variant mb-4 tracking-wider uppercase">Rug N° {product.rug_no}</p>}
+
           <div className="mb-10 pb-10 border-b border-outline-variant">
             <span className="text-primary font-headline-sm text-headline-sm">€{roundPrice(price).toLocaleString()}</span>
             {product.sale_price && (
@@ -151,7 +153,7 @@ export default async function ProductDetailPage({
           </div>
 
           <div className="space-y-6 mb-10">
-            <p className="font-body-md text-body-lg text-on-surface-variant leading-relaxed">{localizedProduct.description || localizedProduct.short_description}</p>
+            <p className="font-body-md text-body-lg text-on-surface-variant leading-relaxed whitespace-pre-line">{localizedProduct.description || localizedProduct.short_description}</p>
             <div className="grid grid-cols-2 gap-y-5 gap-x-8 border-y border-outline-variant py-8">
               {product.materials && <Spec label={t.product.material} value={localizedMaterial?.name ?? ""} />}
               {product.sizes && <Spec label={t.product.size} value={localizedSize?.name ?? ""} />}

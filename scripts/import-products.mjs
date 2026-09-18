@@ -203,7 +203,7 @@ async function main() {
         width_cm: product.width,
         height_cm: product.height,
         short_description: `Hand-knotted ${folder} rug`,
-        description: `A masterfully hand-knotted ${folder} rug featuring intricate patterns and rich natural dyes. Size: ${product.width}×${product.height} cm (${size}).`,
+        description: `A masterfully hand-knotted ${folder} rug featuring intricate patterns and rich natural dyes.\nSize: ${product.width}×${product.height} cm (${size}).`,
         stock_quantity: 1,
         is_active: true,
         is_best_seller: false,

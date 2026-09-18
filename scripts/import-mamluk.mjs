@@ -73,7 +73,7 @@ async function main() {
       slug: `mamluk-${num}`,
       sku,
       price: size,
-      description: `Hand-knotted Mamluk rug. Size: ${product.w}×${product.h} cm (${size}).`,
+      description: `Hand-knotted Mamluk rug.\nSize: ${product.w}×${product.h} cm (${size}).`,
       stock_quantity: 1,
       is_active: true,
     })

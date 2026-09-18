@@ -73,7 +73,7 @@ async function main() {
       slug: `sultani-khurgeen-${num}`,
       sku,
       price: size,
-      description: `Hand-knotted Sultani Khurgeen rug. Size: ${product.w}×${product.h} cm (${size}).`,
+      description: `Hand-knotted Sultani Khurgeen rug.\nSize: ${product.w}×${product.h} cm (${size}).`,
       stock_quantity: 1,
       is_active: true,
     })

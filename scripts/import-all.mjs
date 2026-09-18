@@ -138,7 +138,7 @@ async function processRawFolders() {
         slug: `${folder.toLowerCase().replace(/\s+/g, "-")}-${num}`,
         sku,
         price: 1500,
-        description: `Hand-knotted ${folder} rug. Size: ${product.width}×${product.height} cm (${size}).`,
+        description: `Hand-knotted ${folder} rug.\nSize: ${product.width}×${product.height} cm (${size}).`,
         stock_quantity: 1,
         is_active: true,
       })

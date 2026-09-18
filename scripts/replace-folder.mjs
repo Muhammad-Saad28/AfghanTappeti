@@ -144,7 +144,7 @@ async function main() {
         slug,
         sku,
         price,
-        description: `Hand-knotted ${CATEGORY} rug. Size: ${product.width}×${product.height} cm.`,
+        description: `Hand-knotted ${CATEGORY} rug.\nSize: ${product.width}×${product.height} cm.`,
         stock_quantity: 1,
         is_active: true,
       })
