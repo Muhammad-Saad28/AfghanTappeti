@@ -31,7 +31,7 @@ export default async function AdminProductsPage() {
           <thead>
             <tr className="border-b border-outline-variant">
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Name</th>
-              <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden md:table-cell">SKU</th>
+
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden md:table-cell">Price</th>
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden lg:table-cell">Stock</th>
               <th className="text-left px-4 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider hidden lg:table-cell">Status</th>
@@ -55,9 +55,6 @@ export default async function AdminProductsPage() {
                   >
                     {product.name}
                   </Link>
-                </td>
-                <td className="px-4 py-4 font-body-md text-on-surface-variant hidden md:table-cell">
-                  {product.sku}
                 </td>
                 <td className="px-4 py-4 font-body-md text-on-surface hidden md:table-cell">
                   €{roundPrice(product.price ?? 0).toLocaleString()}
