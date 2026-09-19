@@ -114,7 +114,11 @@ export default async function Home({
     "modern-rugs": "/modernluxurykilims.jpeg",
     "sultani-farhan-ziegler": "/sultanifarhan.jpg",
     "sultani-khurgeen": "/sultani.jpg",
-
+    "sultani-kazak-gold": "/images/home/collection_1.jpg",
+    "mamluk": "/images/home/collection_2.jpg",
+    "sultani-gabbah": "/images/home/collection_4.jpg",
+    "sultani-tree-design": "/images/home/collection_5.jpg",
+    "sultani-bakhtiari": "/images/home/collection_6.jpg",
   }
 
   const styleImages = [
