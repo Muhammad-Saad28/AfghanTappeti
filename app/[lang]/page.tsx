@@ -112,8 +112,8 @@ export default async function Home({
     "afghan-kilim": "/modernluxurykilims.jpeg",
     "vintage-rugs": "/persianvintage.jpeg",
     "modern-rugs": "/modernluxurykilims.jpeg",
-    "sultani-farhan-ziegler": "/sultanifarhan.jpg",
-    "sultani-khurgeen": "/sultani.jpg",
+    "sultani-farhan-ziegler": "/sultanifarhan.JPG",
+    "sultani-khurgeen": "/sultani.JPG",
     "sultani-kazak-gold": "/images/home/collection_1.jpg",
     "mamluk": "/images/home/collection_2.jpg",
     "sultani-gabbah": "/images/home/collection_4.jpg",
@@ -210,7 +210,7 @@ export default async function Home({
               "/afghankilims.jpeg",
               "/persianvintage.jpeg",
               "/modernluxurykilims.jpeg",
-              "/sultanifarhan.jpeg"
+              "/sultanifarhan.JPG"
             ]
             const bgImage = cat.image || categoryImageMap[cat.slug] || fallbackImages[index % fallbackImages.length]
             
